@@ -1,7 +1,5 @@
 # 👋 Hi, I'm Salman !
 
-**Senior Consultant | Full Stack Developer**  
-
 ---
 🚀 Senior Full Stack Developer | Python & ML Enthusiast | GoLang is coming | Tech Innovator 🌟
 ---
