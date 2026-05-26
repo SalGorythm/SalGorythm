@@ -1,13 +1,67 @@
-import { Lock, Mail, MessageSquare, Send, User } from 'lucide-react'
+import { AlertCircle, CheckCircle2, Lock, Loader2, Mail, MessageSquare, Send, User } from 'lucide-react'
+import { useState, type FormEvent } from 'react'
+import { SocialLinks } from './SocialLinks'
 
 const ACCESS_KEY = import.meta.env.VITE_WEB3FORMS_ACCESS_KEY as string | undefined
 
+type SubmitState =
+  | { status: 'idle' }
+  | { status: 'submitting' }
+  | { status: 'success'; message: string }
+  | { status: 'error'; message: string }
+
 /**
- * Web3Forms: set `VITE_WEB3FORMS_ACCESS_KEY` in `.env` (see README).
- * Alternative: point `action` at Formspree `https://formspree.io/f/{id}` and remove the hidden access_key field.
+ * Web3Forms via `fetch` + `FormData` (recommended pattern).
+ * Set `VITE_WEB3FORMS_ACCESS_KEY` in `.env` — only `VITE_*` vars are exposed to the browser in Vite.
  */
 export function ContactForm() {
   const configured = Boolean(ACCESS_KEY && ACCESS_KEY.length > 8)
+  const [submit, setSubmit] = useState<SubmitState>({ status: 'idle' })
+
+  const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault()
+    if (!configured || !ACCESS_KEY) {
+      setSubmit({
+        status: 'error',
+        message: 'Add VITE_WEB3FORMS_ACCESS_KEY to your .env file and restart the dev server.',
+      })
+      return
+    }
+
+    setSubmit({ status: 'submitting' })
+    const form = event.currentTarget
+    const formData = new FormData(form)
+    formData.set('access_key', ACCESS_KEY)
+    if (!formData.get('subject')) {
+      formData.set('subject', 'Portfolio contact')
+    }
+
+    try {
+      const response = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        body: formData,
+      })
+      const data = (await response.json()) as {
+        success?: boolean
+        message?: string
+      }
+
+      if (data.success) {
+        setSubmit({ status: 'success', message: 'Transmission received. I will reply from my inbox.' })
+        form.reset()
+      } else {
+        setSubmit({
+          status: 'error',
+          message: data.message ?? 'Submission failed. Check your access key and try again.',
+        })
+      }
+    } catch {
+      setSubmit({
+        status: 'error',
+        message: 'Network error. Check your connection and try again.',
+      })
+    }
+  }
 
   return (
     <section
@@ -27,46 +81,65 @@ export function ContactForm() {
             Establish <span className="text-purple-300">contact</span>
           </h2>
           <p className="mt-3 text-slate-400">
-            Serverless-friendly form: defaults to Web3Forms when{' '}
+            Submissions post to Web3Forms via <span className="font-mono text-cyan-300/90">fetch</span>
+            . Use{' '}
             <code className="rounded bg-slate-900 px-1 py-0.5 font-mono text-xs text-cyan-300/90">
               VITE_WEB3FORMS_ACCESS_KEY
             </code>{' '}
-            is set. Swap the action for Formspree if you prefer.
+            in <span className="font-mono">.env</span> (required for Vite to expose the key to this
+            page).
           </p>
         </header>
 
         <div className="mx-auto max-w-xl">
+          <div className="mb-6 flex justify-center sm:justify-start">
+            <SocialLinks variant="inline" />
+          </div>
           <div className="mb-4 flex items-start gap-3 rounded-xl border border-amber-500/25 bg-amber-500/5 px-3 py-2.5 text-sm text-amber-100/90">
             <Lock className="mt-0.5 h-4 w-4 shrink-0 text-amber-400" aria-hidden />
             <p>
               {!configured ? (
                 <>
-                  <strong className="font-medium text-amber-50">Demo mode:</strong> add your
-                  Web3Forms access key to <span className="font-mono">.env</span> so submissions
-                  deliver. The form still validates locally.
+                  <strong className="font-medium text-amber-50">Not configured:</strong> add{' '}
+                  <span className="font-mono">VITE_WEB3FORMS_ACCESS_KEY</span> to{' '}
+                  <span className="font-mono">.env</span> and restart <span className="font-mono">npm run dev</span>.
                 </>
               ) : (
                 <>
-                  <strong className="font-medium text-emerald-200">Ready:</strong> submissions
-                  route through Web3Forms using your environment key.
+                  <strong className="font-medium text-emerald-200">Ready:</strong> access key loaded
+                  from env. Do not commit <span className="font-mono">.env</span>.
                 </>
               )}
             </p>
           </div>
 
+          {submit.status === 'success' && (
+            <div
+              className="mb-4 flex items-start gap-3 rounded-xl border border-emerald-500/30 bg-emerald-500/10 px-3 py-2.5 text-sm text-emerald-100"
+              role="status"
+            >
+              <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-emerald-400" aria-hidden />
+              <p>{submit.message}</p>
+            </div>
+          )}
+
+          {submit.status === 'error' && (
+            <div
+              className="mb-4 flex items-start gap-3 rounded-xl border border-red-500/30 bg-red-500/10 px-3 py-2.5 text-sm text-red-100"
+              role="alert"
+            >
+              <AlertCircle className="mt-0.5 h-4 w-4 shrink-0 text-red-400" aria-hidden />
+              <p>{submit.message}</p>
+            </div>
+          )}
+
           <form
-            action="https://api.web3forms.com/submit"
-            method="POST"
+            onSubmit={onSubmit}
             className="space-y-4 rounded-2xl border border-cyan-500/20 bg-slate-900/40 p-6 shadow-[0_0_30px_rgba(34,211,238,0.06)] backdrop-blur-md sm:p-8"
+            noValidate={false}
           >
             <input type="hidden" name="subject" value="Portfolio contact" />
             <input type="checkbox" name="botcheck" className="hidden" tabIndex={-1} autoComplete="off" />
-
-            {configured ? (
-              <input type="hidden" name="access_key" value={ACCESS_KEY} readOnly />
-            ) : (
-              <input type="hidden" name="access_key" value="YOUR_ACCESS_KEY_HERE" readOnly />
-            )}
 
             <div>
               <label
@@ -80,8 +153,9 @@ export function ContactForm() {
                 id="contact-name"
                 name="name"
                 required
+                disabled={submit.status === 'submitting'}
                 placeholder="Your name"
-                className="w-full rounded-xl border border-slate-700/80 bg-slate-950/70 px-3 py-2.5 text-sm text-slate-100 outline-none ring-cyan-500/20 placeholder:text-slate-600 focus:border-cyan-500/45 focus:ring-2"
+                className="w-full rounded-xl border border-slate-700/80 bg-slate-950/70 px-3 py-2.5 text-sm text-slate-100 outline-none ring-cyan-500/20 placeholder:text-slate-600 focus:border-cyan-500/45 focus:ring-2 disabled:opacity-50"
               />
             </div>
 
@@ -98,8 +172,9 @@ export function ContactForm() {
                 name="email"
                 type="email"
                 required
+                disabled={submit.status === 'submitting'}
                 placeholder="you@organization.com"
-                className="w-full rounded-xl border border-slate-700/80 bg-slate-950/70 px-3 py-2.5 text-sm text-slate-100 outline-none ring-cyan-500/20 placeholder:text-slate-600 focus:border-purple-500/40 focus:ring-2"
+                className="w-full rounded-xl border border-slate-700/80 bg-slate-950/70 px-3 py-2.5 text-sm text-slate-100 outline-none ring-cyan-500/20 placeholder:text-slate-600 focus:border-purple-500/40 focus:ring-2 disabled:opacity-50"
               />
             </div>
 
@@ -116,17 +191,23 @@ export function ContactForm() {
                 name="message"
                 required
                 rows={5}
+                disabled={submit.status === 'submitting'}
                 placeholder="Context, role, timeline, and how you like to work together."
-                className="w-full resize-y rounded-xl border border-slate-700/80 bg-slate-950/70 px-3 py-2.5 text-sm text-slate-100 outline-none ring-cyan-500/20 placeholder:text-slate-600 focus:border-cyan-500/45 focus:ring-2"
+                className="w-full resize-y rounded-xl border border-slate-700/80 bg-slate-950/70 px-3 py-2.5 text-sm text-slate-100 outline-none ring-cyan-500/20 placeholder:text-slate-600 focus:border-cyan-500/45 focus:ring-2 disabled:opacity-50"
               />
             </div>
 
             <button
               type="submit"
-              className="group flex w-full items-center justify-center gap-2 rounded-xl border border-cyan-500/45 bg-gradient-to-r from-cyan-500/20 to-purple-500/20 py-3 font-mono text-sm font-medium text-cyan-50 transition hover:scale-[1.01] hover:border-cyan-400/60 hover:shadow-[0_0_24px_rgba(34,211,238,0.15)]"
+              disabled={submit.status === 'submitting' || !configured}
+              className="group flex w-full items-center justify-center gap-2 rounded-xl border border-cyan-500/45 bg-gradient-to-r from-cyan-500/20 to-purple-500/20 py-3 font-mono text-sm font-medium text-cyan-50 transition hover:scale-[1.01] hover:border-cyan-400/60 hover:shadow-[0_0_24px_rgba(34,211,238,0.15)] disabled:pointer-events-none disabled:opacity-50"
             >
-              <Send className="h-4 w-4 transition group-hover:translate-x-0.5" aria-hidden />
-              Transmit
+              {submit.status === 'submitting' ? (
+                <Loader2 className="h-4 w-4 animate-spin" aria-hidden />
+              ) : (
+                <Send className="h-4 w-4 transition group-hover:translate-x-0.5" aria-hidden />
+              )}
+              {submit.status === 'submitting' ? 'Transmitting…' : 'Transmit'}
             </button>
 
             <p className="text-center font-mono text-[10px] text-slate-600">

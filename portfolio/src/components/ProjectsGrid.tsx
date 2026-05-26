@@ -1,86 +1,9 @@
-import { Database, Layers, Smartphone } from 'lucide-react'
 import { useState } from 'react'
-
-type TabId = 'genai' | 'data' | 'local'
-
-type Project = {
-  title: string
-  blurb: string
-  stack: string[]
-}
-
-const TABS: { id: TabId; label: string; icon: typeof Layers }[] = [
-  { id: 'genai', label: 'Generative AI & LLMs', icon: Layers },
-  { id: 'data', label: 'Data Engineering & Analytics', icon: Database },
-  { id: 'local', label: 'Local-First Architecture', icon: Smartphone },
-]
-
-const PROJECTS: Record<TabId, Project[]> = {
-  genai: [
-    {
-      title: 'Enterprise LLM rollout',
-      blurb:
-        'Governed deployment with evaluation loops, policy filters, and multi-tenant usage accounting for regulated industries.',
-      stack: ['WatsonX.ai', 'Guardrails', 'Observability'],
-    },
-    {
-      title: 'Multi-model orchestration',
-      blurb:
-        'Routing layer across Granite / Llama-class models with cost-aware selection, caching, and structured output contracts.',
-      stack: ['Orchestrator', 'OpenAI-compatible APIs', 'JSON schema'],
-    },
-    {
-      title: 'RAG knowledge mesh',
-      blurb:
-        'Hybrid retrieval, chunking strategies tuned per domain, and offline eval sets for regression on answer quality.',
-      stack: ['Vector store', 'Embeddings', 'Eval harness'],
-    },
-  ],
-  data: [
-    {
-      title: 'Cloud-native lakehouse spine',
-      blurb:
-        'Batch + incremental pipelines with idempotent loads, schema evolution, and data quality gates in CI.',
-      stack: ['Spark / SQL', 'Airflow-style DAGs', 'dbt patterns'],
-    },
-    {
-      title: 'Real-time analytics plane',
-      blurb:
-        'Low-latency aggregates for product telemetry with backpressure-aware consumers and cost dashboards.',
-      stack: ['Streaming', 'Warehouse', 'Metrics'],
-    },
-    {
-      title: 'Executive analytics cockpit',
-      blurb:
-        'Curated semantic layer, drill paths, and narrative automation so leaders see defensible numbers.',
-      stack: ['BI embed', 'Metric defs', 'Access controls'],
-    },
-  ],
-  local: [
-    {
-      title: 'Offline-first mobile shell',
-      blurb:
-        'Encrypted device storage, sync when online, and conflict resolution tuned for field operators.',
-      stack: ['SQLite / Realm-class', 'E2EE patterns', 'Capacitor / RN'],
-    },
-    {
-      title: 'High-performance web client',
-      blurb:
-        'Indexed storage, web workers for heavy transforms, and minimal network chatter for snappy UX.',
-      stack: ['IndexedDB', 'Workers', 'Vite'],
-    },
-    {
-      title: 'Privacy-preserving analytics',
-      blurb:
-        'On-device aggregation with optional differential-style noise before any server round-trip.',
-      stack: ['Local compute', 'Consent UX', 'Edge'],
-    },
-  ],
-}
+import { PROJECT_TABS, PROJECTS_BY_TAB, type ProjectTabId } from '../data/projects'
 
 export function ProjectsGrid() {
-  const [tab, setTab] = useState<TabId>('genai')
-  const items = PROJECTS[tab]
+  const [tab, setTab] = useState<ProjectTabId>('genai')
+  const items = PROJECTS_BY_TAB[tab]
 
   return (
     <section
@@ -101,7 +24,8 @@ export function ProjectsGrid() {
               Project <span className="text-purple-300">matrix</span>
             </h2>
             <p className="mt-3 text-slate-400">
-              Representative engagements — names anonymized, architecture and outcomes are real.
+              Highlights mapped from public portfolio README and CV — architecture and outcomes
+              are representative of production delivery.
             </p>
           </div>
         </header>
@@ -111,7 +35,7 @@ export function ProjectsGrid() {
           role="tablist"
           aria-label="Project categories"
         >
-          {TABS.map(({ id, label, icon: Icon }) => {
+          {PROJECT_TABS.map(({ id, label, icon: Icon }) => {
             const active = tab === id
             return (
               <button
@@ -139,7 +63,7 @@ export function ProjectsGrid() {
         <div
           role="tabpanel"
           className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3"
-          aria-label={TABS.find((t) => t.id === tab)?.label}
+          aria-label={PROJECT_TABS.find((t) => t.id === tab)?.label}
         >
           {items.map((project) => (
             <article

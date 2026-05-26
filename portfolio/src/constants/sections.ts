@@ -1,6 +1,7 @@
 /** Section `id` attributes — order matters for scroll-spy highlighting. */
 export const SECTION_IDS = [
   'hero',
+  'resume',
   'experience',
   'skills',
   'projects',

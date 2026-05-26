@@ -1,61 +1,9 @@
-import { BrainCircuit, Building2, ChevronRight, Globe2, Lock } from 'lucide-react'
+import { ChevronRight } from 'lucide-react'
 import { useState } from 'react'
-
-type Role = {
-  id: string
-  org: string
-  title: string
-  period: string
-  summary: string
-  tags: string[]
-  icon: typeof Building2
-}
-
-const ROLES: Role[] = [
-  {
-    id: 'ey',
-    org: 'Big Four / EY-class delivery',
-    title: 'Senior Data Science & Advisory',
-    period: '2018 — Present',
-    summary:
-      'Led analytics and modeling workstreams for Fortune-scale clients: regulated reporting, risk analytics, and executive-ready insights with audit-grade rigor.',
-    tags: ['Stakeholder governance', 'Model validation', 'Executive storytelling'],
-    icon: Building2,
-  },
-  {
-    id: 'enterprise',
-    org: 'Enterprise consulting',
-    title: 'Principal Consultant · Data & AI',
-    period: 'Multi-industry',
-    summary:
-      'End-to-end solutioning from discovery to production: data contracts, MLOps patterns, and cross-functional pods spanning engineering, security, and product.',
-    tags: ['Pod leadership', 'Architecture', 'Value framing'],
-    icon: Globe2,
-  },
-  {
-    id: 'cyber',
-    org: 'Cybersecurity-informed analytics',
-    title: 'Secure data platforms',
-    period: 'Ongoing',
-    summary:
-      'Designed telemetry and analytical surfaces with threat-aware controls, least-privilege access patterns, and defensible data lineage for sensitive workloads.',
-    tags: ['Zero-trust alignment', 'Telemetry', 'Compliance'],
-    icon: Lock,
-  },
-  {
-    id: 'llm',
-    org: 'LLM architectures',
-    title: 'Multi-model orchestration',
-    period: 'GenAI era',
-    summary:
-      'Production patterns for routing, evaluation, guardrails, and enterprise deployments — including WatsonX-style stacks and Granite/Llama-style model mixes.',
-    tags: ['WatsonX.ai', 'Granite / Llama', 'RAG & eval'],
-    icon: BrainCircuit,
-  },
-]
+import { EXPERIENCE_ROLES } from '../data/experience'
 
 export function ExperienceTimeline() {
-  const [openId, setOpenId] = useState<string>(ROLES[0]?.id ?? '')
+  const [openId, setOpenId] = useState<string>(EXPERIENCE_ROLES[0]?.id ?? '')
 
   return (
     <section
@@ -76,14 +24,14 @@ export function ExperienceTimeline() {
             <span className="text-purple-300 text-glow-purple">high-trust delivery</span>
           </h2>
           <p className="mt-3 text-slate-400">
-            Select a node to expand mission context. Optimized for recruiters scanning depth
-            quickly.
+            IBM, EY, TELUS International, and earlier senior engineering chapters — select a node to
+            expand full context, metrics, and stack tags.
           </p>
         </header>
 
         <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.1fr)]">
           <ol className="relative space-y-0 border-l border-cyan-500/20 pl-6">
-            {ROLES.map((role, index) => {
+            {EXPERIENCE_ROLES.map((role, index) => {
               const active = openId === role.id
               return (
                 <li key={role.id} className="pb-10 last:pb-2">
@@ -126,7 +74,7 @@ export function ExperienceTimeline() {
           </ol>
 
           <div className="min-h-[280px]">
-            {ROLES.map((role) => {
+            {EXPERIENCE_ROLES.map((role) => {
               if (role.id !== openId) return null
               const Icon = role.icon
               return (
@@ -147,13 +95,44 @@ export function ExperienceTimeline() {
                         <p className="font-mono text-xs text-cyan-400/90">{role.period}</p>
                       </div>
                     </div>
-                    <span className="rounded-md border border-slate-700/80 bg-slate-950/60 px-2 py-1 font-mono text-[10px] uppercase tracking-wider text-slate-400">
-                      {role.org}
-                    </span>
+                    {role.wordmark === 'ibm' ? (
+                      <span
+                        className="flex items-center gap-1.5 rounded-md border border-slate-600/70 bg-gradient-to-b from-slate-800/90 to-slate-950/90 px-2.5 py-1.5 shadow-inner"
+                        aria-label="IBM"
+                      >
+                        <span className="flex flex-col gap-0.5" aria-hidden>
+                          {[9, 7, 9, 7, 9].map((w, i) => (
+                            <span
+                              key={i}
+                              className="block h-0.5 rounded-sm bg-white/90"
+                              style={{ width: `${w}px` }}
+                            />
+                          ))}
+                        </span>
+                        <span className="font-sans text-[11px] font-bold leading-none tracking-tight text-white">
+                          IBM
+                        </span>
+                      </span>
+                    ) : (
+                      <span className="rounded-md border border-slate-700/80 bg-slate-950/60 px-2 py-1 font-mono text-[10px] uppercase tracking-wider text-slate-400">
+                        {role.org}
+                      </span>
+                    )}
                   </div>
                   <p className="mt-5 text-sm leading-relaxed text-slate-300 sm:text-base">
                     {role.summary}
                   </p>
+                  <ul className="mt-5 list-none space-y-2.5 border-t border-slate-800/80 pt-5">
+                    {role.bullets.map((b) => (
+                      <li key={b} className="flex gap-2.5 text-sm leading-relaxed text-slate-400">
+                        <span
+                          className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-cyan-500/80 shadow-[0_0_8px_rgba(34,211,238,0.5)]"
+                          aria-hidden
+                        />
+                        <span>{b}</span>
+                      </li>
+                    ))}
+                  </ul>
                   <ul className="mt-6 flex flex-wrap gap-2">
                     {role.tags.map((tag) => (
                       <li key={tag}>
