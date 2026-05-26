@@ -1,0 +1,11 @@
+/** Section `id` attributes — order matters for scroll-spy highlighting. */
+export const SECTION_IDS = [
+  'hero',
+  'experience',
+  'skills',
+  'projects',
+  'recruiter',
+  'contact',
+] as const
+
+export type SectionId = (typeof SECTION_IDS)[number]
