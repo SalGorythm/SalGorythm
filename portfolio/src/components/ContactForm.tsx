@@ -1,8 +1,9 @@
-import { AlertCircle, CheckCircle2, Lock, Loader2, Mail, MessageSquare, Send, User } from 'lucide-react'
+import { AlertCircle, CheckCircle2, Loader2, Mail, MessageSquare, Send, User } from 'lucide-react'
 import { useState, type FormEvent } from 'react'
+import { isWeb3FormsConfigured, submitToWeb3Forms } from '../lib/web3forms'
 import { SocialLinks } from './SocialLinks'
 
-const ACCESS_KEY = import.meta.env.VITE_WEB3FORMS_ACCESS_KEY as string | undefined
+const configured = isWeb3FormsConfigured()
 
 type SubmitState =
   | { status: 'idle' }
@@ -11,19 +12,20 @@ type SubmitState =
   | { status: 'error'; message: string }
 
 /**
- * Web3Forms via `fetch` + `FormData` (recommended pattern).
- * Set `VITE_WEB3FORMS_ACCESS_KEY` in `.env` — only `VITE_*` vars are exposed to the browser in Vite.
+ * Contact via Web3Forms (`fetch` + `FormData`). Configure `VITE_WEB3FORMS_ACCESS_KEY` in deploy env.
  */
 export function ContactForm() {
-  const configured = Boolean(ACCESS_KEY && ACCESS_KEY.length > 8)
   const [submit, setSubmit] = useState<SubmitState>({ status: 'idle' })
 
   const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
-    if (!configured || !ACCESS_KEY) {
+    if (!configured) {
       setSubmit({
         status: 'error',
-        message: 'Add VITE_WEB3FORMS_ACCESS_KEY to your .env file and restart the dev server.',
+        message:
+          import.meta.env.DEV
+            ? 'Add VITE_WEB3FORMS_ACCESS_KEY to your .env file and restart the dev server.'
+            : 'This form is not active on this deployment yet.',
       })
       return
     }
@@ -31,28 +33,19 @@ export function ContactForm() {
     setSubmit({ status: 'submitting' })
     const form = event.currentTarget
     const formData = new FormData(form)
-    formData.set('access_key', ACCESS_KEY)
     if (!formData.get('subject')) {
       formData.set('subject', 'Portfolio contact')
     }
 
     try {
-      const response = await fetch('https://api.web3forms.com/submit', {
-        method: 'POST',
-        body: formData,
-      })
-      const data = (await response.json()) as {
-        success?: boolean
-        message?: string
-      }
-
+      const data = await submitToWeb3Forms(formData)
       if (data.success) {
         setSubmit({ status: 'success', message: 'Transmission received. I will reply from my inbox.' })
         form.reset()
       } else {
         setSubmit({
           status: 'error',
-          message: data.message ?? 'Submission failed. Check your access key and try again.',
+          message: data.message ?? 'Submission failed. Please try again.',
         })
       }
     } catch {
@@ -81,13 +74,8 @@ export function ContactForm() {
             Establish <span className="text-purple-300">contact</span>
           </h2>
           <p className="mt-3 text-slate-400">
-            Submissions post to Web3Forms via <span className="font-mono text-cyan-300/90">fetch</span>
-            . Use{' '}
-            <code className="rounded bg-slate-900 px-1 py-0.5 font-mono text-xs text-cyan-300/90">
-              VITE_WEB3FORMS_ACCESS_KEY
-            </code>{' '}
-            in <span className="font-mono">.env</span> (required for Vite to expose the key to this
-            page).
+            Direct message to my inbox — suitable for recruiters, collaborators, and technical
+            introductions. Replies are manual; there is no mailing list signup on submit.
           </p>
         </header>
 
@@ -95,23 +83,30 @@ export function ContactForm() {
           <div className="mb-6 flex justify-center sm:justify-start">
             <SocialLinks variant="inline" />
           </div>
-          <div className="mb-4 flex items-start gap-3 rounded-xl border border-amber-500/25 bg-amber-500/5 px-3 py-2.5 text-sm text-amber-100/90">
-            <Lock className="mt-0.5 h-4 w-4 shrink-0 text-amber-400" aria-hidden />
-            <p>
-              {!configured ? (
-                <>
-                  <strong className="font-medium text-amber-50">Not configured:</strong> add{' '}
-                  <span className="font-mono">VITE_WEB3FORMS_ACCESS_KEY</span> to{' '}
-                  <span className="font-mono">.env</span> and restart <span className="font-mono">npm run dev</span>.
-                </>
-              ) : (
-                <>
-                  <strong className="font-medium text-emerald-200">Ready:</strong> access key loaded
-                  from env. Do not commit <span className="font-mono">.env</span>.
-                </>
-              )}
-            </p>
-          </div>
+
+          {!configured && (
+            <div
+              className="mb-4 flex items-start gap-3 rounded-xl border border-amber-500/25 bg-amber-500/5 px-3 py-2.5 text-sm text-amber-100/90"
+              role="status"
+            >
+              <AlertCircle className="mt-0.5 h-4 w-4 shrink-0 text-amber-400" aria-hidden />
+              <p>
+                {import.meta.env.DEV ? (
+                  <>
+                    <strong className="font-medium text-amber-50">Developer:</strong> add{' '}
+                    <span className="font-mono">VITE_WEB3FORMS_ACCESS_KEY</span> to{' '}
+                    <span className="font-mono">.env</span> and restart <span className="font-mono">npm run dev</span>.
+                    Do not commit <span className="font-mono">.env</span>.
+                  </>
+                ) : (
+                  <>
+                    <strong className="font-medium text-amber-50">Unavailable:</strong> contact relay
+                    is not configured for this build.
+                  </>
+                )}
+              </p>
+            </div>
+          )}
 
           {submit.status === 'success' && (
             <div

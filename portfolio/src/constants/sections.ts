@@ -5,6 +5,7 @@ export const SECTION_IDS = [
   'experience',
   'skills',
   'projects',
+  'apps',
   'recruiter',
   'contact',
 ] as const

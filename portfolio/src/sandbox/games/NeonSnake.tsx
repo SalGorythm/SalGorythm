@@ -1,10 +1,16 @@
-import { useCallback, useEffect, useRef, useState } from 'react'
+import { useCallback, useEffect, useReducer } from 'react'
 
 const W = 14
 const H = 14
 const TICK_MS = 140
 
 type Pt = { x: number; y: number }
+
+const INITIAL_SNAKE: Pt[] = [
+  { x: 4, y: 7 },
+  { x: 3, y: 7 },
+  { x: 2, y: 7 },
+]
 
 function randFood(snake: Pt[]): Pt {
   for (let k = 0; k < 200; k++) {
@@ -15,80 +21,92 @@ function randFood(snake: Pt[]): Pt {
   return { x: 0, y: 0 }
 }
 
+type GameState = {
+  snake: Pt[]
+  food: Pt
+  dir: Pt
+  alive: boolean
+  score: number
+}
+
+function initialGameState(): GameState {
+  const snake = INITIAL_SNAKE
+  return {
+    snake,
+    food: randFood(snake),
+    dir: { x: 1, y: 0 },
+    alive: true,
+    score: 0,
+  }
+}
+
+type GameAction =
+  | { type: 'TICK' }
+  | { type: 'RESET' }
+  | { type: 'STEER'; dir: Pt }
+
+function gameReducer(state: GameState, action: GameAction): GameState {
+  if (action.type === 'RESET') {
+    return initialGameState()
+  }
+
+  if (action.type === 'STEER') {
+    if (!state.alive) return state
+    const { dir } = state
+    const nd = action.dir
+    if (dir.x === -nd.x && dir.y === -nd.y) return state
+    return { ...state, dir: nd }
+  }
+
+  if (action.type === 'TICK') {
+    if (!state.alive) return state
+
+    const { snake, food, dir } = state
+    const head = snake[0]!
+    const nh = { x: (head.x + dir.x + W) % W, y: (head.y + dir.y + H) % H }
+    const ate = nh.x === food.x && nh.y === food.y
+    const body = ate ? snake : snake.slice(0, -1)
+
+    if (body.some((s) => s.x === nh.x && s.y === nh.y)) {
+      return { ...state, alive: false }
+    }
+
+    const nextSnake = [nh, ...body]
+
+    if (ate) {
+      return {
+        ...state,
+        snake: nextSnake,
+        food: randFood(nextSnake),
+        score: state.score + 1,
+      }
+    }
+
+    return { ...state, snake: nextSnake }
+  }
+
+  return state
+}
+
 export function NeonSnake() {
-  const [snake, setSnake] = useState<Pt[]>([
-    { x: 4, y: 7 },
-    { x: 3, y: 7 },
-    { x: 2, y: 7 },
-  ])
-  const [food, setFood] = useState<Pt>(() => randFood([{ x: 4, y: 7 }, { x: 3, y: 7 }, { x: 2, y: 7 }]))
-  const foodRef = useRef(food)
-
-  const [dir, setDir] = useState<Pt>({ x: 1, y: 0 })
-  const [alive, setAlive] = useState(true)
-  const [score, setScore] = useState(0)
-  const dirRef = useRef(dir)
-
-  useEffect(() => {
-    foodRef.current = food
-  }, [food])
-
-  useEffect(() => {
-    dirRef.current = dir
-  }, [dir])
-
-  const reset = useCallback(() => {
-    const s = [
-      { x: 4, y: 7 },
-      { x: 3, y: 7 },
-      { x: 2, y: 7 },
-    ]
-    setSnake(s)
-    const f = randFood(s)
-    setFood(f)
-    foodRef.current = f
-    setDir({ x: 1, y: 0 })
-    setAlive(true)
-    setScore(0)
-  }, [])
+  const [state, dispatch] = useReducer(gameReducer, undefined, initialGameState)
+  const { snake, food, alive, score } = state
 
   useEffect(() => {
     if (!alive) return
     const id = window.setInterval(() => {
-      setSnake((prev) => {
-        const d = dirRef.current
-        const head = prev[0]!
-        const nh = { x: (head.x + d.x + W) % W, y: (head.y + d.y + H) % H }
-        const f = foodRef.current
-        const ate = nh.x === f.x && nh.y === f.y
-        const body = ate ? prev : prev.slice(0, -1)
-        if (body.some((s) => s.x === nh.x && s.y === nh.y)) {
-          setAlive(false)
-          return prev
-        }
-        const next = [nh, ...body]
-        if (ate) {
-          setScore((sc) => sc + 1)
-          const nf = randFood(next)
-          foodRef.current = nf
-          setFood(nf)
-        }
-        return next
-      })
+      dispatch({ type: 'TICK' })
     }, TICK_MS)
     return () => window.clearInterval(id)
   }, [alive])
 
-  const steer = useCallback(
-    (dx: number, dy: number) => {
-      if (!alive) return
-      setDir((d) => {
-        if (d.x === -dx && d.y === -dy) return d
-        return { x: dx, y: dy }
-      })
-    },
-    [alive],
-  )
+  const reset = useCallback(() => {
+    dispatch({ type: 'RESET' })
+  }, [])
+
+  const steer = useCallback((dx: number, dy: number) => {
+    dispatch({ type: 'STEER', dir: { x: dx, y: dy } })
+  }, [])
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
@@ -120,7 +138,9 @@ export function NeonSnake() {
         D-pad.
       </p>
       <div className="flex flex-wrap items-center justify-between gap-2 font-mono text-xs text-slate-400">
-        <span>Score: {score}</span>
+        <span>
+          Score: {score} · Length: {snake.length}
+        </span>
         <button
           type="button"
           onClick={reset}

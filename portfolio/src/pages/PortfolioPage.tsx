@@ -1,4 +1,5 @@
 import { AIChatSim } from '../components/AIChatSim'
+import { AppLicensingQuoteForm } from '../components/AppLicensingQuoteForm'
 import { ContactForm } from '../components/ContactForm'
 import { ExperienceTimeline } from '../components/ExperienceTimeline'
 import { Hero } from '../components/Hero'
@@ -36,6 +37,7 @@ export function PortfolioPage() {
       <ExperienceTimeline />
       <SkillsTerminal />
       <ProjectsGrid />
+      <AppLicensingQuoteForm />
       <AIChatSim />
       <ContactForm />
     </main>

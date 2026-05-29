@@ -67,7 +67,7 @@ export function ProjectsGrid() {
         >
           {items.map((project) => (
             <article
-              key={project.title}
+              key={project.href ? `${project.title}-${project.href}` : project.title}
               className="group relative flex flex-col overflow-hidden rounded-2xl border border-slate-800/90 bg-slate-900/35 p-5 shadow-[0_0_0_0_rgba(0,0,0,0)] backdrop-blur-md transition duration-300 hover:-translate-y-0.5 hover:border-cyan-500/35 hover:shadow-[0_0_28px_rgba(34,211,238,0.12)]"
             >
               <div
@@ -90,6 +90,17 @@ export function ProjectsGrid() {
                   </li>
                 ))}
               </ul>
+              {project.href ? (
+                <a
+                  href={project.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="relative mt-4 inline-flex items-center gap-1 font-mono text-xs font-medium text-cyan-400/95 underline-offset-4 transition hover:text-cyan-300 hover:underline"
+                >
+                  {project.linkLabel ?? 'Open link'}
+                  <span aria-hidden>↗</span>
+                </a>
+              ) : null}
             </article>
           ))}
         </div>

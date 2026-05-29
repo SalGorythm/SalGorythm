@@ -6,6 +6,9 @@ export type ProjectCard = {
   title: string
   blurb: string
   stack: string[]
+  /** External URL (e.g. live product or marketing site). */
+  href?: string
+  linkLabel?: string
 }
 
 export const PROJECT_TABS: { id: ProjectTabId; label: string; icon: LucideIcon }[] = [
@@ -68,6 +71,14 @@ export const PROJECTS_BY_TAB: Record<ProjectTabId, ProjectCard[]> = {
     },
   ],
   local: [
+    {
+      title: 'EasySalah',
+      blurb:
+        'Local-first Islamic utility — prayer times, Qibla, Hijri & Gregorian dates, Zakat estimates, and reminders. Built for privacy and calm daily rhythm; optional Pro tools without cloud tracking of your routine. Explore the marketing site and store listings.',
+      stack: ['Next.js site', 'iOS', 'Local-first', 'Zakat · Qibla · Hijri'],
+      href: 'https://easy-salah.vercel.app/',
+      linkLabel: 'Visit easy-salah.vercel.app',
+    },
     {
       title: 'Field-scale automation footprint',
       blurb:
