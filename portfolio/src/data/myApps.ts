@@ -2,6 +2,18 @@
  * Shipped products — store & web links for the portfolio “My apps” section.
  * Add `playStoreUrl` when a listing is live; omit or use `playStoreNote` otherwise.
  */
+
+/** Canonical support inbox for all SalGorythm apps & projects (store listings, footers, help). */
+export const SALGORYTHM_SUPPORT_EMAIL = 'support@salgorythm.com'
+
+export const SALGORYTHM_SUPPORT_MAILTO = `mailto:${SALGORYTHM_SUPPORT_EMAIL}?subject=Support%20request`
+
+/**
+ * Element `id` on the portfolio home page — use as a public support URL fragment, e.g.
+ * `https://your-domain.com/#product-support` in App Store Connect / Play Console.
+ */
+export const SALGORYTHM_SUPPORT_PAGE_HASH = 'product-support'
+
 export type PortfolioApp = {
   id: string
   name: string

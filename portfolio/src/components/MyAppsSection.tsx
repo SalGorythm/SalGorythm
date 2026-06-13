@@ -1,6 +1,11 @@
-import { Check, ExternalLink, Globe, Smartphone } from 'lucide-react'
+import { Check, ExternalLink, Globe, Mail, Smartphone } from 'lucide-react'
 import type { ReactNode } from 'react'
-import { PORTFOLIO_APPS } from '../data/myApps'
+import {
+  PORTFOLIO_APPS,
+  SALGORYTHM_SUPPORT_EMAIL,
+  SALGORYTHM_SUPPORT_MAILTO,
+  SALGORYTHM_SUPPORT_PAGE_HASH,
+} from '../data/myApps'
 
 function StoreLink({
   href,
@@ -137,6 +142,51 @@ export function MyAppsSection() {
             </li>
           ))}
         </ul>
+
+        <div
+          id={SALGORYTHM_SUPPORT_PAGE_HASH}
+          aria-labelledby="product-support-heading"
+          className="mt-12 scroll-mt-28 rounded-2xl border border-cyan-500/20 bg-slate-900/50 p-6 shadow-[0_0_32px_rgba(34,211,238,0.06)] backdrop-blur-md sm:p-8"
+        >
+          <div className="flex flex-col gap-6 lg:flex-row lg:items-start lg:justify-between">
+            <div className="max-w-2xl space-y-3">
+              <p className="font-mono text-xs uppercase tracking-[0.3em] text-cyan-500/80">
+                Universal support
+              </p>
+              <h3
+                id="product-support-heading"
+                className="text-xl font-semibold tracking-tight text-slate-50 sm:text-2xl"
+              >
+                SalGorythm product <span className="text-purple-300">support</span>
+              </h3>
+              <p className="text-sm leading-relaxed text-slate-400">
+                One inbox for questions, bug reports, and feedback across EasySalah and future
+                apps — use it in store listings, project READMEs, and marketing footers so users
+                always reach the same channel.
+              </p>
+              <p className="font-mono text-[11px] leading-relaxed text-slate-500">
+                Support page anchor for URLs:{' '}
+                <code className="rounded border border-slate-700/80 bg-slate-950/80 px-1.5 py-0.5 text-cyan-300/90">
+                  {`/#${SALGORYTHM_SUPPORT_PAGE_HASH}`}
+                </code>{' '}
+                on your live portfolio domain (example:{' '}
+                <span className="text-slate-400">https://your-domain.com/#product-support</span>).
+              </p>
+            </div>
+            <div className="flex shrink-0 flex-col gap-3 sm:flex-row sm:items-center lg:flex-col lg:items-stretch">
+              <a
+                href={SALGORYTHM_SUPPORT_MAILTO}
+                className="inline-flex min-h-[48px] items-center justify-center gap-2 rounded-xl border border-cyan-500/45 bg-cyan-500/10 px-5 py-3 font-mono text-sm font-medium text-cyan-50 transition hover:border-cyan-400/60 hover:shadow-[0_0_24px_rgba(34,211,238,0.12)]"
+              >
+                <Mail className="h-4 w-4 shrink-0" aria-hidden />
+                Email support
+              </a>
+              <p className="text-center font-mono text-xs text-slate-400 sm:text-left lg:text-center">
+                {SALGORYTHM_SUPPORT_EMAIL}
+              </p>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   )
