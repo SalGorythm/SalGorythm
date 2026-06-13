@@ -3,6 +3,7 @@ import { AppLicensingQuoteForm } from '../components/AppLicensingQuoteForm'
 import { ContactForm } from '../components/ContactForm'
 import { ExperienceTimeline } from '../components/ExperienceTimeline'
 import { Hero } from '../components/Hero'
+import { MyAppsSection } from '../components/MyAppsSection'
 import { ProjectsGrid } from '../components/ProjectsGrid'
 import { RecruiterCvGate } from '../components/RecruiterCvGate'
 import { SkillsTerminal } from '../components/SkillsTerminal'
@@ -37,6 +38,7 @@ export function PortfolioPage() {
       <ExperienceTimeline />
       <SkillsTerminal />
       <ProjectsGrid />
+      <MyAppsSection />
       <AppLicensingQuoteForm />
       <AIChatSim />
       <ContactForm />
