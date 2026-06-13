@@ -27,7 +27,7 @@ Do **not** use Option A and Option B at the same time (paths would conflict).
 
 ## Client-side routing (React Router)
 
-This app uses **`/`** and **`/sandbox`**. The root `vercel.json` includes a **SPA fallback** rewrite to `index.html` so direct visits and hard refreshes on `/sandbox` resolve correctly. Vercel still serves built static files (for example under `/assets/`) when they exist on disk.
+This app uses **`/`**, **`/sandbox`**, and **`/support`**. The root `vercel.json` includes a **SPA fallback** rewrite to `index.html` so direct visits and hard refreshes on those paths resolve correctly. Vercel still serves built static files (for example under `/assets/`) when they exist on disk.
 
 ## Environment variables
 

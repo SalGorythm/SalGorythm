@@ -9,8 +9,13 @@ export const SALGORYTHM_SUPPORT_EMAIL = 'support@salgorythm.com'
 export const SALGORYTHM_SUPPORT_MAILTO = `mailto:${SALGORYTHM_SUPPORT_EMAIL}?subject=Support%20request`
 
 /**
- * Element `id` on the portfolio home page — use as a public support URL fragment, e.g.
- * `https://your-domain.com/#product-support` in App Store Connect / Play Console.
+ * Public support URL — paste this into App Store Connect, Google Play Console, and in-app help.
+ * Served by the SPA route `/support` (e.g. https://salgorythm.com/support).
+ */
+export const SALGORYTHM_SUPPORT_URL = 'https://salgorythm.com/support'
+
+/**
+ * Optional in-page anchor on the portfolio home (`/#product-support`) for deep links from your own site.
  */
 export const SALGORYTHM_SUPPORT_PAGE_HASH = 'product-support'
 
