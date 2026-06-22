@@ -1,6 +1,7 @@
 import { Outlet, useLocation } from 'react-router-dom'
 import { Navbar } from '../components/Navbar'
 import { SocialLinks } from '../components/SocialLinks'
+import { VisitorCounter } from '../components/StatBadge'
 import { SECTION_IDS } from '../constants/sections'
 import { useActiveSection } from '../hooks/useActiveSection'
 
@@ -24,6 +25,7 @@ export function RootLayout() {
         <footer className="border-t border-slate-800/90 bg-slate-950/80 py-8 backdrop-blur-md">
           <div className="mx-auto flex max-w-6xl flex-col items-center gap-4 px-4 sm:px-6 lg:px-8">
             <SocialLinks variant="footer" />
+            <VisitorCounter />
             <p className="font-mono text-[11px] uppercase tracking-[0.25em] text-slate-600">
               © {new Date().getFullYear()} Salman Akhatar · SalGorythm · Vite + React + Tailwind
             </p>

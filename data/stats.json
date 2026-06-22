@@ -1,0 +1,16 @@
+{
+  "visitor": 12480,
+  "tool-pdf": 892,
+  "tool-bw": 654,
+  "game-neural": 2305,
+  "game-jailbreak": 1847,
+  "game-gitmerge": 2103,
+  "game-ttt": 3204,
+  "game-simon": 1567,
+  "game-reflex": 943,
+  "game-cipher": 612,
+  "game-snake": 2788,
+  "lab-boids": 1956,
+  "lab-rockets": 1432,
+  "lab-fourier": 1189
+}

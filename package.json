@@ -1,0 +1,13 @@
+{
+  "name": "salgorythm",
+  "private": true,
+  "description": "SalGorythm monorepo — Vite portfolio lives in portfolio/",
+  "scripts": {
+    "dev": "node scripts/dev.mjs",
+    "dev:site": "npm run dev --prefix portfolio",
+    "dev:stats": "node scripts/stats-dev-server.mjs",
+    "build": "npm run build --prefix portfolio",
+    "lint": "npm run lint --prefix portfolio",
+    "preview": "npm run preview --prefix portfolio"
+  }
+}

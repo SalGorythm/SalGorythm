@@ -1,4 +1,4 @@
-import { Gamepad2, Menu, Terminal, X } from 'lucide-react'
+import { Gamepad2, Menu, Terminal, Wrench, X } from 'lucide-react'
 import { useCallback, useState, type MouseEvent } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import type { SectionId } from '../constants/sections'
@@ -94,6 +94,17 @@ export function Navbar({ activeId, isPortfolio }: NavbarProps) {
             </button>
           )}
           <Link
+            to="/tools"
+            className={`inline-flex items-center gap-1.5 rounded-lg border px-3 py-2 font-mono text-xs uppercase tracking-wider transition ${
+              location.pathname === '/tools'
+                ? 'border-emerald-500/45 bg-emerald-500/10 text-emerald-200 shadow-[0_0_18px_rgba(52,211,153,0.12)]'
+                : 'border-slate-600/80 text-slate-300 hover:border-emerald-500/35 hover:bg-emerald-500/5 hover:text-emerald-200'
+            }`}
+          >
+            <Wrench className="h-3.5 w-3.5" aria-hidden />
+            Tools
+          </Link>
+          <Link
             to="/sandbox"
             className={`inline-flex items-center gap-1.5 rounded-lg border px-3 py-2 font-mono text-xs uppercase tracking-wider transition ${
               location.pathname === '/sandbox'
@@ -107,6 +118,13 @@ export function Navbar({ activeId, isPortfolio }: NavbarProps) {
         </div>
 
         <div className="flex items-center gap-2 md:hidden">
+          <Link
+            to="/tools"
+            className="inline-flex h-10 items-center justify-center rounded-lg border border-slate-700/80 bg-slate-900/60 px-2.5 text-emerald-300 transition hover:border-emerald-500/40"
+            aria-label="Utility tools"
+          >
+            <Wrench className="h-5 w-5" />
+          </Link>
           <Link
             to="/sandbox"
             className="inline-flex h-10 items-center justify-center rounded-lg border border-slate-700/80 bg-slate-900/60 px-2.5 text-cyan-300 transition hover:border-cyan-500/40"
@@ -167,6 +185,16 @@ export function Navbar({ activeId, isPortfolio }: NavbarProps) {
               </button>
             </li>
           )}
+          <li>
+            <Link
+              to="/tools"
+              onClick={() => setOpen(false)}
+              className="flex w-full items-center gap-2 rounded-lg border border-emerald-500/30 bg-emerald-500/5 px-3 py-3 font-mono text-sm uppercase tracking-wider text-emerald-200"
+            >
+              <Wrench className="h-4 w-4" aria-hidden />
+              Utility tools
+            </Link>
+          </li>
           <li>
             <Link
               to="/sandbox"
