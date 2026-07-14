@@ -5,13 +5,12 @@ import type { SectionId } from '../constants/sections'
 
 const LINKS: { id: SectionId; label: string }[] = [
   { id: 'hero', label: 'Home' },
-  { id: 'resume', label: 'Résumé' },
+  { id: 'case-studies', label: 'Case studies' },
+  { id: 'live-demos', label: 'Live demos' },
   { id: 'experience', label: 'Experience' },
-  { id: 'skills', label: 'Skills' },
   { id: 'projects', label: 'Projects' },
-  { id: 'my-apps', label: 'My apps' },
-  { id: 'apps', label: 'Apps / quotes' },
-  { id: 'recruiter', label: 'Recruiter AI' },
+  { id: 'skills', label: 'Skills' },
+  { id: 'resume', label: 'Résumé' },
   { id: 'contact', label: 'Contact' },
 ]
 

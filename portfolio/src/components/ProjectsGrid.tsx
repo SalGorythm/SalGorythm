@@ -1,9 +1,32 @@
-import { useState } from 'react'
-import { PROJECT_TABS, PROJECTS_BY_TAB, type ProjectTabId } from '../data/projects'
+import { useMemo, useState } from 'react'
+import { Link } from 'react-router-dom'
+import {
+  PROJECT_TABS,
+  PROJECTS_BY_TAB,
+  VERTICAL_LENSES,
+  type ProjectTabId,
+  type ProjectVertical,
+} from '../data/projects'
+import { SectionHeader } from './SectionHeader'
 
 export function ProjectsGrid() {
   const [tab, setTab] = useState<ProjectTabId>('genai')
-  const items = PROJECTS_BY_TAB[tab]
+  const [vertical, setVertical] = useState<ProjectVertical>('enterprise')
+
+  const activeLens = VERTICAL_LENSES.find((v) => v.id === vertical)!
+
+  const items = useMemo(() => {
+    const tabItems = PROJECTS_BY_TAB[tab]
+    return [...tabItems]
+      .filter((p) => p.verticals.includes(vertical))
+      .sort((a, b) => {
+        const aPrimary = a.verticals[0] === vertical ? 0 : 1
+        const bPrimary = b.verticals[0] === vertical ? 0 : 1
+        return aPrimary - bPrimary
+      })
+  }, [tab, vertical])
+
+  const displayItems = items.length > 0 ? items : PROJECTS_BY_TAB[tab]
 
   return (
     <section
@@ -12,23 +35,43 @@ export function ProjectsGrid() {
       className="scroll-mt-28 border-b border-cyan-500/10 py-20"
     >
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-        <header className="mb-10 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
-          <div className="max-w-2xl">
-            <p className="font-mono text-xs uppercase tracking-[0.3em] text-cyan-500/80">
-              Deployed artifacts
-            </p>
-            <h2
-              id="projects-heading"
-              className="mt-2 text-3xl font-semibold tracking-tight text-slate-50 sm:text-4xl"
-            >
-              Project <span className="text-purple-300">matrix</span>
-            </h2>
-            <p className="mt-3 text-slate-400">
-              Highlights mapped from public portfolio README and CV — architecture and outcomes
-              are representative of production delivery.
-            </p>
-          </div>
-        </header>
+        <SectionHeader
+          domain="PROJECTS · DELIVERY HIGHLIGHTS"
+          title="Project matrix by target vertical"
+          description="Switch industry lens to emphasize the metrics hiring teams care about — scale, model orchestration, or privacy posture."
+          id="projects-heading"
+          className="mb-8"
+        />
+
+        <p className="mb-6 font-mono text-[10px] font-bold uppercase tracking-[0.32em] text-purple-400/95">
+          {activeLens.domainLabel}
+        </p>
+
+        <div
+          className="mb-4 flex flex-wrap gap-2 rounded-xl border border-purple-500/20 bg-purple-500/5 p-2"
+          role="tablist"
+          aria-label="Target vertical"
+        >
+          {VERTICAL_LENSES.map(({ id, label }) => {
+            const active = vertical === id
+            return (
+              <button
+                key={id}
+                type="button"
+                role="tab"
+                aria-selected={active}
+                onClick={() => setVertical(id)}
+                className={`rounded-lg border px-3 py-2 font-mono text-[10px] uppercase tracking-wider transition sm:px-4 ${
+                  active
+                    ? 'border-purple-500/45 bg-purple-500/15 text-purple-100'
+                    : 'border-transparent text-slate-400 hover:border-slate-700 hover:text-slate-200'
+                }`}
+              >
+                {label}
+              </button>
+            )
+          })}
+        </div>
 
         <div
           className="mb-8 flex flex-wrap gap-2 rounded-xl border border-slate-800/90 bg-slate-900/35 p-2 backdrop-blur-md"
@@ -65,19 +108,15 @@ export function ProjectsGrid() {
           className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3"
           aria-label={PROJECT_TABS.find((t) => t.id === tab)?.label}
         >
-          {items.map((project) => (
+          {displayItems.map((project) => (
             <article
               key={project.href ? `${project.title}-${project.href}` : project.title}
               className="group relative flex flex-col overflow-hidden rounded-2xl border border-slate-800/90 bg-slate-900/35 p-5 shadow-[0_0_0_0_rgba(0,0,0,0)] backdrop-blur-md transition duration-300 hover:-translate-y-0.5 hover:border-cyan-500/35 hover:shadow-[0_0_28px_rgba(34,211,238,0.12)]"
             >
-              <div
-                className="pointer-events-none absolute inset-0 opacity-0 transition duration-300 group-hover:opacity-100"
-                aria-hidden
-              >
-                <div className="absolute -right-10 -top-10 h-40 w-40 rounded-full bg-cyan-500/10 blur-3xl" />
-                <div className="absolute -bottom-12 -left-8 h-36 w-36 rounded-full bg-purple-500/10 blur-3xl" />
-              </div>
-              <h3 className="relative text-lg font-semibold text-slate-50">{project.title}</h3>
+              <p className="font-mono text-[10px] uppercase tracking-widest text-emerald-400/90">
+                {project.metrics[vertical]}
+              </p>
+              <h3 className="relative mt-2 text-lg font-semibold text-slate-50">{project.title}</h3>
               <p className="relative mt-2 flex-1 text-sm leading-relaxed text-slate-400">
                 {project.blurb}
               </p>
@@ -91,15 +130,25 @@ export function ProjectsGrid() {
                 ))}
               </ul>
               {project.href ? (
-                <a
-                  href={project.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="relative mt-4 inline-flex items-center gap-1 font-mono text-xs font-medium text-cyan-400/95 underline-offset-4 transition hover:text-cyan-300 hover:underline"
-                >
-                  {project.linkLabel ?? 'Open link'}
-                  <span aria-hidden>↗</span>
-                </a>
+                project.href.startsWith('/') ? (
+                  <Link
+                    to={project.href}
+                    className="relative mt-4 inline-flex items-center gap-1 font-mono text-xs font-medium text-cyan-400/95 underline-offset-4 transition hover:text-cyan-300 hover:underline"
+                  >
+                    {project.linkLabel ?? 'Open link'}
+                    <span aria-hidden>→</span>
+                  </Link>
+                ) : (
+                  <a
+                    href={project.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="relative mt-4 inline-flex items-center gap-1 font-mono text-xs font-medium text-cyan-400/95 underline-offset-4 transition hover:text-cyan-300 hover:underline"
+                  >
+                    {project.linkLabel ?? 'Open link'}
+                    <span aria-hidden>↗</span>
+                  </a>
+                )
               ) : null}
             </article>
           ))}

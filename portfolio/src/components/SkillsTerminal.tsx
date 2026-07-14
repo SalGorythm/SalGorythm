@@ -11,25 +11,25 @@ const TABS: { id: Category; label: string; icon: typeof Code2 }[] = [
 
 const SKILLS: Record<Category, string[]> = {
   languages: [
-    'Python (advanced analytics, services)',
-    'FastAPI · async APIs · OpenAPI',
-    'Go / GoLang (performance paths, tooling)',
+    'Python · JavaScript',
+    'FastAPI · Django · Flask',
+    'ORMs (Django, SQLAlchemy)',
+    'RESTful APIs · Git',
     'TypeScript / React (product surfaces)',
-    'SQL dialects · dbt-style modeling',
   ],
   cloud: [
-    'AWS (data & ML services, IAM patterns)',
-    'Azure (enterprise integration, security)',
-    'GCP (BigQuery, pipelines, orchestration)',
-    'Kubernetes basics · containers',
-    'IaC mindset (Terraform-friendly)',
+    'Docker · Podman · Kubernetes',
+    'Microservices architecture',
+    'CI/CD · AWS / Azure / GCP',
+    'Azure VMs · enterprise integration',
+    'Ansible-driven automation',
   ],
   ai: [
-    'LLM orchestration & routing',
-    'RAG design · eval harnesses · guardrails',
-    'Feature stores · experiment tracking',
-    'Streaming & batch data engineering',
-    'MLOps: CI/CD for models & datasets',
+    'LLM · GenAI · RAG · NLP · ML',
+    'LangChain · AutoGen · prompt engineering',
+    'PostgreSQL · Elasticsearch · PySpark',
+    'Kafka · Confluent · Airflow · Celery',
+    'Vector DB · WatsonX.ai · multi-model orchestration',
   ],
 }
 

@@ -1,17 +1,28 @@
 import { AIChatSim } from '../components/AIChatSim'
 import { AppLicensingQuoteForm } from '../components/AppLicensingQuoteForm'
+import { CaseStudyMatrix } from '../components/CaseStudyMatrix'
 import { ContactForm } from '../components/ContactForm'
+import { EngineeringDecisionLog } from '../components/EngineeringDecisionLog'
 import { ExperienceTimeline } from '../components/ExperienceTimeline'
 import { Hero } from '../components/Hero'
+import { LiveDemoStrip } from '../components/LiveDemoStrip'
 import { MyAppsSection } from '../components/MyAppsSection'
 import { ProjectsGrid } from '../components/ProjectsGrid'
 import { RecruiterCvGate } from '../components/RecruiterCvGate'
+import { RecruiterFunnelStrip } from '../components/RecruiterFunnelStrip'
 import { SkillsTerminal } from '../components/SkillsTerminal'
 
 export function PortfolioPage() {
   return (
     <main>
       <Hero />
+      <CaseStudyMatrix />
+      <LiveDemoStrip />
+      <EngineeringDecisionLog />
+      <ExperienceTimeline />
+      <ProjectsGrid />
+      <SkillsTerminal />
+      <MyAppsSection />
       <section
         id="resume"
         aria-labelledby="resume-heading"
@@ -29,19 +40,18 @@ export function PortfolioPage() {
               Résumé &amp; verification
             </h2>
             <p className="mt-2 text-sm text-slate-400">
-              Download the PDF after a short good-faith check — no tracking, no third-party widget.
+              Full download gate with PDF and DOCX — SDS résumé synced from latest CV.
             </p>
           </header>
-          <RecruiterCvGate />
+          <div className="grid gap-6 lg:grid-cols-[1fr_1fr]">
+            <RecruiterCvGate />
+            <RecruiterFunnelStrip />
+          </div>
         </div>
       </section>
-      <ExperienceTimeline />
-      <SkillsTerminal />
-      <ProjectsGrid />
-      <MyAppsSection />
+      <ContactForm />
       <AppLicensingQuoteForm />
       <AIChatSim />
-      <ContactForm />
     </main>
   )
 }

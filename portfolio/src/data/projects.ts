@@ -1,11 +1,19 @@
 import { Database, Layers, Smartphone, type LucideIcon } from 'lucide-react'
 
+export type ProjectVertical = 'enterprise' | 'genai' | 'local'
+
 export type ProjectTabId = 'genai' | 'data' | 'local'
 
 export type ProjectCard = {
   title: string
   blurb: string
   stack: string[]
+  verticals: ProjectVertical[]
+  metrics: {
+    enterprise: string
+    genai: string
+    local: string
+  }
   /** External URL (e.g. live product or marketing site). */
   href?: string
   linkLabel?: string
@@ -17,85 +25,183 @@ export const PROJECT_TABS: { id: ProjectTabId; label: string; icon: LucideIcon }
   { id: 'local', label: 'Local-First Architecture', icon: Smartphone },
 ]
 
+export const VERTICAL_LENSES: {
+  id: ProjectVertical
+  label: string
+  domainLabel: string
+}[] = [
+  {
+    id: 'enterprise',
+    label: 'Enterprise Cyber/Data',
+    domainLabel: 'TARGET VERTICAL: ENTERPRISE CYBER/DATA',
+  },
+  {
+    id: 'genai',
+    label: 'GenAI SaaS',
+    domainLabel: 'TARGET VERTICAL: GENAI SAAS',
+  },
+  {
+    id: 'local',
+    label: 'Local-first Product',
+    domainLabel: 'TARGET VERTICAL: LOCAL-FIRST PRODUCT',
+  },
+]
+
 export const PROJECTS_BY_TAB: Record<ProjectTabId, ProjectCard[]> = {
   genai: [
     {
       title: 'IBM · Super Agents & multi-agent flows',
       blurb:
-        'LLM-enabled super agents coordinating multiple single-purpose agents into dynamic flows for end-to-end problem solving — aligned with enterprise WatsonX.ai patterns and multi-model deployments (Granite, Llama, and related stacks).',
-      stack: ['Multi-agent', 'WatsonX.ai', 'Granite / Llama', 'Orchestration'],
+        'LLM-enabled super agents coordinating single-purpose agents into dynamic flows — WatsonX.ai patterns with Granite, Llama, and Claude evaluation gates.',
+      stack: ['Multi-agent', 'WatsonX.ai', 'Granite / Llama', 'LangChain'],
+      verticals: ['genai', 'enterprise'],
+      metrics: {
+        enterprise: 'Governed multi-model orchestration in production',
+        genai: 'End-to-end agentic flows reducing manual processing',
+        local: 'Evaluation agents with ground-truth references',
+      },
+    },
+    {
+      title: 'IBM · Evaluation Agents',
+      blurb:
+        'Dynamic scoring against user-defined criteria (accuracy, consistency, coherence) using Llama and Claude families with configured ground-truth references.',
+      stack: ['Llama', 'Claude', 'Eval pipelines', 'Quality gates'],
+      verticals: ['genai'],
+      metrics: {
+        enterprise: 'Automated criteria-driven quality checks',
+        genai: 'Multi-agent output validation at scale',
+        local: 'Ground-truth referenced scoring loops',
+      },
     },
     {
       title: 'EY Quasar · NL-to-SQL & visualization',
       blurb:
-        'Intelligent query engine using Ollama and Mistral (7B) to translate natural language into optimized SQL, with automated charts (bar, line, donut), titles, and summaries for non-technical users.',
+        'Ollama + Mistral 7B translating natural language into optimized SQL with auto charts and summaries for non-technical users.',
       stack: ['Python', 'PostgreSQL', 'Mistral', 'Ollama', 'Visualization'],
+      verticals: ['genai', 'enterprise'],
+      metrics: {
+        enterprise: '30% faster report generation for operators',
+        genai: 'NL → SQL with automated chart synthesis',
+        local: 'On-prem Ollama inference path',
+      },
     },
     {
       title: 'EY Qbot · Document intelligence',
       blurb:
-        'Advanced LLM wrapper processing and storing documents in ChromaDB; natural-language Q&A with page-level references, traceable chunks, and synthesized answers that collapsed hours of manual retrieval.',
+        'ChromaDB-backed document Q&A with page-level references — collapsed hours of manual retrieval into seconds.',
       stack: ['ChromaDB', 'PostgreSQL', 'Mistral', 'Ollama', 'RAG'],
-    },
-    {
-      title: 'EY · LLM chatbot wrappers (client automation)',
-      blurb:
-        'Built and deployed two production chatbot wrappers on large language models to accelerate client automation and knowledge workflows with secure integration patterns.',
-      stack: ['LLM APIs', 'Python', 'FastAPI', 'Automation'],
+      verticals: ['genai', 'enterprise'],
+      metrics: {
+        enterprise: '1,000s of docs indexed · 95% source attribution',
+        genai: '70% cut in document query time',
+        local: 'Vector store with traceable chunks',
+      },
     },
   ],
   data: [
     {
       title: 'EY Atom Bot & Atom Bot Server',
       blurb:
-        'Executable automation bot deployed across 25,000+ machines with optimized API handling and robust ETL; paired server processing thousands of concurrent bot requests with resilient PostgreSQL-backed pipelines.',
+        'Automation bot across 25,000+ machines with a backend handling thousands of concurrent requests, robust ETL, and full unit-test coverage.',
       stack: ['Python', 'PostgreSQL', 'ETL', 'Docker / Podman', 'Azure', 'React'],
+      verticals: ['enterprise'],
+      metrics: {
+        enterprise: '25,000+ endpoints · 40% manual time reduction',
+        genai: 'High-throughput API design for bot fleets',
+        local: 'Edge agents with controlled secure uplink',
+      },
     },
     {
       title: 'EY Atom ETL Engine',
       blurb:
-        'Automated ingestion from 15+ connectors into PostgreSQL with complex transforms, idempotent loads, and automated data quality checks for high-volume operational telemetry.',
+        '15+ connector ingestion into PostgreSQL with idempotent loads and automated quality checks at 99.9% accuracy.',
       stack: ['FastAPI', 'PostgreSQL', 'ETL', 'Docker', 'React'],
+      verticals: ['enterprise'],
+      metrics: {
+        enterprise: 'Millions of records daily · 70% faster processing',
+        genai: '95% automated quality-issue detection',
+        local: 'Idempotent loads with connector fan-in',
+      },
     },
     {
       title: 'EY Quark · Cybersecurity data plane',
       blurb:
-        'Microservices platform for agentless discovery (system inventory, metering, services, processes, keywords), rollout, patch, and configuration — Flask/FastAPI services with Ansible-driven automation and compliance analytics.',
+        'Agentless discovery, rollout, patch, and configuration microservices — Flask/FastAPI with Ansible-driven compliance automation.',
       stack: ['Django', 'FastAPI', 'Ansible', 'Docker', 'Microservices'],
+      verticals: ['enterprise'],
+      metrics: {
+        enterprise: '20% uptime lift via misconfiguration remediation',
+        genai: 'Discovery + metering at fleet scale',
+        local: 'Agentless inventory without endpoint agents',
+      },
     },
     {
-      title: 'TELUS International · Data pipelines & BI',
+      title: 'TELUS · Relevant Resume Finder',
       blurb:
-        'Python services with automated ETL into BigQuery, Airflow-orchestrated workflows, and enterprise BI APIs for uptime, capacity, and line-of-business reporting at scale.',
-      stack: ['Airflow', 'BigQuery', 'Python', 'ETL', 'Django REST'],
+        'NLP engine ranking 20,000+ resumes (PPT/DOCX/PDF) against job descriptions by relevance score.',
+      stack: ['Python', 'NLP', 'BigQuery', 'Airflow', 'ETL'],
+      verticals: ['enterprise', 'genai'],
+      metrics: {
+        enterprise: '90% relevance accuracy · 85% screening time saved',
+        genai: 'NLP matching at 20,000+ document scale',
+        local: 'Multi-format document ingestion pipeline',
+      },
     },
   ],
   local: [
     {
       title: 'EasySalah',
       blurb:
-        'Local-first Islamic utility — prayer times, Qibla, Hijri & Gregorian dates, Zakat estimates, and reminders. Built for privacy and calm daily rhythm; optional Pro tools without cloud tracking of your routine. Explore the marketing site and store listings.',
+        'Local-first Islamic utility — prayer times, Qibla, Hijri dates, Zakat, reminders. Privacy-first; optional Pro without cloud tracking.',
       stack: ['Next.js site', 'iOS', 'Local-first', 'Zakat · Qibla · Hijri'],
+      verticals: ['local'],
+      metrics: {
+        enterprise: 'App Store shipping with governance-friendly privacy',
+        genai: 'Calm UX for daily ritual workflows',
+        local: 'On-device core · zero cloud habit tracking',
+      },
       href: 'https://easy-salah.vercel.app/',
       linkLabel: 'Visit easy-salah.vercel.app',
     },
     {
+      title: 'Portfolio · Browser tools',
+      blurb:
+        'PDF unlock and B&W converter — zero-upload client-side pipelines proving local-first engineering on this site.',
+      stack: ['pdf-lib', 'pdf.js', 'Canvas', 'Vite'],
+      verticals: ['local', 'genai'],
+      metrics: {
+        enterprise: 'No server file retention — audit-friendly',
+        genai: 'In-browser ML-adjacent raster pipelines',
+        local: 'Files never leave the browser',
+      },
+      href: '/tools',
+      linkLabel: 'Open tools',
+    },
+    {
       title: 'Field-scale automation footprint',
       blurb:
-        'Atom-class agents running at the edge across tens of thousands of endpoints — emphasizing minimal uplink, resilient local collection, and controlled sync back to central analytics.',
+        'Atom-class agents at the edge across tens of thousands of endpoints — minimal uplink, resilient local collection.',
       stack: ['Edge agents', 'Local buffers', 'Secure uplink', 'Telemetry'],
+      verticals: ['enterprise', 'local'],
+      metrics: {
+        enterprise: '25,000+ machine deployment footprint',
+        genai: 'Resilient telemetry for downstream AI',
+        local: 'Edge buffers before controlled sync',
+      },
     },
     {
-      title: 'High-throughput web & integration clients',
+      title: 'Sandbox · Live code proof',
       blurb:
-        'React and service-backed clients for operational consoles and integration hubs — tuned for fast feedback loops, defensive API usage, and operator-grade reliability.',
-      stack: ['React', 'REST', 'PostgreSQL', 'Azure VMs'],
-    },
-    {
-      title: 'Local-first product philosophy',
-      blurb:
-        'Architecting systems where sensitive slices stay on-device or inside trust boundaries until explicitly shared — pairing strong cryptography patterns with pragmatic developer ergonomics.',
-      stack: ['Privacy', 'Encryption', 'UX', 'Governance'],
+        'Eight arcade games and three canvas labs — runnable demos proving frontend performance and interactive ML toys.',
+      stack: ['React', 'Canvas', 'WebGL-adjacent', 'Lazy routes'],
+      verticals: ['local', 'genai'],
+      metrics: {
+        enterprise: 'Performance stress-test for layout stability',
+        genai: 'Neural tuning + agentic-themed interactives',
+        local: '100% client-side — no backend required',
+      },
+      href: '/sandbox',
+      linkLabel: 'Enter sandbox',
     },
   ],
 }
