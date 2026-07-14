@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 40" fill="none" role="img" aria-label="SalGorythm">
+  <defs>
+    <linearGradient id="logo-grad" x1="0" y1="0" x2="220" y2="40" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#22d3ee"/>
+      <stop offset="0.5" stop-color="#38bdf8"/>
+      <stop offset="1" stop-color="#a855f7"/>
+    </linearGradient>
+    <linearGradient id="logo-icon-grad" x1="4" y1="4" x2="36" y2="36" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#22d3ee"/>
+      <stop offset="1" stop-color="#a855f7"/>
+    </linearGradient>
+  </defs>
+  <!-- Icon block -->
+  <rect x="0" y="4" width="32" height="32" rx="8" fill="#0b1220"/>
+  <rect x="0.5" y="4.5" width="31" height="31" rx="7.5" stroke="url(#logo-icon-grad)" stroke-opacity="0.5"/>
+  <path
+    d="M22 13.5c0 2.2-1.6 3.4-4.2 4.1-2.4.6-3.8 1.4-3.8 3.2 0 1.5 1.1 2.6 3 2.9M10 26.5c0-2.2 1.6-3.4 4.2-4.1 2.4-.6 3.8-1.4 3.8-3.2 0-1.5-1.1-2.6-3-2.9"
+    stroke="url(#logo-icon-grad)"
+    stroke-width="2.25"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  />
+  <circle cx="22" cy="13.5" r="1.35" fill="#67e8f9"/>
+  <circle cx="10" cy="26.5" r="1.35" fill="#c084fc"/>
+  <circle cx="16" cy="20" r="1.4" fill="#e0f2fe"/>
+  <!-- Wordmark -->
+  <text x="44" y="27" font-family="'Space Grotesk', system-ui, sans-serif" font-size="22" font-weight="600" letter-spacing="-0.02em">
+    <tspan fill="#e2e8f0">Sal</tspan><tspan fill="url(#logo-grad)">Gorythm</tspan>
+  </text>
+</svg>

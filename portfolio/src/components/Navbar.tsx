@@ -1,7 +1,8 @@
-import { Gamepad2, Menu, Terminal, Wrench, X } from 'lucide-react'
+import { Gamepad2, Menu, Wrench, X } from 'lucide-react'
 import { useCallback, useState, type MouseEvent } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import type { SectionId } from '../constants/sections'
+import { BrandLogo } from './BrandLogo'
 
 const LINKS: { id: SectionId; label: string }[] = [
   { id: 'hero', label: 'Home' },
@@ -48,15 +49,13 @@ export function Navbar({ activeId, isPortfolio }: NavbarProps) {
         <Link
           to="/"
           onClick={onBrandClick}
-          className="group flex items-center gap-2 rounded-lg border border-transparent px-2 py-1 text-left transition hover:border-cyan-500/30 hover:shadow-[0_0_20px_rgba(34,211,238,0.12)]"
+          className="group flex items-center gap-2.5 rounded-lg border border-transparent px-2 py-1 text-left transition hover:border-cyan-500/30 hover:shadow-[0_0_20px_rgba(34,211,238,0.12)]"
         >
-          <span className="flex h-9 w-9 items-center justify-center rounded-md border border-cyan-500/40 bg-slate-900/80 text-cyan-400 shadow-[0_0_15px_rgba(34,211,238,0.15)] transition group-hover:scale-105">
-            <Terminal className="h-4 w-4" aria-hidden />
-          </span>
+          <BrandLogo variant="icon" className="transition group-hover:scale-105" />
           <span className="hidden sm:block">
             <span className="block text-xs font-medium text-slate-200">Salman Akhatar</span>
             <span className="block font-mono text-[10px] uppercase tracking-[0.2em] text-cyan-500/80">
-              SalGorythm · Data · AI · Architecture
+              Data · AI · Architecture
             </span>
           </span>
         </Link>
