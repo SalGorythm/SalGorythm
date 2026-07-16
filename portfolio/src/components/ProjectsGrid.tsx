@@ -13,8 +13,6 @@ export function ProjectsGrid() {
   const [tab, setTab] = useState<ProjectTabId>('genai')
   const [vertical, setVertical] = useState<ProjectVertical>('enterprise')
 
-  const activeLens = VERTICAL_LENSES.find((v) => v.id === vertical)!
-
   const items = useMemo(() => {
     const tabItems = PROJECTS_BY_TAB[tab]
     return [...tabItems]
@@ -36,16 +34,14 @@ export function ProjectsGrid() {
     >
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         <SectionHeader
-          domain="PROJECTS · DELIVERY HIGHLIGHTS"
-          title="Project matrix by target vertical"
-          description="Switch industry lens to emphasize the metrics hiring teams care about — scale, model orchestration, or privacy posture."
+          domain="Projects"
+          title="Selected work"
+          description="Filter by context — enterprise scale, GenAI delivery, or local-first product work."
           id="projects-heading"
           className="mb-8"
         />
 
-        <p className="mb-6 font-mono text-[10px] font-bold uppercase tracking-[0.32em] text-purple-400/95">
-          {activeLens.domainLabel}
-        </p>
+        <p className="mb-3 text-sm font-medium text-slate-500">Filter by context</p>
 
         <div
           className="mb-4 flex flex-wrap gap-2 rounded-xl border border-purple-500/20 bg-purple-500/5 p-2"
@@ -61,7 +57,7 @@ export function ProjectsGrid() {
                 role="tab"
                 aria-selected={active}
                 onClick={() => setVertical(id)}
-                className={`rounded-lg border px-3 py-2 font-mono text-[10px] uppercase tracking-wider transition sm:px-4 ${
+                className={`rounded-lg border px-3 py-2 text-sm transition sm:px-4 ${
                   active
                     ? 'border-purple-500/45 bg-purple-500/15 text-purple-100'
                     : 'border-transparent text-slate-400 hover:border-slate-700 hover:text-slate-200'

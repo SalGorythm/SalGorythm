@@ -39,14 +39,12 @@ export function RecruiterCvGate({ variant = 'default' }: RecruiterCvGateProps) {
           <ShieldCheck className="h-5 w-5" aria-hidden />
         </span>
         <div className="min-w-0">
-          <p className="font-mono text-[10px] uppercase tracking-[0.25em] text-cyan-500/80">
-            Step 1 · verify &amp; download
-          </p>
+          <p className="text-xs font-medium text-cyan-500/80">Résumé</p>
           <h3 className="mt-1 text-sm font-semibold text-slate-100 sm:text-base">
-            Résumé download
+            Download
           </h3>
           <p className="mt-1 text-xs leading-relaxed text-slate-500">
-            Confirm intent to unlock PDF and DOCX — no data sent to any server.
+            Quick check that you&apos;re hiring — then PDF or DOCX. Nothing leaves your browser.
           </p>
         </div>
       </div>
@@ -118,7 +116,7 @@ export function RecruiterCvGate({ variant = 'default' }: RecruiterCvGateProps) {
           Download DOCX
         </a>
         <p className="font-mono text-[10px] text-slate-600 sm:ml-auto">
-          {unlocked ? 'Links armed · SDS résumé' : 'Complete both checks to arm links'}
+          {unlocked ? 'Links ready' : 'Check both boxes above'}
         </p>
       </div>
     </div>

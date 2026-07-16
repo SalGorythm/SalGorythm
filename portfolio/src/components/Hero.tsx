@@ -4,8 +4,7 @@ import { RECRUITER_SUMMARY } from '../data/recruiterSummary'
 import { RecruiterCvGate } from './RecruiterCvGate'
 
 export function Hero() {
-  const { valueHook, primaryStack, impactMetric, availability, email, github, linkedin } =
-    RECRUITER_SUMMARY
+  const { tagline, stack, outcome, availability, email, github, linkedin } = RECRUITER_SUMMARY
 
   return (
     <section
@@ -16,9 +15,9 @@ export function Hero() {
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         <div className="grid gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:items-start">
           <div className="space-y-8">
-            <p className="inline-flex flex-wrap items-center gap-2 rounded-full border border-cyan-500/25 bg-slate-900/50 px-3 py-1 font-mono text-[11px] uppercase tracking-[0.2em] text-cyan-400/90 shadow-[0_0_20px_rgba(34,211,238,0.08)]">
+            <p className="inline-flex flex-wrap items-center gap-2 rounded-full border border-cyan-500/25 bg-slate-900/50 px-3 py-1 text-sm text-cyan-400/90">
               <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-cyan-400" />
-              IBM Tech 2026 · Agentic AI · 9+ years
+              IBM · Senior data scientist · 9 years
             </p>
 
             <div className="space-y-4">
@@ -32,26 +31,12 @@ export function Hero() {
                 <br />
                 <span className="text-slate-200">Salman Akhatar</span>
               </h1>
-              <p className="max-w-xl text-base leading-relaxed text-slate-400 sm:text-lg">
-                Production GenAI, agentic workflows, and cybersecurity automation — from 25,000+
-                endpoint deployments at EY to WatsonX-class orchestration at IBM.
-              </p>
+              <p className="max-w-xl text-base leading-relaxed text-slate-400 sm:text-lg">{tagline}</p>
             </div>
 
-            {/* High-contrast validation strip */}
-            <div className="space-y-2 rounded-xl border border-cyan-500/30 bg-slate-950/70 p-4 font-mono text-xs sm:text-sm">
-              <p>
-                <span className="font-bold uppercase tracking-wider text-cyan-400">Value hook:</span>{' '}
-                <span className="text-slate-200">{valueHook}</span>
-              </p>
-              <p>
-                <span className="font-bold uppercase tracking-wider text-cyan-400">Primary stack:</span>{' '}
-                <span className="text-slate-300">{primaryStack}</span>
-              </p>
-              <p>
-                <span className="font-bold uppercase tracking-wider text-cyan-400">Impact metric:</span>{' '}
-                <span className="text-emerald-300/95">{impactMetric}</span>
-              </p>
+            <div className="space-y-2 rounded-xl border border-slate-800/90 bg-slate-950/60 p-4 text-sm leading-relaxed">
+              <p className="text-slate-300">{stack}</p>
+              <p className="text-emerald-300/95">{outcome}</p>
             </div>
 
             <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-slate-400">
@@ -104,11 +89,8 @@ export function Hero() {
               </a>
             </div>
 
-            {/* Step 2 — code proof */}
             <div className="rounded-xl border border-slate-800/90 bg-slate-900/35 p-4">
-              <p className="font-mono text-[10px] uppercase tracking-[0.3em] text-purple-400/90">
-                Step 2 · code proof
-              </p>
+              <p className="text-sm font-medium text-slate-300">Code &amp; experiments</p>
               <div className="mt-3 flex flex-wrap gap-2">
                 <a
                   href={github}

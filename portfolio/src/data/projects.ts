@@ -28,22 +28,18 @@ export const PROJECT_TABS: { id: ProjectTabId; label: string; icon: LucideIcon }
 export const VERTICAL_LENSES: {
   id: ProjectVertical
   label: string
-  domainLabel: string
 }[] = [
   {
     id: 'enterprise',
     label: 'Enterprise Cyber/Data',
-    domainLabel: 'TARGET VERTICAL: ENTERPRISE CYBER/DATA',
   },
   {
     id: 'genai',
     label: 'GenAI SaaS',
-    domainLabel: 'TARGET VERTICAL: GENAI SAAS',
   },
   {
     id: 'local',
     label: 'Local-first Product',
-    domainLabel: 'TARGET VERTICAL: LOCAL-FIRST PRODUCT',
   },
 ]
 
@@ -56,9 +52,9 @@ export const PROJECTS_BY_TAB: Record<ProjectTabId, ProjectCard[]> = {
       stack: ['Multi-agent', 'WatsonX.ai', 'Granite / Llama', 'LangChain'],
       verticals: ['genai', 'enterprise'],
       metrics: {
-        enterprise: 'Governed multi-model orchestration in production',
-        genai: 'End-to-end agentic flows reducing manual processing',
-        local: 'Evaluation agents with ground-truth references',
+        enterprise: 'Shipped with governance and audit trails',
+        genai: 'Multi-agent flows in production',
+        local: 'Eval agents with ground-truth checks',
       },
     },
     {
@@ -68,9 +64,9 @@ export const PROJECTS_BY_TAB: Record<ProjectTabId, ProjectCard[]> = {
       stack: ['Llama', 'Claude', 'Eval pipelines', 'Quality gates'],
       verticals: ['genai'],
       metrics: {
-        enterprise: 'Automated criteria-driven quality checks',
-        genai: 'Multi-agent output validation at scale',
-        local: 'Ground-truth referenced scoring loops',
+        enterprise: 'Automated quality scoring at scale',
+        genai: 'Llama + Claude eval against user criteria',
+        local: 'Ground-truth referenced scoring',
       },
     },
     {
@@ -80,9 +76,9 @@ export const PROJECTS_BY_TAB: Record<ProjectTabId, ProjectCard[]> = {
       stack: ['Python', 'PostgreSQL', 'Mistral', 'Ollama', 'Visualization'],
       verticals: ['genai', 'enterprise'],
       metrics: {
-        enterprise: '30% faster report generation for operators',
-        genai: 'NL → SQL with automated chart synthesis',
-        local: 'On-prem Ollama inference path',
+        enterprise: '30% faster reports for operators',
+        genai: 'NL to SQL with auto charts',
+        local: 'On-prem Ollama inference',
       },
     },
     {
@@ -92,9 +88,9 @@ export const PROJECTS_BY_TAB: Record<ProjectTabId, ProjectCard[]> = {
       stack: ['ChromaDB', 'PostgreSQL', 'Mistral', 'Ollama', 'RAG'],
       verticals: ['genai', 'enterprise'],
       metrics: {
-        enterprise: '1,000s of docs indexed · 95% source attribution',
-        genai: '70% cut in document query time',
-        local: 'Vector store with traceable chunks',
+        enterprise: '1,000s of docs · 95% source attribution',
+        genai: '70% faster document queries',
+        local: 'ChromaDB with page-level refs',
       },
     },
   ],
@@ -106,9 +102,9 @@ export const PROJECTS_BY_TAB: Record<ProjectTabId, ProjectCard[]> = {
       stack: ['Python', 'PostgreSQL', 'ETL', 'Docker / Podman', 'Azure', 'React'],
       verticals: ['enterprise'],
       metrics: {
-        enterprise: '25,000+ endpoints · 40% manual time reduction',
-        genai: 'High-throughput API design for bot fleets',
-        local: 'Edge agents with controlled secure uplink',
+        enterprise: '25,000+ machines · ~40% less manual work',
+        genai: 'High-throughput bot API design',
+        local: 'Edge agents, controlled uplink',
       },
     },
     {
@@ -118,9 +114,9 @@ export const PROJECTS_BY_TAB: Record<ProjectTabId, ProjectCard[]> = {
       stack: ['FastAPI', 'PostgreSQL', 'ETL', 'Docker', 'React'],
       verticals: ['enterprise'],
       metrics: {
-        enterprise: 'Millions of records daily · 70% faster processing',
+        enterprise: 'Millions of records/day · 99.9% accuracy',
         genai: '95% automated quality-issue detection',
-        local: 'Idempotent loads with connector fan-in',
+        local: '70% faster processing vs prior pipeline',
       },
     },
     {
@@ -130,9 +126,9 @@ export const PROJECTS_BY_TAB: Record<ProjectTabId, ProjectCard[]> = {
       stack: ['Django', 'FastAPI', 'Ansible', 'Docker', 'Microservices'],
       verticals: ['enterprise'],
       metrics: {
-        enterprise: '20% uptime lift via misconfiguration remediation',
-        genai: 'Discovery + metering at fleet scale',
-        local: 'Agentless inventory without endpoint agents',
+        enterprise: '+20% uptime from auto-remediation',
+        genai: 'Fleet-scale discovery and metering',
+        local: 'Agentless inventory (no endpoint agent)',
       },
     },
     {
@@ -142,9 +138,9 @@ export const PROJECTS_BY_TAB: Record<ProjectTabId, ProjectCard[]> = {
       stack: ['Python', 'NLP', 'BigQuery', 'Airflow', 'ETL'],
       verticals: ['enterprise', 'genai'],
       metrics: {
-        enterprise: '90% relevance accuracy · 85% screening time saved',
-        genai: 'NLP matching at 20,000+ document scale',
-        local: 'Multi-format document ingestion pipeline',
+        enterprise: '20,000+ resumes · 90% match accuracy',
+        genai: 'NLP ranking at document scale',
+        local: 'PDF, DOCX, PPT ingestion',
       },
     },
   ],
@@ -156,9 +152,9 @@ export const PROJECTS_BY_TAB: Record<ProjectTabId, ProjectCard[]> = {
       stack: ['Next.js site', 'iOS', 'Local-first', 'Zakat · Qibla · Hijri'],
       verticals: ['local'],
       metrics: {
-        enterprise: 'App Store shipping with governance-friendly privacy',
-        genai: 'Calm UX for daily ritual workflows',
-        local: 'On-device core · zero cloud habit tracking',
+        enterprise: 'App Store · privacy-first shipping',
+        genai: 'Calm daily-use UX',
+        local: 'On-device core, no habit tracking',
       },
       href: 'https://easy-salah.vercel.app/',
       linkLabel: 'Visit easy-salah.vercel.app',
@@ -170,8 +166,8 @@ export const PROJECTS_BY_TAB: Record<ProjectTabId, ProjectCard[]> = {
       stack: ['pdf-lib', 'pdf.js', 'Canvas', 'Vite'],
       verticals: ['local', 'genai'],
       metrics: {
-        enterprise: 'No server file retention — audit-friendly',
-        genai: 'In-browser ML-adjacent raster pipelines',
+        enterprise: 'No server file retention',
+        genai: 'In-browser PDF raster pipeline',
         local: 'Files never leave the browser',
       },
       href: '/tools',
@@ -184,9 +180,9 @@ export const PROJECTS_BY_TAB: Record<ProjectTabId, ProjectCard[]> = {
       stack: ['Edge agents', 'Local buffers', 'Secure uplink', 'Telemetry'],
       verticals: ['enterprise', 'local'],
       metrics: {
-        enterprise: '25,000+ machine deployment footprint',
-        genai: 'Resilient telemetry for downstream AI',
-        local: 'Edge buffers before controlled sync',
+        enterprise: '25,000+ machine deployment',
+        genai: 'Telemetry for downstream analytics',
+        local: 'Edge buffers before sync',
       },
     },
     {
@@ -196,9 +192,9 @@ export const PROJECTS_BY_TAB: Record<ProjectTabId, ProjectCard[]> = {
       stack: ['React', 'Canvas', 'WebGL-adjacent', 'Lazy routes'],
       verticals: ['local', 'genai'],
       metrics: {
-        enterprise: 'Performance stress-test for layout stability',
-        genai: 'Neural tuning + agentic-themed interactives',
-        local: '100% client-side — no backend required',
+        enterprise: 'Layout stress-test at 60fps target',
+        genai: 'Neural tuning + themed interactives',
+        local: '100% client-side',
       },
       href: '/sandbox',
       linkLabel: 'Enter sandbox',

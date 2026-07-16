@@ -29,44 +29,43 @@ const SUGGESTED: { q: string; match: string[] }[] = [
 ]
 
 const DEFAULT_REPLY =
-  "Thanks for the question. In live interviews I unpack specifics under NDA, but broadly: I align architecture to risk, ship measurable increments, and leave teams with runbooks—not just slides. Try one of the suggested prompts for a sharper signal."
+  'Good question. Details often sit under NDA in client work — try one of the suggested prompts for a straight answer on stack, availability, or how I ship LLMs.'
 
 function matchReply(input: string): string {
   const t = input.trim().toLowerCase()
-  if (!t) return 'Enter a message or pick a suggested prompt below.'
+  if (!t) return 'Type a question or pick a prompt below.'
 
   for (const row of SUGGESTED) {
     if (row.match.some((m) => t.includes(m))) {
       if (row.q.startsWith('What is your tech stack')) {
         return (
-          'Core stack spans **Python** (analytics + services), **FastAPI** for APIs, **Go** where throughput matters, and **TypeScript/React** for product surfaces. ' +
-          'Cloud-wise I work across **AWS, Azure, and GCP** with a bias toward observable, cost-aware data platforms. ' +
-          'On AI: **LLM orchestration**, eval harnesses, RAG, and enterprise guardrails (including WatsonX-class and Granite/Llama-style mixes).'
-        ).replace(/\*\*/g, '')
+          'Python and FastAPI for services, PostgreSQL and Confluent for data, TypeScript/React for product UI. ' +
+          'On AI: LangChain, AutoGen, RAG, eval harnesses, and WatsonX / Granite / Llama in enterprise settings.'
+        )
       }
       if (row.q.startsWith('Are you open to consulting')) {
         return (
-          'Yes — selective consulting and advisory engagements that have a clear decision horizon and technical sponsor. ' +
-          'I am strongest where data science meets platform architecture: GenAI rollout, secure analytics, and cloud-native pipelines.'
+          'Selective consulting where there is a clear sponsor and decision timeline. ' +
+          'Strongest fit: GenAI rollout, secure analytics, and cloud data pipelines.'
         )
       }
       if (row.q.startsWith('Tell me about your local-first')) {
         return (
-          'Local-first work prioritizes **latency, privacy, and resilience**: encrypted on-device storage, background sync, and minimal server round-trips. ' +
-          'I have shipped patterns for high-performance web (workers + IndexedDB) and mobile shells with offline operator workflows.'
-        ).replace(/\*\*/g, '')
+          'EasySalah keeps prayer data on-device. This portfolio\'s PDF and image tools never upload files. ' +
+          'I prefer that pattern when the data is personal or sensitive.'
+        )
       }
       if (row.q.startsWith('How do you approach LLM')) {
         return (
-          'Production LLMs need routing, evals, and rollback: baseline prompts, structured outputs, retrieval where it actually helps, ' +
-          'and continuous regression tests on answer quality. I treat models like services — versioned, observed, and owned by a cross-functional pod.'
+          'Versioned prompts, structured outputs, retrieval only when it helps, and regression tests on answer quality. ' +
+          'Models get treated like any other service: logged, owned, and rollback-ready.'
         )
       }
       if (row.q.startsWith('What is your experience with cloud')) {
         return (
-          'I design **cloud-native** data paths: idempotent ingestion, schema contracts, orchestration, and semantic layers for analytics consumers. ' +
-          'Security and FinOps are first-class — least privilege, partitioned accounts, and cost telemetry baked into the pipeline, not bolted on later.'
-        ).replace(/\*\*/g, '')
+          'Idempotent ingestion, schema contracts, orchestration (Airflow and similar), and analytics layers on top. ' +
+          'I have shipped on AWS, Azure, and GCP — usually with least-privilege access and cost visibility built in.'
+        )
       }
     }
   }
@@ -86,7 +85,7 @@ export function AIChatSim() {
     {
       id: nextId(),
       role: 'assistant',
-      text: 'Recruiter AI (simulated) — online. Ask about stack, consulting, local-first systems, or cloud data. No data leaves your browser.',
+      text: 'Scripted FAQ — runs in your browser, no API keys. Ask about stack, consulting, local-first work, or LLM delivery.',
     },
   ])
   const endRef = useRef<HTMLDivElement | null>(null)
@@ -114,29 +113,27 @@ export function AIChatSim() {
     >
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         <header className="mb-8 max-w-2xl">
-          <p className="font-mono text-xs uppercase tracking-[0.3em] text-purple-400/80">
-            Client-side only · no API keys
-          </p>
+          <p className="text-sm font-medium text-purple-400/80">Runs locally</p>
           <h2
             id="recruiter-heading"
             className="mt-2 text-3xl font-semibold tracking-tight text-slate-50 sm:text-4xl"
           >
-            Recruiter <span className="text-cyan-300 text-glow-cyan">AI simulator</span>
+            Ask about my work
           </h2>
           <p className="mt-3 text-slate-400">
-            Instant, scripted responses for demo purposes. Replace with a real model when you wire
-            your own backend.
+            Keyword-matched answers for common questions. Swap in a real backend when you want live
+            model calls.
           </p>
         </header>
 
         <div className="overflow-hidden rounded-2xl border border-purple-500/25 bg-slate-950/55 shadow-[0_0_35px_rgba(168,85,247,0.08)] backdrop-blur-md">
-          <div className="flex items-center justify-between border-b border-slate-800/90 bg-slate-900/50 px-4 py-2.5 font-mono text-[11px] text-slate-500">
+          <div className="flex items-center justify-between border-b border-slate-800/90 bg-slate-900/50 px-4 py-2.5 text-sm text-slate-500">
             <span className="flex items-center gap-2 text-slate-300">
               <Bot className="h-4 w-4 text-purple-400" aria-hidden />
-              recruiter-sim — tty1
+              FAQ chat
             </span>
-            <span className="rounded border border-emerald-500/30 bg-emerald-500/10 px-2 py-0.5 text-[10px] uppercase tracking-wider text-emerald-300/90">
-              local
+            <span className="rounded border border-emerald-500/30 bg-emerald-500/10 px-2 py-0.5 text-xs text-emerald-300/90">
+              offline
             </span>
           </div>
 
@@ -174,16 +171,14 @@ export function AIChatSim() {
           </div>
 
           <div className="border-t border-slate-800/90 bg-slate-900/40 p-3 sm:p-4">
-            <p className="mb-2 font-mono text-[10px] uppercase tracking-widest text-slate-500">
-              Quick prompts
-            </p>
+            <p className="mb-2 text-xs font-medium text-slate-500">Suggested questions</p>
             <div className="mb-3 flex flex-wrap gap-2">
               {SUGGESTED.map(({ q }) => (
                 <button
                   key={q}
                   type="button"
                   onClick={() => pushExchange(q)}
-                  className="rounded-lg border border-slate-700/80 bg-slate-950/50 px-2.5 py-1.5 text-left font-mono text-[11px] text-cyan-200/90 transition hover:border-cyan-500/40 hover:shadow-[0_0_14px_rgba(34,211,238,0.1)]"
+                  className="rounded-lg border border-slate-700/80 bg-slate-950/50 px-2.5 py-1.5 text-left text-xs text-cyan-200/90 transition hover:border-cyan-500/40"
                 >
                   {q}
                 </button>
@@ -192,19 +187,19 @@ export function AIChatSim() {
 
             <form id={formId} onSubmit={onSubmit} className="flex flex-col gap-2 sm:flex-row">
               <label htmlFor={`${formId}-input`} className="sr-only">
-                Message to recruiter simulator
+                Your question
               </label>
               <input
                 id={`${formId}-input`}
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
                 placeholder="Type a question…"
-                className="min-h-11 flex-1 rounded-xl border border-slate-700/80 bg-slate-950/70 px-3 py-2 font-mono text-sm text-slate-100 outline-none ring-cyan-500/30 placeholder:text-slate-600 focus:border-cyan-500/50 focus:ring-2"
+                className="min-h-11 flex-1 rounded-xl border border-slate-700/80 bg-slate-950/70 px-3 py-2 text-sm text-slate-100 outline-none ring-cyan-500/30 placeholder:text-slate-600 focus:border-cyan-500/50 focus:ring-2"
                 autoComplete="off"
               />
               <button
                 type="submit"
-                className="inline-flex items-center justify-center gap-2 rounded-xl border border-cyan-500/40 bg-cyan-500/15 px-4 py-2.5 font-mono text-sm font-medium text-cyan-100 transition hover:scale-[1.02] hover:border-cyan-400/60 hover:bg-cyan-500/25"
+                className="inline-flex items-center justify-center gap-2 rounded-xl border border-cyan-500/40 bg-cyan-500/15 px-4 py-2.5 text-sm font-medium text-cyan-100 transition hover:border-cyan-400/60 hover:bg-cyan-500/25"
               >
                 <Send className="h-4 w-4" aria-hidden />
                 Send

@@ -37,18 +37,16 @@ export function MyAppsSection() {
     >
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         <header className="mb-12 max-w-2xl">
-          <p className="font-mono text-xs uppercase tracking-[0.3em] text-emerald-500/80">
-            Products · shipped
-          </p>
+          <p className="text-sm font-medium text-emerald-400/90">Apps</p>
           <h2
             id="my-apps-heading"
             className="mt-2 text-3xl font-semibold tracking-tight text-slate-50 sm:text-4xl"
           >
-            My <span className="text-cyan-300 text-glow-cyan">apps</span>
+            Shipped products
           </h2>
           <p className="mt-3 text-slate-400">
-            Installable clients and marketing sites — same engineering standards as enterprise work,
-            tuned for calm UX and local-first privacy.
+            Installable clients and marketing sites — same bar as enterprise work, tuned for calm
+            UX and local-first privacy.
           </p>
         </header>
 

@@ -13,25 +13,21 @@ export function ExperienceTimeline() {
     >
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         <header className="mb-12 max-w-2xl">
-          <p className="font-mono text-xs uppercase tracking-[0.3em] text-cyan-500/80">
-            Trace / timeline
-          </p>
+          <p className="text-sm font-medium text-cyan-400/90">Experience</p>
           <h2
             id="experience-heading"
             className="mt-2 text-3xl font-semibold tracking-tight text-slate-50 sm:text-4xl"
           >
-            Senior roles &{' '}
-            <span className="text-purple-300 text-glow-purple">high-trust delivery</span>
+            Where I&apos;ve worked
           </h2>
           <p className="mt-3 text-slate-400">
-            IBM, EY, TELUS International, and earlier senior engineering chapters — select a node to
-            expand full context, metrics, and stack tags.
+            IBM, EY, TELUS International, and earlier roles. Click a row for details.
           </p>
         </header>
 
         <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.1fr)]">
           <ol className="relative space-y-0 border-l border-cyan-500/20 pl-6">
-            {EXPERIENCE_ROLES.map((role, index) => {
+            {EXPERIENCE_ROLES.map((role) => {
               const active = openId === role.id
               return (
                 <li key={role.id} className="pb-10 last:pb-2">
@@ -54,9 +50,7 @@ export function ExperienceTimeline() {
                     aria-expanded={active}
                     aria-controls={`role-panel-${role.id}`}
                   >
-                    <span className="font-mono text-[10px] uppercase tracking-widest text-slate-500">
-                      Node {String(index + 1).padStart(2, '0')}
-                    </span>
+                    <span className="font-mono text-[10px] text-slate-500">{role.period}</span>
                     <span className="mt-1 flex items-center justify-between gap-2">
                       <span className="text-sm font-semibold text-slate-100">{role.org}</span>
                       <ChevronRight

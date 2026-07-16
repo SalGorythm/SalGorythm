@@ -45,18 +45,15 @@ export function SkillsTerminal() {
     >
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         <header className="mb-10 max-w-2xl">
-          <p className="font-mono text-xs uppercase tracking-[0.3em] text-purple-400/80">
-            skills.sh — read-only
-          </p>
+          <p className="text-sm font-medium text-purple-400/90">Skills</p>
           <h2
             id="skills-heading"
             className="mt-2 text-3xl font-semibold tracking-tight text-slate-50 sm:text-4xl"
           >
-            Skills <span className="text-cyan-300 text-glow-cyan">terminal</span>
+            Stack
           </h2>
           <p className="mt-3 text-slate-400">
-            Filter capability vectors by domain. No backend — pure client-side state, same as
-            production configs you would version in Git.
+            Languages, cloud, and AI/data — grouped for quick scanning.
           </p>
         </header>
 

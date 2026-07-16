@@ -37,9 +37,7 @@ export function RecruiterFunnelStrip({ className = '' }: { className?: string })
     <div
       className={`rounded-2xl border border-slate-800/90 bg-slate-950/50 p-4 backdrop-blur-md ${className}`}
     >
-      <p className="font-mono text-[10px] uppercase tracking-[0.3em] text-slate-500">
-        Velocity · engagement funnel
-      </p>
+      <p className="text-sm font-medium text-slate-500">Site activity</p>
       <dl className="mt-3 grid grid-cols-2 gap-3 sm:grid-cols-4">
         {metrics.map(({ label, value }) => (
           <div key={label} className="rounded-lg border border-slate-800/80 bg-slate-900/40 px-3 py-2">

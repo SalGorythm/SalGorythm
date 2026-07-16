@@ -54,9 +54,7 @@ export function Navbar({ activeId, isPortfolio }: NavbarProps) {
           <BrandLogo variant="icon" className="transition group-hover:scale-105" />
           <span className="hidden sm:block">
             <span className="block text-xs font-medium text-slate-200">Salman Akhatar</span>
-            <span className="block font-mono text-[10px] uppercase tracking-[0.2em] text-cyan-500/80">
-              Data · AI · Architecture
-            </span>
+            <span className="block text-[11px] text-cyan-500/80">Senior data scientist · IBM</span>
           </span>
         </Link>
 
@@ -70,7 +68,7 @@ export function Navbar({ activeId, isPortfolio }: NavbarProps) {
                     <button
                       type="button"
                       onClick={() => scrollTo(id)}
-                      className={`rounded-lg px-3 py-2 font-mono text-xs uppercase tracking-wider transition ${
+                      className={`rounded-lg px-3 py-2 text-sm transition ${
                         active
                           ? 'border border-cyan-500/40 bg-cyan-500/10 text-cyan-300 shadow-[0_0_18px_rgba(34,211,238,0.12)]'
                           : 'border border-transparent text-slate-400 hover:border-purple-500/25 hover:bg-purple-500/5 hover:text-purple-200'
@@ -86,14 +84,14 @@ export function Navbar({ activeId, isPortfolio }: NavbarProps) {
             <button
               type="button"
               onClick={() => navigate('/')}
-              className="rounded-lg border border-purple-500/30 bg-purple-500/10 px-3 py-2 font-mono text-xs uppercase tracking-wider text-purple-200 transition hover:border-purple-400/50 hover:bg-purple-500/15"
+              className="rounded-lg border border-purple-500/30 bg-purple-500/10 px-3 py-2 text-sm text-purple-200 transition hover:border-purple-400/50 hover:bg-purple-500/15"
             >
               Portfolio
             </button>
           )}
           <Link
             to="/tools"
-            className={`inline-flex items-center gap-1.5 rounded-lg border px-3 py-2 font-mono text-xs uppercase tracking-wider transition ${
+            className={`inline-flex items-center gap-1.5 rounded-lg border px-3 py-2 text-sm transition ${
               location.pathname === '/tools'
                 ? 'border-emerald-500/45 bg-emerald-500/10 text-emerald-200 shadow-[0_0_18px_rgba(52,211,153,0.12)]'
                 : 'border-slate-600/80 text-slate-300 hover:border-emerald-500/35 hover:bg-emerald-500/5 hover:text-emerald-200'
@@ -104,7 +102,7 @@ export function Navbar({ activeId, isPortfolio }: NavbarProps) {
           </Link>
           <Link
             to="/sandbox"
-            className={`inline-flex items-center gap-1.5 rounded-lg border px-3 py-2 font-mono text-xs uppercase tracking-wider transition ${
+            className={`inline-flex items-center gap-1.5 rounded-lg border px-3 py-2 text-sm transition ${
               location.pathname === '/sandbox'
                 ? 'border-cyan-500/45 bg-cyan-500/10 text-cyan-200 shadow-[0_0_18px_rgba(34,211,238,0.12)]'
                 : 'border-slate-600/80 text-slate-300 hover:border-cyan-500/35 hover:bg-cyan-500/5 hover:text-cyan-200'
@@ -126,7 +124,7 @@ export function Navbar({ activeId, isPortfolio }: NavbarProps) {
           <Link
             to="/sandbox"
             className="inline-flex h-10 items-center justify-center rounded-lg border border-slate-700/80 bg-slate-900/60 px-2.5 text-cyan-300 transition hover:border-cyan-500/40"
-            aria-label="Sandbox arcade"
+            aria-label="Sandbox"
           >
             <Gamepad2 className="h-5 w-5" />
           </Link>
@@ -158,7 +156,7 @@ export function Navbar({ activeId, isPortfolio }: NavbarProps) {
                   <button
                     type="button"
                     onClick={() => scrollTo(id)}
-                    className={`w-full rounded-lg px-3 py-3 text-left font-mono text-sm uppercase tracking-wider transition ${
+                    className={`w-full rounded-lg px-3 py-3 text-left text-sm transition ${
                       active
                         ? 'border border-cyan-500/40 bg-cyan-500/10 text-cyan-300'
                         : 'border border-transparent text-slate-400 hover:bg-slate-900 hover:text-slate-100'
@@ -177,7 +175,7 @@ export function Navbar({ activeId, isPortfolio }: NavbarProps) {
                   navigate('/')
                   setOpen(false)
                 }}
-                className="w-full rounded-lg border border-purple-500/30 bg-purple-500/10 px-3 py-3 text-left font-mono text-sm uppercase tracking-wider text-purple-200"
+                className="w-full rounded-lg border border-purple-500/30 bg-purple-500/10 px-3 py-3 text-left text-sm text-purple-200"
               >
                 Portfolio
               </button>
@@ -187,7 +185,7 @@ export function Navbar({ activeId, isPortfolio }: NavbarProps) {
             <Link
               to="/tools"
               onClick={() => setOpen(false)}
-              className="flex w-full items-center gap-2 rounded-lg border border-emerald-500/30 bg-emerald-500/5 px-3 py-3 font-mono text-sm uppercase tracking-wider text-emerald-200"
+              className="flex w-full items-center gap-2 rounded-lg border border-emerald-500/30 bg-emerald-500/5 px-3 py-3 text-sm text-emerald-200"
             >
               <Wrench className="h-4 w-4" aria-hidden />
               Utility tools
@@ -197,10 +195,10 @@ export function Navbar({ activeId, isPortfolio }: NavbarProps) {
             <Link
               to="/sandbox"
               onClick={() => setOpen(false)}
-              className="flex w-full items-center gap-2 rounded-lg border border-cyan-500/30 bg-cyan-500/5 px-3 py-3 font-mono text-sm uppercase tracking-wider text-cyan-200"
+              className="flex w-full items-center gap-2 rounded-lg border border-cyan-500/30 bg-cyan-500/5 px-3 py-3 text-sm text-cyan-200"
             >
               <Gamepad2 className="h-4 w-4" aria-hidden />
-              Sandbox arcade
+              Sandbox
             </Link>
           </li>
         </ul>

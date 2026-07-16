@@ -40,7 +40,7 @@ export function ContactForm() {
     try {
       const data = await submitToWeb3Forms(formData)
       if (data.success) {
-        setSubmit({ status: 'success', message: 'Transmission received. I will reply from my inbox.' })
+        setSubmit({ status: 'success', message: "Got it — I'll reply by email." })
         form.reset()
       } else {
         setSubmit({
@@ -64,18 +64,16 @@ export function ContactForm() {
     >
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         <header className="mb-10 max-w-2xl">
-          <p className="font-mono text-xs uppercase tracking-[0.3em] text-cyan-500/80">
-            Secure portal
-          </p>
+          <p className="text-sm font-medium text-cyan-400/90">Contact</p>
           <h2
             id="contact-heading"
             className="mt-2 text-3xl font-semibold tracking-tight text-slate-50 sm:text-4xl"
           >
-            Establish <span className="text-purple-300">contact</span>
+            Get in touch
           </h2>
           <p className="mt-3 text-slate-400">
-            Direct message to my inbox — suitable for recruiters, collaborators, and technical
-            introductions. Replies are manual; there is no mailing list signup on submit.
+            Email works best for role inquiries and collaboration. I reply manually — no mailing
+            list on submit.
           </p>
         </header>
 
@@ -139,10 +137,10 @@ export function ContactForm() {
             <div>
               <label
                 htmlFor="contact-name"
-                className="mb-1.5 flex items-center gap-2 font-mono text-[11px] uppercase tracking-wider text-slate-500"
+                className="mb-1.5 flex items-center gap-2 text-sm font-medium text-slate-400"
               >
                 <User className="h-3.5 w-3.5 text-cyan-400/80" aria-hidden />
-                Identity
+                Name
               </label>
               <input
                 id="contact-name"
@@ -157,10 +155,10 @@ export function ContactForm() {
             <div>
               <label
                 htmlFor="contact-email"
-                className="mb-1.5 flex items-center gap-2 font-mono text-[11px] uppercase tracking-wider text-slate-500"
+                className="mb-1.5 flex items-center gap-2 text-sm font-medium text-slate-400"
               >
                 <Mail className="h-3.5 w-3.5 text-purple-400/80" aria-hidden />
-                Return path (email)
+                Email
               </label>
               <input
                 id="contact-email"
@@ -176,10 +174,10 @@ export function ContactForm() {
             <div>
               <label
                 htmlFor="contact-message"
-                className="mb-1.5 flex items-center gap-2 font-mono text-[11px] uppercase tracking-wider text-slate-500"
+                className="mb-1.5 flex items-center gap-2 text-sm font-medium text-slate-400"
               >
                 <MessageSquare className="h-3.5 w-3.5 text-cyan-400/80" aria-hidden />
-                Payload
+                Message
               </label>
               <textarea
                 id="contact-message"
@@ -202,7 +200,7 @@ export function ContactForm() {
               ) : (
                 <Send className="h-4 w-4 transition group-hover:translate-x-0.5" aria-hidden />
               )}
-              {submit.status === 'submitting' ? 'Transmitting…' : 'Transmit'}
+              {submit.status === 'submitting' ? 'Sending…' : 'Send message'}
             </button>
 
             <p className="text-center font-mono text-[10px] text-slate-600">

@@ -30,17 +30,15 @@ export function PortfolioPage() {
       >
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
           <header className="mb-8 max-w-2xl">
-            <p className="font-mono text-xs uppercase tracking-[0.3em] text-cyan-500/80">
-              For hiring teams
-            </p>
+            <p className="text-sm font-medium text-cyan-400/90">Résumé</p>
             <h2
               id="resume-heading"
               className="mt-2 text-2xl font-semibold tracking-tight text-slate-50 sm:text-3xl"
             >
-              Résumé &amp; verification
+              Download
             </h2>
-            <p className="mt-2 text-sm text-slate-400">
-              Full download gate with PDF and DOCX — SDS résumé synced from latest CV.
+            <p className="text-sm text-slate-400">
+              PDF and DOCX downloads. Optional activity counts on the right.
             </p>
           </header>
           <div className="grid gap-6 lg:grid-cols-[1fr_1fr]">
