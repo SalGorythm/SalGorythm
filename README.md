@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="portfolio/public/salgorythm-logo.svg" alt="SalGorythm" width="280" />
+  <img src="https://raw.githubusercontent.com/SalGorythm/SalGorythm/main/portfolio/public/salgorythm-logo.svg" alt="SalGorythm" width="280" />
 </p>
 
 # Salman Akhatar
@@ -57,5 +57,10 @@ Deployed on Vercel → [salgorythm.com](https://salgorythm.com)
 ---
 
 <p align="center">
-  <img src="https://github-readme-stats.vercel.app/api?username=SalGorythm&show_icons=true&theme=tokyonight&hide_border=true&count_private=true" alt="GitHub stats" height="140" />
+  <a href="https://github.com/SalGorythm">
+    <img src="https://img.shields.io/github/followers/SalGorythm?style=flat-square&logo=github&labelColor=1a1b27&color=7aa2f7" alt="GitHub followers" />
+  </a>
+  <a href="https://github.com/SalGorythm?tab=repositories">
+    <img src="https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fapi.github.com%2Fusers%2FSalGorythm&query=%24.public_repos&label=public%20repos&style=flat-square&logo=github&labelColor=1a1b27&color=7aa2f7" alt="Public repos" />
+  </a>
 </p>
