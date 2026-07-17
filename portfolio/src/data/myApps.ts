@@ -34,6 +34,21 @@ export type PortfolioApp = {
 
 export const PORTFOLIO_APPS: PortfolioApp[] = [
   {
+    id: 'casette',
+    name: 'Casette',
+    tagline: 'Offline audio for iPhone — lectures, podcasts, and your own files.',
+    description:
+      'Import from the Files app, Wi‑Fi transfer on your LAN, or cloud folders (iCloud, Google Drive, share links). Casette Pro is $3.99 once with a 3-day trial — no subscription, no ads, and no Casette account. Built for long listening: speed control, sleep timer, resume, and silence skip.',
+    highlights: [
+      'Files, Wi‑Fi & cloud import',
+      'Speed, sleep timer, silence skip',
+      'Private · no analytics SDKs',
+      'iOS App Store · web hub',
+    ],
+    websiteUrl: 'https://casette-kohl.vercel.app/',
+    appStoreUrl: 'https://apps.apple.com/in/app/casette/id6778667635',
+  },
+  {
     id: 'easysalah',
     name: 'EasySalah',
     tagline: 'Local-first Islamic utility — prayer times, Qibla, Hijri & Zakat.',

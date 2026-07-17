@@ -15,6 +15,7 @@ I build production LLM systems and data pipelines. At **IBM** I work on WatsonX,
 ## Now
 
 - **IBM** — super agents, evaluation agents, staffing tooling for consulting workflows
+- **[Casette](https://casette-kohl.vercel.app/)** — offline audio player for iPhone (Files, Wi‑Fi, cloud import)
 - **[EasySalah](https://easy-salah.vercel.app/)** — local-first iOS utility (prayer times, Qibla, Hijri)
 - **This repo** — source for [salgorythm.com](https://salgorythm.com): Vite/React portfolio, browser tools, sandbox demos
 

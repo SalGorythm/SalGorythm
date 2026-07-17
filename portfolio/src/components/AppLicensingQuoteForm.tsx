@@ -203,6 +203,7 @@ export function AppLicensingQuoteForm() {
                 <option value="" disabled>
                   Select one
                 </option>
+                <option value="Casette (marketing site / app)">Casette (site or app)</option>
                 <option value="EasySalah (marketing site / app)">EasySalah (site or app)</option>
                 <option value="Future SalGorythm products">Future products from this portfolio</option>
                 <option value="Custom build / commission">Custom build or commission</option>

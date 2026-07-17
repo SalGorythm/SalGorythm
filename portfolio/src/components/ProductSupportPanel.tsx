@@ -34,9 +34,9 @@ export function ProductSupportPanel({ anchorId, className = '' }: ProductSupport
             SalGorythm product <span className="text-purple-300">support</span>
           </h2>
           <p className="text-sm leading-relaxed text-slate-400">
-            One inbox for questions, bug reports, and feedback across EasySalah and future apps —
-            use it in App Store Connect, Google Play Console, project READMEs, and marketing footers
-            so users always reach the same channel.
+            One inbox for questions, bug reports, and feedback across Casette, EasySalah, and
+            other SalGorythm apps — use it in App Store Connect, Google Play Console, project
+            READMEs, and marketing footers so users always reach the same channel.
           </p>
           <div className="space-y-2 rounded-xl border border-slate-800/90 bg-slate-950/60 p-3">
             <p className="font-mono text-[10px] uppercase tracking-wider text-slate-500">
