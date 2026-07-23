@@ -35,7 +35,8 @@ export function ArticleEngagement({ slug, className = '' }: ArticleEngagementPro
     setClapPending(false)
   }
 
-  if (!configured && views == null && claps == null) return null
+  const hasCounts = views != null || claps != null
+  if (!configured && !hasCounts) return null
 
   return (
     <div
@@ -54,6 +55,7 @@ export function ArticleEngagement({ slug, className = '' }: ArticleEngagementPro
           void onClap()
         }}
         disabled={clapped || clapPending}
+        title={configured ? undefined : 'Live claps unavailable — counts from last deploy'}
         aria-pressed={clapped}
         className={`inline-flex items-center gap-1.5 rounded-lg border px-3 py-1.5 font-mono text-xs transition ${
           clapped
@@ -79,7 +81,7 @@ export function ArticleViewCount({ slug, className = '' }: ArticleViewCountProps
   const { configured, getCount } = useStats()
   const views = getCount(articleStatKey(slug, 'views'))
 
-  if (!configured && views == null) return null
+  if (views == null && !configured) return null
 
   return (
     <span

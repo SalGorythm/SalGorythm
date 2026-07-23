@@ -1,7 +1,15 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "installCommand": "cd portfolio && npm install",
-  "buildCommand": "cd portfolio && npm run build",
+  "buildCommand": "cp data/stats.json portfolio/public/stats.json && cd portfolio && npm run build",
   "outputDirectory": "portfolio/dist",
-  "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }]
+  "functions": {
+    "api/stats.ts": {
+      "includeFiles": "lib/**,data/stats.json"
+    }
+  },
+  "rewrites": [
+    { "source": "/api/(.*)", "destination": "/api/$1" },
+    { "source": "/((?!api/).*)", "destination": "/index.html" }
+  ]
 }

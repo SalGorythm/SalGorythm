@@ -2,17 +2,33 @@ import type { StatKey } from '../constants/statsKeys'
 
 export type StatsResponse = {
   configured: boolean
+  writable?: boolean
   stats: Partial<Record<string, number>>
+}
+
+async function fetchStaticStats(): Promise<StatsResponse | null> {
+  try {
+    const res = await fetch('/stats.json', { headers: { Accept: 'application/json' } })
+    if (!res.ok) return null
+    const stats = (await res.json()) as Partial<Record<string, number>>
+    return { configured: true, writable: false, stats }
+  } catch {
+    return null
+  }
 }
 
 export async function fetchStats(): Promise<StatsResponse> {
   try {
     const res = await fetch('/api/stats', { headers: { Accept: 'application/json' } })
-    if (!res.ok) return { configured: false, stats: {} }
-    return (await res.json()) as StatsResponse
+    if (res.ok) return (await res.json()) as StatsResponse
   } catch {
-    return { configured: false, stats: {} }
+    // fall through to static snapshot
   }
+
+  const fallback = await fetchStaticStats()
+  if (fallback) return fallback
+
+  return { configured: false, stats: {} }
 }
 
 export async function incrementStat(key: StatKey | string): Promise<number | null> {

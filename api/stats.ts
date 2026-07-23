@@ -5,8 +5,6 @@ import {
   statsFileWritable,
 } from '../lib/statsFileStore.mjs'
 
-export const config = { runtime: 'nodejs' }
-
 export async function GET() {
   try {
     const stats = await readStatsFile()
