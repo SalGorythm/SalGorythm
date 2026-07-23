@@ -61,7 +61,7 @@ export function AppLicensingQuoteForm() {
       aria-labelledby="apps-heading"
       className="scroll-mt-28 border-b border-purple-500/10 bg-slate-950/25 py-20"
     >
-      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+      <div className="page-container">
         <header className="mb-10 max-w-2xl">
           <p className="font-mono text-xs uppercase tracking-[0.3em] text-purple-400/80">
             Products · licensing

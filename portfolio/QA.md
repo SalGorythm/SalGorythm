@@ -1,45 +1,43 @@
-# Portfolio QA checklist (Prompt 7 — Skeptic-Filter)
-
-Internal peer-review matrix for responsiveness, stability, and load velocity.
+# Portfolio QA checklist (V2 immersive + writing hub)
 
 ## Responsive matrix (320px – 1440px)
 
 | Surface | 320 | 768 | 1024 | 1440 | Notes |
 |---------|-----|-----|------|------|-------|
-| Hero validation strip | ✓ | ✓ | ✓ | ✓ | Plain-language CTAs, min-h-11 tap targets |
-| Compact CV gate | ✓ | ✓ | ✓ | ✓ | Sticky on lg; stacks on mobile |
-| Case study matrix | ✓ | ✓ | ✓ | 3-col | Cards equal height flex |
-| Live demo strip | ✓ | ✓ | 3-col | 3-col | Lazy intersection observer |
-| Vertical project lens | ✓ | ✓ | ✓ | ✓ | Wrap toggles on narrow viewports |
-| Résumé funnel strip | ✓ | 2-col | 4-col | 4-col | Grid collapses gracefully |
+| Full-viewport 3D | CSS fallback | CSS fallback | WebGL + bloom | WebGL + bloom | Fixed canvas z-0 |
+| Hero + panels | ✓ | ✓ | ✓ | ✓ | `bg-slate-950/40` + backdrop-blur over canvas |
+| Writing section | ✓ | ✓ | 3-col featured | 3-col | Hover syncs 3D writing nodes |
+| `/writing` index | ✓ | ✓ | tag filter + search | ✓ | Lazy route chunk |
+| `/writing/:slug` | ✓ | ✓ | TOC sidebar lg+ | ✓ | BlogPosting JSON-LD |
+| Keyboard jumps | 1–9 | 1–9 | 1–9 | 1–9 | Major sections on portfolio |
+
+## V2 3D checklist
+
+- [ ] Desktop: full-viewport Canvas (not 42% rail)
+- [ ] Icosahedron core + satellite nodes + edge particle flow
+- [ ] Spline camera driven by scroll progress
+- [ ] Writing cluster (13 orbiting nodes) — click opens `/writing/:slug`
+- [ ] Bloom enabled desktop only; off when `performanceDegraded`
+- [ ] Mobile / reduced motion: CSS `immersive-bg-fallback` animation
+- [ ] `PerformanceMonitor` persists WebGL disable to sessionStorage
+- [ ] Node hover tooltip bottom-right on desktop
+
+## Writing hub checklist
+
+- [ ] 13 articles in `src/content/articles/*.md`
+- [ ] Tags: prompting, agents, loops, interview-prep, python, deployment, claude, cursor
+- [ ] Featured 3 on home `#writing` section
+- [ ] Navbar "Writing" link
+- [ ] Prev/next navigation on article pages
 
 ## Performance targets
 
 | Metric | Target | How verified |
 |--------|--------|--------------|
-| LCP | < 2.5s | Run Lighthouse on production build |
-| CLS | < 0.1 | No layout shift from lazy demo previews |
-| Bundle split | Tools lazy | `ToolsPage` route chunk separate |
-| Fonts | swap | Google Fonts `display=swap` in index.html |
-
-## Asset audit
-
-- CV PDF: `public/cv/sds-salman-akhatar-cv.pdf` (~80 KB)
-- CV DOCX: `public/cv/sds-salman-akhatar-cv.docx` (~13 KB)
-- pdf.worker: lazy-loaded with Tools route only
-- No hero images — CSS gradients only (fast LCP)
-
-## SEO / trust signals
-
-- JSON-LD `Person` schema in `index.html`
-- Open Graph title + description
-- Semantic section headings with `aria-labelledby`
-
-## Cross-browser spot-check
-
-- [ ] Chrome / Edge (Chromium)
-- [ ] Safari (macOS + iOS)
-- [ ] Firefox
+| LCP | < 2.5s | Hero text; Canvas lazy |
+| Main bundle | Articles lazy-loaded | Writing routes + markdown glob async |
+| PortfolioScene chunk | ~260KB gzip | Separate lazy chunk |
+| Canvas DPR | ≤ 2 desktop | `useSceneDpr` |
 
 ## Pre-deploy command
 
@@ -47,13 +45,8 @@ Internal peer-review matrix for responsiveness, stability, and load velocity.
 cd portfolio && npm run lint && npm run build
 ```
 
-## Funnel audit (Prompt 8)
+## Cross-browser spot-check
 
-Compare `data/stats.json` fields:
-
-- `visitor` — portfolio sessions
-- `resume-download` — CV CTR
-- `tool-*` + `game-*` + `lab-*` — proof-of-code engagement
-
-If visits ≫ sandbox plays → live demos placement is correct (post-hero).
-If downloads lag visits → compact gate in hero is primary path; full gate in `#resume`.
+- [ ] Chrome / Edge (Chromium) — WebGL + bloom
+- [ ] Safari (macOS + iOS) — fallback tier
+- [ ] Firefox — scroll + camera

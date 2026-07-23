@@ -111,7 +111,7 @@ export function AIChatSim() {
       aria-labelledby="recruiter-heading"
       className="scroll-mt-28 border-b border-cyan-500/10 py-20"
     >
-      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+      <div className="page-container">
         <header className="mb-8 max-w-2xl">
           <p className="text-sm font-medium text-purple-400/80">Runs locally</p>
           <h2

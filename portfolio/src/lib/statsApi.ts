@@ -2,7 +2,7 @@ import type { StatKey } from '../constants/statsKeys'
 
 export type StatsResponse = {
   configured: boolean
-  stats: Partial<Record<StatKey, number>>
+  stats: Partial<Record<string, number>>
 }
 
 export async function fetchStats(): Promise<StatsResponse> {
@@ -15,7 +15,7 @@ export async function fetchStats(): Promise<StatsResponse> {
   }
 }
 
-export async function incrementStat(key: StatKey): Promise<number | null> {
+export async function incrementStat(key: StatKey | string): Promise<number | null> {
   try {
     const res = await fetch('/api/stats', {
       method: 'POST',
@@ -38,5 +38,23 @@ export function trackOncePerSession(storageKey: string, fn: () => void): void {
     fn()
   } catch {
     fn()
+  }
+}
+
+const CLAP_PREFIX = 'sg-article-clap-'
+
+export function hasClappedArticle(slug: string): boolean {
+  try {
+    return localStorage.getItem(`${CLAP_PREFIX}${slug}`) === '1'
+  } catch {
+    return false
+  }
+}
+
+export function markArticleClapped(slug: string): void {
+  try {
+    localStorage.setItem(`${CLAP_PREFIX}${slug}`, '1')
+  } catch {
+    // ignore quota / private mode
   }
 }

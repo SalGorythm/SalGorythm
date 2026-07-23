@@ -145,7 +145,7 @@ export function SandboxPage() {
 
   return (
     <div className="min-h-svh border-b border-cyan-500/10 pb-24 pt-24">
-      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+      <div className="page-container">
         <header className="mb-10 flex flex-col gap-4 border-b border-cyan-500/15 pb-8 sm:flex-row sm:items-end sm:justify-between">
           <div>
             <p className="font-mono text-xs uppercase tracking-[0.3em] text-purple-400/90">

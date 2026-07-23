@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { useScrollStore } from '../store/scrollStore'
 
 const NAV_OFFSET = 120
 
@@ -8,6 +9,7 @@ const NAV_OFFSET = 120
  */
 export function useActiveSection(sectionIds: readonly string[], enabled = true) {
   const [activeId, setActiveId] = useState(sectionIds[0] ?? '')
+  const setStoreActiveSection = useScrollStore((s) => s.setActiveSection)
 
   useEffect(() => {
     if (!enabled || sectionIds.length === 0) {
@@ -28,6 +30,7 @@ export function useActiveSection(sectionIds: readonly string[], enabled = true) 
         }
       }
       setActiveId(current)
+      setStoreActiveSection(current)
     }
 
     update()
@@ -37,7 +40,7 @@ export function useActiveSection(sectionIds: readonly string[], enabled = true) 
       window.removeEventListener('scroll', update)
       window.removeEventListener('resize', update)
     }
-  }, [sectionIds, enabled])
+  }, [sectionIds, enabled, setStoreActiveSection])
 
   if (!enabled || sectionIds.length === 0) {
     return ''

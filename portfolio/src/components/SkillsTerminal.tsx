@@ -43,7 +43,7 @@ export function SkillsTerminal() {
       aria-labelledby="skills-heading"
       className="scroll-mt-28 border-b border-cyan-500/10 py-20"
     >
-      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+      <div className="page-container">
         <header className="mb-10 max-w-2xl">
           <p className="text-sm font-medium text-purple-400/90">Skills</p>
           <h2

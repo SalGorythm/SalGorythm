@@ -10,10 +10,10 @@ export function Hero() {
     <section
       id="hero"
       aria-labelledby="hero-heading"
-      className="scroll-mt-28 border-b border-cyan-500/10 pb-20 pt-28 sm:pt-32"
+      className="scroll-mt-28 border-b border-cyan-500/10 bg-slate-950/40 pb-20 pt-28 backdrop-blur-sm sm:pt-32"
     >
-      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-        <div className="grid gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:items-start">
+      <div className="page-container">
+        <div className="grid gap-10 lg:grid-cols-1 lg:gap-12">
           <div className="space-y-8">
             <p className="inline-flex flex-wrap items-center gap-2 rounded-full border border-cyan-500/25 bg-slate-900/50 px-3 py-1 text-sm text-cyan-400/90">
               <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-cyan-400" />
@@ -115,10 +115,10 @@ export function Hero() {
                 </Link>
               </div>
             </div>
-          </div>
 
-          <div className="relative lg:sticky lg:top-28">
-            <RecruiterCvGate variant="compact" />
+            <div className="max-w-md lg:max-w-lg">
+              <RecruiterCvGate variant="compact" />
+            </div>
           </div>
         </div>
       </div>

@@ -8,9 +8,9 @@ export function CaseStudyMatrix() {
     <section
       id="case-studies"
       aria-labelledby="case-studies-heading"
-      className="scroll-mt-28 border-b border-cyan-500/10 bg-slate-950/40 py-20"
+      className="scroll-mt-28 border-b border-cyan-500/10 bg-slate-950/50 py-20 backdrop-blur-sm"
     >
-      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+      <div className="page-container">
         <SectionHeader
           domain="Case studies"
           title="Three projects where the constraint shaped the build"
@@ -23,6 +23,7 @@ export function CaseStudyMatrix() {
           {CASE_STUDIES.map((study) => (
             <article
               key={study.id}
+              data-case-study-card
               className="flex flex-col rounded-2xl border border-slate-800/90 bg-slate-900/35 p-5 shadow-[inset_0_1px_0_rgba(255,255,255,0.04)] backdrop-blur-md transition hover:border-cyan-500/30"
             >
               <p className="text-xs font-medium text-purple-400/90">{study.domain}</p>

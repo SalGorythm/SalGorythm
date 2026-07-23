@@ -4,15 +4,20 @@ import { Link, useLocation, useNavigate } from 'react-router-dom'
 import type { SectionId } from '../constants/sections'
 import { BrandLogo } from './BrandLogo'
 
-const LINKS: { id: SectionId; label: string }[] = [
-  { id: 'hero', label: 'Home' },
-  { id: 'case-studies', label: 'Case studies' },
-  { id: 'live-demos', label: 'Live demos' },
-  { id: 'experience', label: 'Experience' },
-  { id: 'projects', label: 'Projects' },
-  { id: 'skills', label: 'Skills' },
-  { id: 'resume', label: 'Résumé' },
-  { id: 'contact', label: 'Contact' },
+type SectionLink = { kind: 'section'; id: SectionId; label: string }
+type RouteLink = { kind: 'route'; path: string; label: string; matchPrefix?: boolean }
+type NavLink = SectionLink | RouteLink
+
+const LINKS: NavLink[] = [
+  { kind: 'section', id: 'hero', label: 'Home' },
+  { kind: 'section', id: 'case-studies', label: 'Case studies' },
+  { kind: 'section', id: 'live-demos', label: 'Live demos' },
+  { kind: 'route', path: '/writing', label: 'Writing', matchPrefix: true },
+  { kind: 'section', id: 'experience', label: 'Experience' },
+  { kind: 'section', id: 'projects', label: 'Projects' },
+  { kind: 'section', id: 'skills', label: 'Skills' },
+  { kind: 'section', id: 'resume', label: 'Résumé' },
+  { kind: 'section', id: 'contact', label: 'Contact' },
 ]
 
 export type NavbarProps = {
@@ -40,12 +45,46 @@ export function Navbar({ activeId, isPortfolio }: NavbarProps) {
     setOpen(false)
   }
 
+  const isLinkActive = (link: NavLink) => {
+    if (link.kind === 'route') {
+      return link.matchPrefix
+        ? location.pathname === link.path || location.pathname.startsWith(`${link.path}/`)
+        : location.pathname === link.path
+    }
+    return activeId === link.id
+  }
+
+  const linkClass = (active: boolean) =>
+    active
+      ? 'border border-cyan-500/40 bg-cyan-500/10 text-cyan-300 shadow-[0_0_18px_rgba(34,211,238,0.12)]'
+      : 'border border-transparent text-slate-400 hover:border-purple-500/25 hover:bg-purple-500/5 hover:text-purple-200'
+
+  const renderNavLink = (link: NavLink, className: string) => {
+    const active = isLinkActive(link)
+    if (link.kind === 'route') {
+      return (
+        <Link
+          to={link.path}
+          onClick={() => setOpen(false)}
+          className={`${className} ${linkClass(active)}`}
+        >
+          {link.label}
+        </Link>
+      )
+    }
+    return (
+      <button type="button" onClick={() => scrollTo(link.id)} className={`${className} ${linkClass(active)}`}>
+        {link.label}
+      </button>
+    )
+  }
+
   return (
     <nav
-      className="fixed inset-x-0 top-0 z-50 border-b border-cyan-500/20 bg-slate-950/55 backdrop-blur-md lg:left-14"
+      className="fixed inset-x-0 top-0 z-50 border-b border-cyan-500/20 bg-slate-950/55 backdrop-blur-md"
       aria-label="Primary"
     >
-      <div className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-4 px-4 sm:px-6 lg:px-8">
+      <div className="page-container flex h-16 items-center justify-between gap-4">
         <Link
           to="/"
           onClick={onBrandClick}
@@ -61,24 +100,11 @@ export function Navbar({ activeId, isPortfolio }: NavbarProps) {
         <div className="hidden items-center gap-2 md:flex">
           {isPortfolio ? (
             <ul className="flex items-center gap-1">
-              {LINKS.map(({ id, label }) => {
-                const active = activeId === id
-                return (
-                  <li key={id}>
-                    <button
-                      type="button"
-                      onClick={() => scrollTo(id)}
-                      className={`rounded-lg px-3 py-2 text-sm transition ${
-                        active
-                          ? 'border border-cyan-500/40 bg-cyan-500/10 text-cyan-300 shadow-[0_0_18px_rgba(34,211,238,0.12)]'
-                          : 'border border-transparent text-slate-400 hover:border-purple-500/25 hover:bg-purple-500/5 hover:text-purple-200'
-                      }`}
-                    >
-                      {label}
-                    </button>
-                  </li>
-                )
-              })}
+              {LINKS.map((link) => (
+                <li key={link.kind === 'route' ? link.path : link.id}>
+                  {renderNavLink(link, 'rounded-lg px-3 py-2 text-sm transition')}
+                </li>
+              ))}
             </ul>
           ) : (
             <button
@@ -149,24 +175,11 @@ export function Navbar({ activeId, isPortfolio }: NavbarProps) {
       >
         <ul className="flex flex-col gap-1 px-4 py-3">
           {isPortfolio ? (
-            LINKS.map(({ id, label }) => {
-              const active = activeId === id
-              return (
-                <li key={id}>
-                  <button
-                    type="button"
-                    onClick={() => scrollTo(id)}
-                    className={`w-full rounded-lg px-3 py-3 text-left text-sm transition ${
-                      active
-                        ? 'border border-cyan-500/40 bg-cyan-500/10 text-cyan-300'
-                        : 'border border-transparent text-slate-400 hover:bg-slate-900 hover:text-slate-100'
-                    }`}
-                  >
-                    {label}
-                  </button>
-                </li>
-              )
-            })
+            LINKS.map((link) => (
+              <li key={link.kind === 'route' ? link.path : link.id}>
+                {renderNavLink(link, 'w-full rounded-lg px-3 py-3 text-left text-sm transition')}
+              </li>
+            ))
           ) : (
             <li>
               <button

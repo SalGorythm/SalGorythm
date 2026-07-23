@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useMemo, useSyncExternalStore, type ReactNode } from 'react'
-import { STAT_KEYS, type StatKey } from '../constants/statsKeys'
+import { STAT_KEYS } from '../constants/statsKeys'
 import { incrementStat, trackOncePerSession } from '../lib/statsApi'
 import { getStatsSnapshot, patchStat, refreshStats, subscribeStats } from '../lib/statsStore'
 import { StatsContext, type StatsContextValue } from './statsContext'
@@ -11,13 +11,14 @@ export function StatsProvider({ children }: { children: ReactNode }) {
     await refreshStats()
   }, [])
 
-  const increment = useCallback(async (key: StatKey) => {
+  const increment = useCallback(async (key: string) => {
     const value = await incrementStat(key)
     if (value != null) patchStat(key, value)
+    return value
   }, [])
 
   const getCount = useCallback(
-    (key: StatKey) => stats[key],
+    (key: string) => stats[key],
     [stats],
   )
 

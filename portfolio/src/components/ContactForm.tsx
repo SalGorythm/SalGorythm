@@ -62,7 +62,7 @@ export function ContactForm() {
       aria-labelledby="contact-heading"
       className="scroll-mt-28 py-20 pb-28"
     >
-      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+      <div className="page-container">
         <header className="mb-10 max-w-2xl">
           <p className="text-sm font-medium text-cyan-400/90">Contact</p>
           <h2

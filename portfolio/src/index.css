@@ -1,4 +1,6 @@
 @import 'tailwindcss';
+@plugin '@tailwindcss/typography';
+@import 'highlight.js/styles/github-dark.css' layer(base);
 
 @theme {
   --font-family-sans: 'Space Grotesk', ui-sans-serif, system-ui, sans-serif;
@@ -7,11 +9,22 @@
   --color-cyber-cyan: #22d3ee;
   --color-cyber-purple: #c084fc;
   --color-cyber-void: #020617;
+  --color-cyber-ice: #e2e8f0;
+  --color-cyber-slate: #94a3b8;
+  --color-cyber-signal: #34d399;
+
+  --ease-premium: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 @layer base {
   html {
     scroll-behavior: smooth;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
   }
 
   body {
@@ -50,3 +63,201 @@
 #root {
   min-height: 100svh;
 }
+
+.immersive-bg-fallback {
+  background:
+    radial-gradient(ellipse 120% 80% at 50% -20%, rgba(34, 211, 238, 0.14), transparent),
+    radial-gradient(ellipse 80% 50% at 100% 50%, rgba(168, 85, 247, 0.1), transparent),
+    radial-gradient(ellipse 60% 40% at 0% 80%, rgba(251, 191, 36, 0.06), transparent),
+    #020617;
+  animation: immersive-drift 18s ease-in-out infinite alternate;
+}
+
+@keyframes immersive-drift {
+  0% {
+    filter: hue-rotate(0deg);
+  }
+  100% {
+    filter: hue-rotate(12deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .immersive-bg-fallback {
+    animation: none;
+  }
+}
+
+.article-prose {
+  @apply max-w-2xl;
+}
+
+.article-prose > :first-child {
+  margin-top: 0;
+}
+
+.article-prose > p:first-of-type {
+  @apply text-lg leading-relaxed text-slate-300;
+}
+
+.article-prose h2 {
+  @apply mt-12 scroll-mt-28 border-t border-slate-800/90 pt-8 text-2xl font-semibold tracking-tight text-slate-50 first:mt-0 first:border-t-0 first:pt-0;
+}
+
+.article-prose h3 {
+  @apply mt-8 scroll-mt-28 text-lg font-semibold text-amber-100/95;
+}
+
+.article-prose p {
+  @apply leading-relaxed text-slate-300;
+}
+
+.article-prose ul,
+.article-prose ol {
+  @apply my-6 space-y-2 pl-6 text-slate-300;
+}
+
+.article-prose ul {
+  @apply list-disc;
+}
+
+.article-prose ol {
+  @apply list-decimal;
+}
+
+.article-prose li {
+  @apply leading-relaxed;
+}
+
+.article-prose li::marker {
+  @apply text-amber-400/70;
+}
+
+.article-prose blockquote {
+  @apply my-8 rounded-r-xl border-l-4 border-amber-500/50 bg-amber-500/5 px-5 py-4 text-slate-300;
+}
+
+.article-prose blockquote p {
+  @apply my-0 text-base;
+}
+
+.article-prose hr {
+  @apply my-10 border-slate-800/90;
+}
+
+.article-prose a {
+  @apply text-cyan-300 underline decoration-cyan-500/30 underline-offset-2 transition hover:text-cyan-200 hover:decoration-cyan-400/60;
+}
+
+.article-prose strong {
+  @apply font-semibold text-slate-100;
+}
+
+.article-table-wrap {
+  @apply my-8 overflow-x-auto rounded-xl border border-slate-800/90;
+}
+
+.article-prose table {
+  @apply w-full min-w-full border-collapse text-sm;
+}
+
+.article-prose th {
+  @apply border-b border-slate-700/80 bg-slate-900/60 px-4 py-2.5 text-left text-xs font-semibold uppercase tracking-wide text-slate-400;
+}
+
+.article-prose td {
+  @apply border-b border-slate-800/80 px-4 py-2.5 text-slate-300;
+}
+
+.article-prose pre {
+  @apply my-8 overflow-x-auto rounded-xl border border-slate-800/90 bg-slate-950/90 p-4 font-mono text-[0.8125rem] leading-relaxed;
+}
+
+.article-prose pre code {
+  @apply bg-transparent p-0 text-inherit;
+}
+
+.article-prose :not(pre) > code {
+  @apply rounded-md border border-slate-700/60 bg-slate-900/80 px-1.5 py-0.5 font-mono text-[0.8125rem] text-amber-200/95;
+}
+
+/* Centered content column — widened; inset clears edge rails on xl+ */
+.page-container {
+  @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8;
+}
+
+@media (min-width: 1280px) {
+  .page-container {
+    padding-left: max(1.5rem, min(11vw, 10.5rem));
+    padding-right: max(1.5rem, min(11vw, 10.5rem));
+  }
+}
+
+/* Full-viewport background band; content stays in page-container */
+.full-bleed {
+  width: 100%;
+  margin-left: 0;
+  margin-right: 0;
+}
+
+/* Decorative gutter panels on xl+ */
+.site-edge-rail {
+  background:
+    linear-gradient(90deg, rgba(2, 6, 23, 0.92) 0%, rgba(2, 6, 23, 0.4) 70%, transparent 100%),
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 23px,
+      rgba(34, 211, 238, 0.03) 23px,
+      rgba(34, 211, 238, 0.03) 24px
+    );
+}
+
+.site-edge-rail-left {
+  left: 0;
+  border-right: 1px solid rgba(34, 211, 238, 0.08);
+}
+
+.site-edge-rail-right {
+  right: 0;
+  background:
+    linear-gradient(270deg, rgba(2, 6, 23, 0.92) 0%, rgba(2, 6, 23, 0.4) 70%, transparent 100%),
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 23px,
+      rgba(168, 85, 247, 0.03) 23px,
+      rgba(168, 85, 247, 0.03) 24px
+    );
+  border-left: 1px solid rgba(168, 85, 247, 0.08);
+}
+
+/* Side vignette on all pages — soft fill in outer gutters below xl */
+.page-vignette::before,
+.page-vignette::after {
+  content: '';
+  pointer-events: none;
+  position: fixed;
+  top: 4rem;
+  bottom: 0;
+  width: min(18vw, 220px);
+  z-index: 5;
+}
+
+.page-vignette::before {
+  left: 0;
+  background: linear-gradient(90deg, rgba(2, 6, 23, 0.85), transparent);
+}
+
+.page-vignette::after {
+  right: 0;
+  background: linear-gradient(270deg, rgba(2, 6, 23, 0.85), transparent);
+}
+
+@media (min-width: 1280px) {
+  .page-vignette::before,
+  .page-vignette::after {
+    display: none;
+  }
+}
+

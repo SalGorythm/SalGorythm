@@ -3,6 +3,7 @@ export const STAT_PREFIX = {
   TOOL: 'tool-',
   GAME: 'game-',
   LAB: 'lab-',
+  ARTICLE: 'article-',
 } as const
 
 export const STAT_KEYS = {
@@ -25,11 +26,24 @@ export const STAT_KEYS = {
 
 export type StatKey = (typeof STAT_KEYS)[keyof typeof STAT_KEYS]
 
+export type ArticleStatKind = 'views' | 'claps'
+
+const ARTICLE_STAT_PATTERN = /^article-[a-z0-9-]+-(views|claps)$/
+
+export function articleStatKey(slug: string, kind: ArticleStatKind): string {
+  return `${STAT_PREFIX.ARTICLE}${slug}-${kind}`
+}
+
+export function isArticleStatKey(key: string): boolean {
+  return ARTICLE_STAT_PATTERN.test(key)
+}
+
 export function isValidStatKey(key: string): boolean {
   if (key === STAT_KEYS.VISITOR || key === STAT_KEYS.RESUME_DOWNLOAD) return true
   if (key.startsWith(STAT_PREFIX.TOOL) && key.length > STAT_PREFIX.TOOL.length) return true
   if (key.startsWith(STAT_PREFIX.GAME) && key.length > STAT_PREFIX.GAME.length) return true
   if (key.startsWith(STAT_PREFIX.LAB) && key.length > STAT_PREFIX.LAB.length) return true
+  if (isArticleStatKey(key)) return true
   return false
 }
 

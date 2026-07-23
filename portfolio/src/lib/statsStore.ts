@@ -1,9 +1,8 @@
-import type { StatKey } from '../constants/statsKeys'
 import { fetchStats } from './statsApi'
 
 type StatsSnapshot = {
   configured: boolean
-  stats: Partial<Record<StatKey, number>>
+  stats: Partial<Record<string, number>>
 }
 
 const emptySnapshot: StatsSnapshot = { configured: false, stats: {} }
@@ -38,7 +37,7 @@ export async function refreshStats(): Promise<void> {
   emit()
 }
 
-export function patchStat(key: StatKey, value: number): void {
+export function patchStat(key: string, value: number): void {
   snapshot = {
     configured: true,
     stats: { ...snapshot.stats, [key]: value },

@@ -35,7 +35,7 @@ export function MyAppsSection() {
       aria-labelledby="my-apps-heading"
       className="scroll-mt-28 border-b border-cyan-500/10 bg-gradient-to-b from-slate-950/80 via-slate-950/40 to-slate-950 py-20"
     >
-      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+      <div className="page-container">
         <header className="mb-12 max-w-2xl">
           <p className="text-sm font-medium text-emerald-400/90">Apps</p>
           <h2

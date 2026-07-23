@@ -1,5 +1,6 @@
 import { Outlet, useLocation } from 'react-router-dom'
 import { Navbar } from '../components/Navbar'
+import { SiteEdgeRails } from '../components/SiteEdgeRails'
 import { SocialLinks } from '../components/SocialLinks'
 import { VisitorCounter } from '../components/StatBadge'
 import { SECTION_IDS } from '../constants/sections'
@@ -11,19 +12,14 @@ export function RootLayout() {
   const activeId = useActiveSection(SECTION_IDS, isPortfolio)
 
   return (
-    <div className="relative flex min-h-svh">
-      <aside
-        className="fixed left-0 top-0 z-40 hidden h-full w-14 flex-col items-center border-r border-cyan-500/15 bg-slate-950/80 py-20 backdrop-blur-md lg:flex"
-        aria-label="Social links sidebar"
-      >
-        <SocialLinks variant="sidebar" />
-      </aside>
+    <div className="page-vignette relative min-h-svh">
+      <SiteEdgeRails />
 
-      <div className="flex min-w-0 flex-1 flex-col lg:pl-14">
+      <div className="relative flex min-h-svh flex-col">
         <Navbar activeId={activeId} isPortfolio={isPortfolio} />
         <Outlet />
-        <footer className="border-t border-slate-800/90 bg-slate-950/80 py-8 backdrop-blur-md">
-          <div className="mx-auto flex max-w-6xl flex-col items-center gap-4 px-4 sm:px-6 lg:px-8">
+        <footer className="full-bleed border-t border-slate-800/90 bg-slate-950/80 py-8 backdrop-blur-md">
+          <div className="page-container flex flex-col items-center gap-4">
             <SocialLinks variant="footer" />
             <VisitorCounter />
             <p className="font-mono text-[11px] uppercase tracking-[0.25em] text-slate-600">

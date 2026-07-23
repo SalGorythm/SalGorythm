@@ -8,7 +8,7 @@ export function EngineeringDecisionLog() {
       aria-labelledby="engineering-log-heading"
       className="scroll-mt-28 border-b border-cyan-500/10 py-20"
     >
-      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+      <div className="page-container">
         <SectionHeader
           domain="Trade-offs"
           title="Decisions under deadline"
