@@ -96,11 +96,11 @@ export function PortfolioPage() {
                 >
                   Download
                 </h2>
-                <p className="text-sm text-slate-400">
+                <p className="text-sm text-slate-300">
                   PDF and DOCX downloads. Optional activity counts on the right.
                 </p>
               </header>
-              <div className="grid gap-6 lg:grid-cols-[1fr_1fr]">
+              <div className="grid items-stretch gap-6 lg:grid-cols-2">
                 <RecruiterCvGate />
                 <RecruiterFunnelStrip />
               </div>

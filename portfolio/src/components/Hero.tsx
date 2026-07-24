@@ -1,7 +1,6 @@
 import { ArrowDownRight, Code2, Mail, MapPin } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import { RECRUITER_SUMMARY } from '../data/recruiterSummary'
-import { RecruiterCvGate } from './RecruiterCvGate'
 
 export function Hero() {
   const { tagline, stack, outcome, availability, email, github, linkedin } = RECRUITER_SUMMARY
@@ -29,17 +28,17 @@ export function Hero() {
                   Senior Data Scientist
                 </span>
                 <br />
-                <span className="text-slate-200">Salman Akhatar</span>
+                <span className="text-slate-200">{RECRUITER_SUMMARY.name}</span>
               </h1>
-              <p className="max-w-xl text-base leading-relaxed text-slate-400 sm:text-lg">{tagline}</p>
+              <p className="max-w-xl text-base leading-relaxed text-slate-300 sm:text-lg">{tagline}</p>
             </div>
 
-            <div className="space-y-2 rounded-xl border border-slate-800/90 bg-slate-950/60 p-4 text-sm leading-relaxed">
+            <div className="space-y-2 rounded-xl border border-slate-800/90 bg-slate-950/60 p-5 text-sm leading-relaxed sm:p-6">
               <p className="text-slate-300">{stack}</p>
               <p className="text-emerald-300/95">{outcome}</p>
             </div>
 
-            <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-slate-400">
+            <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-slate-300">
               <span className="inline-flex items-center gap-1.5">
                 <MapPin className="h-3.5 w-3.5 text-cyan-500/80" aria-hidden />
                 {availability}
@@ -89,7 +88,7 @@ export function Hero() {
               </a>
             </div>
 
-            <div className="rounded-xl border border-slate-800/90 bg-slate-900/35 p-4">
+            <div className="rounded-xl border border-slate-800/90 bg-slate-900/35 p-5 sm:p-6">
               <p className="text-sm font-medium text-slate-300">Code &amp; experiments</p>
               <div className="mt-3 flex flex-wrap gap-2">
                 <a
@@ -114,10 +113,6 @@ export function Hero() {
                   Tools
                 </Link>
               </div>
-            </div>
-
-            <div className="max-w-md lg:max-w-lg">
-              <RecruiterCvGate variant="compact" />
             </div>
           </div>
         </div>

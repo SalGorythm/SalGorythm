@@ -70,7 +70,7 @@ export function SiteEdgeRails() {
                     href={href}
                     title={`${label} (${key})`}
                     className={`group flex items-center gap-2 text-[10px] transition ${
-                      active ? 'text-cyan-300' : 'text-slate-600 hover:text-slate-400'
+                      active ? 'text-cyan-300' : 'text-slate-500 hover:text-slate-300'
                     }`}
                   >
                     <span

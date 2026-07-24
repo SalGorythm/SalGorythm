@@ -17,7 +17,7 @@ export function SectionHeader({ domain, title, description, id, className = '' }
         {title}
       </h2>
       {description ? (
-        <p className="mt-3 text-sm leading-relaxed text-slate-400 sm:text-base">{description}</p>
+        <p className="mt-3 text-sm leading-relaxed text-slate-300 sm:text-base">{description}</p>
       ) : null}
     </header>
   )

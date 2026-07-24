@@ -120,14 +120,14 @@ export function AIChatSim() {
           >
             Ask about my work
           </h2>
-          <p className="mt-3 text-slate-400">
+          <p className="mt-3 text-slate-300">
             Keyword-matched answers for common questions. Swap in a real backend when you want live
             model calls.
           </p>
         </header>
 
         <div className="overflow-hidden rounded-2xl border border-purple-500/25 bg-slate-950/55 shadow-[0_0_35px_rgba(168,85,247,0.08)] backdrop-blur-md">
-          <div className="flex items-center justify-between border-b border-slate-800/90 bg-slate-900/50 px-4 py-2.5 text-sm text-slate-500">
+          <div className="flex items-center justify-between border-b border-slate-800/90 bg-slate-900/50 px-4 py-2.5 text-sm text-slate-400">
             <span className="flex items-center gap-2 text-slate-300">
               <Bot className="h-4 w-4 text-purple-400" aria-hidden />
               FAQ chat

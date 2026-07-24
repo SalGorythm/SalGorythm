@@ -133,7 +133,7 @@ export function NeonSnake() {
 
   return (
     <div className="space-y-4">
-      <p className="text-sm text-slate-400">
+      <p className="text-sm text-slate-300">
         Toroidal neon snake — wrap through walls. Eat glitches to grow. Arrow keys or on-screen
         D-pad.
       </p>

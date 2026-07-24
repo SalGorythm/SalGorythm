@@ -33,7 +33,7 @@ export function ProductSupportPanel({ anchorId, className = '' }: ProductSupport
           >
             SalGorythm product <span className="text-purple-300">support</span>
           </h2>
-          <p className="text-sm leading-relaxed text-slate-400">
+          <p className="text-sm leading-relaxed text-slate-300">
             One inbox for questions, bug reports, and feedback across Casette, EasySalah, and
             other SalGorythm apps — use it in App Store Connect, Google Play Console, project
             READMEs, and marketing footers so users always reach the same channel.
@@ -63,7 +63,7 @@ export function ProductSupportPanel({ anchorId, className = '' }: ProductSupport
             <Mail className="h-4 w-4 shrink-0" aria-hidden />
             Email support
           </a>
-          <p className="text-center font-mono text-xs text-slate-400 sm:text-left lg:text-center">
+          <p className="text-center font-mono text-xs text-slate-300 sm:text-left lg:text-center">
             {SALGORYTHM_SUPPORT_EMAIL}
           </p>
         </div>

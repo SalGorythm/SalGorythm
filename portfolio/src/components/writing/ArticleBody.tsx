@@ -3,6 +3,7 @@ import ReactMarkdown from 'react-markdown'
 import type { Components } from 'react-markdown'
 import rehypeHighlight from 'rehype-highlight'
 import remarkGfm from 'remark-gfm'
+import { PromptCodeBlock } from './PromptCodeBlock'
 import { slugifyHeading } from './writingLabels'
 
 function extractText(node: React.ReactNode): string {
@@ -12,6 +13,28 @@ function extractText(node: React.ReactNode): string {
     return extractText(node.props.children)
   }
   return ''
+}
+
+function parseCodeBlock(children: React.ReactNode): {
+  language: string
+  code: string
+  inner: React.ReactNode
+} {
+  if (isValidElement<{ className?: string; children?: React.ReactNode }>(children)) {
+    const className = children.props.className ?? ''
+    const match = /language-([\w-]+)/.exec(className)
+    return {
+      language: match?.[1] ?? 'text',
+      code: extractText(children.props.children),
+      inner: children,
+    }
+  }
+
+  return {
+    language: 'text',
+    code: extractText(children),
+    inner: children,
+  }
 }
 
 type ArticleBodyProps = {
@@ -52,6 +75,14 @@ export function ArticleBody({ content }: ArticleBodyProps) {
           <table {...props}>{children}</table>
         </div>
       ),
+      pre: ({ children }) => {
+        const { language, code, inner } = parseCodeBlock(children)
+        return (
+          <PromptCodeBlock language={language} code={code}>
+            {inner}
+          </PromptCodeBlock>
+        )
+      },
     }),
     [],
   )

@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>SalGorythm Writing</title>
+    <link>https://salgorythm.com/writing</link>
+    <description>Production ML notes on agents, prompting, Python, and deployment.</description>
+    <language>en-gb</language>
+    <atom:link href="https://salgorythm.com/writing.rss" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Finding jobs via Claude</title>
+      <link>https://salgorythm.com/writing/finding-jobs-via-claude</link>
+      <guid isPermaLink="true">https://salgorythm.com/writing/finding-jobs-via-claude</guid>
+      <pubDate>Sat, 25 Apr 2026 12:00:00 GMT</pubDate>
+      <description>Eight structured prompts for positioning, resume work, LinkedIn, networking, interviews, and a 30-day sprint—without letting AI invent your career.</description>
+    </item>
+    <item>
+      <title>WatsonX.ai integration lessons from IBM</title>
+      <link>https://salgorythm.com/writing/watsonx-enterprise-integration</link>
+      <guid isPermaLink="true">https://salgorythm.com/writing/watsonx-enterprise-integration</guid>
+      <pubDate>Sat, 18 Apr 2026 12:00:00 GMT</pubDate>
+      <description>Governance, RBAC, and model lifecycle hooks when embedding WatsonX in consulting workflows.</description>
+    </item>
+    <item>
+      <title>Local-first apps vs cloud agents: when privacy wins</title>
+      <link>https://salgorythm.com/writing/local-first-apps-vs-cloud-agents</link>
+      <guid isPermaLink="true">https://salgorythm.com/writing/local-first-apps-vs-cloud-agents</guid>
+      <pubDate>Fri, 10 Apr 2026 12:00:00 GMT</pubDate>
+      <description>Casette and EasySalah vs WatsonX agents — different trust boundaries, same engineering bar.</description>
+    </item>
+    <item>
+      <title>Lessons from 25k+ endpoint automation (Atom)</title>
+      <link>https://salgorythm.com/writing/endpoint-automation-at-scale</link>
+      <guid isPermaLink="true">https://salgorythm.com/writing/endpoint-automation-at-scale</guid>
+      <pubDate>Thu, 02 Apr 2026 12:00:00 GMT</pubDate>
+      <description>Cross-OS agents, concurrent API design, and ETL accuracy under security review.</description>
+    </item>
+    <item>
+      <title>ML system design for senior DS interviews</title>
+      <link>https://salgorythm.com/writing/ml-system-design-interview-ds</link>
+      <guid isPermaLink="true">https://salgorythm.com/writing/ml-system-design-interview-ds</guid>
+      <pubDate>Sun, 22 Mar 2026 12:00:00 GMT</pubDate>
+      <description>A checklist for data flow, eval, deployment, and failure modes — from 9 years of interviews.</description>
+    </item>
+    <item>
+      <title>RAG with page-level citations that survive audit</title>
+      <link>https://salgorythm.com/writing/rag-citations-that-hold-up</link>
+      <guid isPermaLink="true">https://salgorythm.com/writing/rag-citations-that-hold-up</guid>
+      <pubDate>Wed, 18 Mar 2026 12:00:00 GMT</pubDate>
+      <description>Chunk boundaries, source metadata, and citation formatting for regulated readers.</description>
+    </item>
+    <item>
+      <title>How I use Cursor without letting it drive architecture</title>
+      <link>https://salgorythm.com/writing/cursor-workflow-senior-engineer</link>
+      <guid isPermaLink="true">https://salgorythm.com/writing/cursor-workflow-senior-engineer</guid>
+      <pubDate>Thu, 12 Mar 2026 12:00:00 GMT</pubDate>
+      <description>Scoped edits, test-first loops, and keeping system design in human hands.</description>
+    </item>
+    <item>
+      <title>Routing Claude, Granite, and Llama in one orchestrator</title>
+      <link>https://salgorythm.com/writing/multi-model-routing-claude-granite</link>
+      <guid isPermaLink="true">https://salgorythm.com/writing/multi-model-routing-claude-granite</guid>
+      <pubDate>Fri, 06 Mar 2026 12:00:00 GMT</pubDate>
+      <description>Task-based routing, fallback chains, and cost caps across IBM model families.</description>
+    </item>
+    <item>
+      <title>Kafka + PostgreSQL for real-time AI features</title>
+      <link>https://salgorythm.com/writing/streaming-pipelines-kafka-ai</link>
+      <guid isPermaLink="true">https://salgorythm.com/writing/streaming-pipelines-kafka-ai</guid>
+      <pubDate>Fri, 27 Feb 2026 12:00:00 GMT</pubDate>
+      <description>Confluent pipelines feeding feature stores and agent context windows with low latency.</description>
+    </item>
+    <item>
+      <title>FastAPI patterns for concurrent ML APIs</title>
+      <link>https://salgorythm.com/writing/fastapi-concurrent-ml-apis</link>
+      <guid isPermaLink="true">https://salgorythm.com/writing/fastapi-concurrent-ml-apis</guid>
+      <pubDate>Fri, 20 Feb 2026 12:00:00 GMT</pubDate>
+      <description>Async endpoints, worker pools, and back-pressure on inference routes at EY scale.</description>
+    </item>
+    <item>
+      <title>Eval gates before you ship an agent</title>
+      <link>https://salgorythm.com/writing/eval-gates-before-production</link>
+      <guid isPermaLink="true">https://salgorythm.com/writing/eval-gates-before-production</guid>
+      <pubDate>Sat, 14 Feb 2026 12:00:00 GMT</pubDate>
+      <description>Ground-truth sets, scoring thresholds, and human review hooks before agent releases.</description>
+    </item>
+    <item>
+      <title>Agent loops: plan, act, observe — without runaway cost</title>
+      <link>https://salgorythm.com/writing/agent-loops-plan-act-observe</link>
+      <guid isPermaLink="true">https://salgorythm.com/writing/agent-loops-plan-act-observe</guid>
+      <pubDate>Thu, 05 Feb 2026 12:00:00 GMT</pubDate>
+      <description>Iteration caps, token budgets, and stop conditions that keep agent loops production-safe.</description>
+    </item>
+    <item>
+      <title>LangChain vs AutoGen: how I split orchestration at IBM</title>
+      <link>https://salgorythm.com/writing/agent-orchestration-langchain-autogen</link>
+      <guid isPermaLink="true">https://salgorythm.com/writing/agent-orchestration-langchain-autogen</guid>
+      <pubDate>Wed, 28 Jan 2026 12:00:00 GMT</pubDate>
+      <description>When to use graph-style LangChain flows vs AutoGen group chat for enterprise agent delivery.</description>
+    </item>
+    <item>
+      <title>Structured prompts that survive production</title>
+      <link>https://salgorythm.com/writing/structured-prompts-production</link>
+      <guid isPermaLink="true">https://salgorythm.com/writing/structured-prompts-production</guid>
+      <pubDate>Mon, 12 Jan 2026 12:00:00 GMT</pubDate>
+      <description>Schema-first prompts, few-shot boundaries, and regression checks before prompts hit WatsonX routes.</description>
+    </item>
+  </channel>
+</rss>

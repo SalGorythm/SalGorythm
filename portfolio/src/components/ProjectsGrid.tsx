@@ -41,7 +41,7 @@ export function ProjectsGrid() {
           className="mb-8"
         />
 
-        <p className="mb-3 text-sm font-medium text-slate-500">Filter by context</p>
+        <p className="mb-3 text-sm font-medium text-slate-400">Filter by context</p>
 
         <div
           className="mb-4 flex flex-wrap gap-2 rounded-xl border border-purple-500/20 bg-purple-500/5 p-2"
@@ -101,19 +101,19 @@ export function ProjectsGrid() {
 
         <div
           role="tabpanel"
-          className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3"
+          className="grid grid-cols-1 gap-5 lg:grid-cols-3"
           aria-label={PROJECT_TABS.find((t) => t.id === tab)?.label}
         >
           {displayItems.map((project) => (
             <article
               key={project.href ? `${project.title}-${project.href}` : project.title}
-              className="group relative flex flex-col overflow-hidden rounded-2xl border border-slate-800/90 bg-slate-900/35 p-5 shadow-[0_0_0_0_rgba(0,0,0,0)] backdrop-blur-md transition duration-300 hover:-translate-y-0.5 hover:border-cyan-500/35 hover:shadow-[0_0_28px_rgba(34,211,238,0.12)]"
+              className="group relative flex flex-col overflow-hidden rounded-2xl border border-slate-800/90 bg-slate-900/35 p-5 shadow-[0_0_0_0_rgba(0,0,0,0)] backdrop-blur-md transition duration-300 hover:-translate-y-0.5 hover:border-cyan-500/35 hover:shadow-[0_0_28px_rgba(34,211,238,0.12)] sm:p-6"
             >
               <p className="font-mono text-[10px] uppercase tracking-widest text-emerald-400/90">
                 {project.metrics[vertical]}
               </p>
               <h3 className="relative mt-2 text-lg font-semibold text-slate-50">{project.title}</h3>
-              <p className="relative mt-2 flex-1 text-sm leading-relaxed text-slate-400">
+              <p className="relative mt-2 flex-1 text-sm leading-relaxed text-slate-300">
                 {project.blurb}
               </p>
               <ul className="relative mt-4 flex flex-wrap gap-2">

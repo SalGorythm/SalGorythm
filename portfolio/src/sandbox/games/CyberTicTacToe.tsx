@@ -112,7 +112,7 @@ export function CyberTicTacToe() {
 
   return (
     <div className="space-y-4">
-      <p className="text-sm text-slate-400">
+      <p className="text-sm text-slate-300">
         Neon tic-tac-toe. Versus AI uses minimax (perfect play). If you play as O, the AI opens
         as X.
       </p>

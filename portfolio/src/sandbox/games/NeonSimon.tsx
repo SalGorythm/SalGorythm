@@ -101,7 +101,7 @@ export function NeonSimon() {
 
   return (
     <div className="space-y-4">
-      <p className="text-sm text-slate-400">
+      <p className="text-sm text-slate-300">
         Memory rhythm game: watch the neon pulse sequence, then tap the pads in the same order.
         Each success adds one more step.
       </p>

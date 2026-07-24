@@ -81,7 +81,7 @@ export function PromptJailbreak() {
 
   return (
     <div className="space-y-4">
-      <p className="text-sm text-slate-400">
+      <p className="text-sm text-slate-300">
         Purely scripted guardian — pattern-based responses, no backend LLM. Find the hidden phrase
         that simulates a controlled leak.
       </p>

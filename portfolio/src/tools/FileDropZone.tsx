@@ -58,7 +58,7 @@ export function FileDropZone({ accept, label, hint, onFile, disabled }: FileDrop
       />
       <Upload className="mx-auto h-8 w-8 text-cyan-400/80" aria-hidden />
       <p className="mt-3 font-mono text-sm font-medium text-slate-200">{label}</p>
-      <p className="mt-1 text-xs text-slate-500">{hint}</p>
+      <p className="mt-1 text-xs text-slate-400">{hint}</p>
     </div>
   )
 }

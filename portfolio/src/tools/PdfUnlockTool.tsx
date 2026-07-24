@@ -92,7 +92,7 @@ export function PdfUnlockTool() {
 
   return (
     <div className="space-y-5">
-      <p className="text-sm text-slate-400">
+      <p className="text-sm text-slate-300">
         <Shield className="mb-0.5 mr-1 inline h-4 w-4 text-cyan-400" aria-hidden />
         Files never leave your browser. You must supply the <strong className="font-medium text-slate-200">current open password</strong>{' '}
         for protected PDFs you own — we do not crack, guess, or bypass encryption automatically.

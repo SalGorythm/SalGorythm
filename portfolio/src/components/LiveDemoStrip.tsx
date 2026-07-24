@@ -52,21 +52,21 @@ export function LiveDemoStrip() {
           className="mb-10"
         />
 
-        <div className="grid gap-6 md:grid-cols-3">
+        <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
           {DEMOS.map((demo) => {
             const Icon = demo.icon
             const to = demo.hash ? `${demo.href}${demo.hash}` : demo.href
             return (
               <article
                 key={demo.title}
-                className="flex flex-col rounded-2xl border border-slate-800/90 bg-slate-900/35 p-5 backdrop-blur-md transition hover:border-purple-500/30"
+                className="flex flex-col rounded-2xl border border-slate-800/90 bg-slate-900/35 p-5 backdrop-blur-md transition hover:border-purple-500/30 sm:p-6"
               >
                 <p className="text-xs font-medium text-purple-400/90">{demo.category}</p>
                 <div className="mt-2 flex items-center gap-2">
                   <Icon className="h-5 w-5 text-cyan-400" aria-hidden />
                   <h3 className="text-base font-semibold text-slate-100">{demo.title}</h3>
                 </div>
-                <p className="mt-2 flex-1 text-sm leading-relaxed text-slate-400">{demo.blurb}</p>
+                <p className="mt-2 flex-1 text-sm leading-relaxed text-slate-300">{demo.blurb}</p>
                 <Link
                   to={to}
                   className="mt-4 inline-flex min-h-11 items-center justify-center rounded-xl border border-cyan-500/35 bg-cyan-500/10 px-4 py-2.5 text-sm font-medium text-cyan-100 transition hover:border-cyan-400/50"

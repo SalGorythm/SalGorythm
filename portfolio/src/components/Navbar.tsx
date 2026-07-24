@@ -1,7 +1,8 @@
 import { Gamepad2, Menu, Wrench, X } from 'lucide-react'
-import { useCallback, useState, type MouseEvent } from 'react'
+import { useCallback, useEffect, useState, type MouseEvent } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import type { SectionId } from '../constants/sections'
+import { RECRUITER_SUMMARY } from '../data/recruiterSummary'
 import { BrandLogo } from './BrandLogo'
 
 type SectionLink = { kind: 'section'; id: SectionId; label: string }
@@ -36,6 +37,15 @@ export function Navbar({ activeId, isPortfolio }: NavbarProps) {
     el?.scrollIntoView({ behavior: 'smooth', block: 'start' })
     setOpen(false)
   }, [])
+
+  useEffect(() => {
+    if (!open) return
+    const previousOverflow = document.body.style.overflow
+    document.body.style.overflow = 'hidden'
+    return () => {
+      document.body.style.overflow = previousOverflow
+    }
+  }, [open])
 
   const onBrandClick = (e: MouseEvent<HTMLAnchorElement>) => {
     if (location.pathname === '/') {
@@ -81,23 +91,27 @@ export function Navbar({ activeId, isPortfolio }: NavbarProps) {
 
   return (
     <nav
-      className="fixed inset-x-0 top-0 z-50 border-b border-cyan-500/20 bg-slate-950/55 backdrop-blur-md"
+      className="fixed inset-x-0 top-0 z-[100] border-b border-slate-800/80 bg-[#0a0e14]/80 shadow-[0_1px_0_rgba(255,255,255,0.04)] backdrop-blur-md backdrop-saturate-150"
       aria-label="Primary"
     >
       <div className="page-container flex h-16 items-center justify-between gap-4">
         <Link
           to="/"
           onClick={onBrandClick}
-          className="group flex items-center gap-2.5 rounded-lg border border-transparent px-2 py-1 text-left transition hover:border-cyan-500/30 hover:shadow-[0_0_20px_rgba(34,211,238,0.12)]"
+          className="group flex min-w-0 shrink-0 items-center gap-2.5 rounded-lg border border-transparent px-2 py-1 text-left transition hover:border-cyan-500/30 hover:shadow-[0_0_20px_rgba(34,211,238,0.12)]"
         >
-          <BrandLogo variant="icon" className="transition group-hover:scale-105" />
-          <span className="hidden sm:block">
-            <span className="block text-xs font-medium text-slate-200">Salman Akhatar</span>
-            <span className="block text-[11px] text-cyan-500/80">Senior data scientist · IBM</span>
+          <BrandLogo variant="icon" className="shrink-0 transition group-hover:scale-105" />
+          <span className="min-w-0 leading-none">
+            <span className="block truncate whitespace-nowrap text-sm font-semibold tracking-tight text-slate-100">
+              {RECRUITER_SUMMARY.name}
+            </span>
+            <span className="mt-1 hidden truncate whitespace-nowrap text-[11px] leading-tight text-slate-400 lg:block">
+              {RECRUITER_SUMMARY.navSubtitle}
+            </span>
           </span>
         </Link>
 
-        <div className="hidden items-center gap-2 md:flex">
+        <div className="hidden items-center gap-2 lg:flex">
           {isPortfolio ? (
             <ul className="flex items-center gap-1">
               {LINKS.map((link) => (
@@ -139,41 +153,25 @@ export function Navbar({ activeId, isPortfolio }: NavbarProps) {
           </Link>
         </div>
 
-        <div className="flex items-center gap-2 md:hidden">
-          <Link
-            to="/tools"
-            className="inline-flex h-10 items-center justify-center rounded-lg border border-slate-700/80 bg-slate-900/60 px-2.5 text-emerald-300 transition hover:border-emerald-500/40"
-            aria-label="Utility tools"
-          >
-            <Wrench className="h-5 w-5" />
-          </Link>
-          <Link
-            to="/sandbox"
-            className="inline-flex h-10 items-center justify-center rounded-lg border border-slate-700/80 bg-slate-900/60 px-2.5 text-cyan-300 transition hover:border-cyan-500/40"
-            aria-label="Sandbox"
-          >
-            <Gamepad2 className="h-5 w-5" />
-          </Link>
-          <button
-            type="button"
-            className="inline-flex h-10 w-10 items-center justify-center rounded-lg border border-slate-700/80 bg-slate-900/60 text-slate-200 transition hover:border-cyan-500/40 hover:text-cyan-300"
-            aria-expanded={open}
-            aria-controls="mobile-nav"
-            onClick={() => setOpen((v) => !v)}
-          >
-            {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-            <span className="sr-only">Toggle menu</span>
-          </button>
-        </div>
+        <button
+          type="button"
+          className="inline-flex h-10 w-10 items-center justify-center rounded-lg border border-slate-700/80 bg-slate-900/60 text-slate-200 transition hover:border-cyan-500/40 hover:text-cyan-300 lg:hidden"
+          aria-expanded={open}
+          aria-controls="mobile-nav"
+          onClick={() => setOpen((v) => !v)}
+        >
+          {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+          <span className="sr-only">Toggle menu</span>
+        </button>
       </div>
 
       <div
         id="mobile-nav"
-        className={`border-t border-cyan-500/15 bg-slate-950/90 backdrop-blur-lg md:hidden ${
-          open ? 'max-h-[520px] opacity-100' : 'max-h-0 overflow-hidden opacity-0'
+        className={`border-t border-slate-800/80 bg-[#0a0e14]/95 backdrop-blur-md lg:hidden ${
+          open ? 'max-h-[min(85svh,640px)] opacity-100' : 'max-h-0 overflow-hidden opacity-0'
         } transition-all duration-300 ease-out`}
       >
-        <ul className="flex flex-col gap-1 px-4 py-3">
+        <ul className="flex max-h-[min(85svh,640px)] flex-col gap-1 overflow-y-auto overscroll-contain px-4 py-3">
           {isPortfolio ? (
             LINKS.map((link) => (
               <li key={link.kind === 'route' ? link.path : link.id}>

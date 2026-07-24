@@ -43,7 +43,7 @@ export function RecruiterCvGate({ variant = 'default' }: RecruiterCvGateProps) {
           <h3 className="mt-1 text-sm font-semibold text-slate-100 sm:text-base">
             Download
           </h3>
-          <p className="mt-1 text-xs leading-relaxed text-slate-500">
+          <p className="mt-1 text-xs leading-relaxed text-slate-300">
             Quick check that you&apos;re hiring — then PDF or DOCX. Nothing leaves your browser.
           </p>
         </div>

@@ -156,7 +156,7 @@ export function NeuralTuningSim() {
 
   return (
     <div className="space-y-4">
-      <p className="text-sm text-slate-400">
+      <p className="text-sm text-slate-300">
         Tune a tiny 2→H→1 classifier on a synthetic two-spiral dataset. Training runs fully in your
         browser — no API calls.
       </p>

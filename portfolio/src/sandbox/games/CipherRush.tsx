@@ -67,7 +67,7 @@ export function CipherRush() {
 
   return (
     <div className="space-y-4">
-      <p className="text-sm text-slate-400">
+      <p className="text-sm text-slate-300">
         ROT-K Caesar on A–Z only. Decode the ciphertext — four candidate plaintexts, one correct
         per round.
       </p>

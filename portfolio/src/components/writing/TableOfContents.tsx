@@ -1,10 +1,7 @@
-import { useEffect, useState } from 'react'
+import { useTocScrollSpy } from '../../hooks/useTocScrollSpy'
+import type { TocHeading } from './writingLabels'
 
-export type TocHeading = {
-  id: string
-  text: string
-  level: number
-}
+export type { TocHeading }
 
 type TableOfContentsProps = {
   headings: TocHeading[]
@@ -12,28 +9,7 @@ type TableOfContentsProps = {
 }
 
 export function TableOfContents({ headings, className = '' }: TableOfContentsProps) {
-  const [activeId, setActiveId] = useState('')
-
-  useEffect(() => {
-    if (headings.length === 0) return
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const visible = entries.filter((e) => e.isIntersecting).sort((a, b) => b.intersectionRatio - a.intersectionRatio)
-        if (visible[0]?.target.id) {
-          setActiveId(visible[0].target.id)
-        }
-      },
-      { rootMargin: '-20% 0px -70% 0px', threshold: [0, 0.25, 0.5, 1] },
-    )
-
-    for (const h of headings) {
-      const el = document.getElementById(h.id)
-      if (el) observer.observe(el)
-    }
-
-    return () => observer.disconnect()
-  }, [headings])
+  const activeId = useTocScrollSpy(headings)
 
   if (headings.length === 0) return null
 
@@ -52,8 +28,9 @@ export function TableOfContents({ headings, className = '' }: TableOfContentsPro
                 } ${
                   active
                     ? 'border-amber-400/80 text-amber-100'
-                    : 'border-transparent text-slate-500 hover:border-slate-600 hover:text-slate-300'
+                    : 'border-transparent text-slate-400 hover:border-slate-600 hover:text-slate-200'
                 }`}
+                aria-current={active ? 'location' : undefined}
               >
                 {h.text}
               </a>
@@ -62,32 +39,5 @@ export function TableOfContents({ headings, className = '' }: TableOfContentsPro
         })}
       </ul>
     </nav>
-  )
-}
-
-type MobileTableOfContentsProps = {
-  headings: TocHeading[]
-}
-
-export function MobileTableOfContents({ headings }: MobileTableOfContentsProps) {
-  if (headings.length === 0) return null
-
-  return (
-    <details className="mb-8 rounded-xl border border-slate-800/90 bg-slate-900/35 lg:hidden">
-      <summary className="cursor-pointer px-4 py-3 text-sm font-medium text-slate-300">
-        Table of contents
-      </summary>
-      <div className="border-t border-slate-800/90 px-4 py-3">
-        <ul className="space-y-2 text-sm">
-          {headings.map((h) => (
-            <li key={h.id} style={{ paddingLeft: h.level === 3 ? 12 : 0 }}>
-              <a href={`#${h.id}`} className="text-slate-400 hover:text-cyan-300">
-                {h.text}
-              </a>
-            </li>
-          ))}
-        </ul>
-      </div>
-    </details>
   )
 }

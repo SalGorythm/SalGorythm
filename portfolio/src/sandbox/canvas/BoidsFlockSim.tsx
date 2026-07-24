@@ -253,7 +253,7 @@ export function BoidsFlockSim() {
   return (
     <div className="grid gap-6 lg:grid-cols-[1fr_280px]">
       <div className="space-y-3">
-        <p className="text-sm text-slate-400">
+        <p className="text-sm text-slate-300">
           <Orbit className="mb-0.5 mr-1 inline h-4 w-4 text-cyan-400" aria-hidden />
           Reynolds flocking — <span className="text-cyan-200/90">separation</span>,{' '}
           <span className="text-purple-200/90">alignment</span>,{' '}
@@ -361,7 +361,7 @@ export function BoidsFlockSim() {
             />
           </label>
         ))}
-        <p className="border-t border-slate-800 pt-3 font-mono text-[10px] leading-relaxed text-slate-500">
+        <p className="border-t border-slate-800 pt-3 font-mono text-[10px] leading-relaxed text-slate-300">
           <Sparkles className="mb-1 inline h-3 w-3 text-purple-400" aria-hidden />
           {N_BOIDS} agents · toroidal wrap · local-first (no network)
         </p>

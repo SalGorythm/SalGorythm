@@ -20,7 +20,7 @@ function SceneBloom() {
 
   return (
     <EffectComposer multisampling={0}>
-      <Bloom luminanceThreshold={0.9} luminanceSmoothing={0.2} intensity={0.4} mipmapBlur />
+      <Bloom luminanceThreshold={0.95} luminanceSmoothing={0.3} intensity={0.22} mipmapBlur />
     </EffectComposer>
   )
 }
@@ -31,10 +31,10 @@ function SceneContents({ onPerformanceDecline }: { onPerformanceDecline: () => v
       <ScenePerformanceMonitor onDecline={onPerformanceDecline} />
       <color attach="background" args={['#020617']} />
       <fog attach="fog" args={['#020617', 10, 28]} />
-      <ambientLight intensity={0.3} />
-      <pointLight position={[5, 8, 5]} intensity={1.4} color="#22d3ee" />
-      <pointLight position={[-5, 3, -3]} intensity={0.9} color="#c084fc" />
-      <pointLight position={[4, 1, 2]} intensity={0.6} color="#fbbf24" />
+      <ambientLight intensity={0.18} />
+      <pointLight position={[5, 8, 5]} intensity={0.75} color="#22d3ee" />
+      <pointLight position={[-5, 3, -3]} intensity={0.45} color="#c084fc" />
+      <pointLight position={[4, 1, 2]} intensity={0.3} color="#fbbf24" />
       <ScrollCamera />
       <TopologyGraph />
       <SceneBloom />

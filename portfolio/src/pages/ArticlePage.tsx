@@ -1,17 +1,22 @@
+import { useRef } from 'react'
 import { Link, useParams } from 'react-router-dom'
+import { ArticleAuthorCard } from '../components/writing/ArticleAuthorCard'
 import { ArticleBody } from '../components/writing/ArticleBody'
 import { ArticleHero } from '../components/writing/ArticleHero'
 import { ArticleNav } from '../components/writing/ArticleNav'
-import { MobileTableOfContents, TableOfContents } from '../components/writing/TableOfContents'
+import { ReadingProgressBar } from '../components/writing/ReadingProgressBar'
+import { TableOfContents } from '../components/writing/TableOfContents'
 import {
   extractHeadings,
   getAdjacentArticles,
   getAllArticlesParsed,
   getArticleBySlug,
+  getRelatedArticles,
 } from '../lib/articles'
 
 export function ArticlePage() {
   const { slug = '' } = useParams()
+  const bodyRef = useRef<HTMLDivElement>(null)
   const article = getArticleBySlug(slug)
   const allArticles = getAllArticlesParsed()
 
@@ -20,7 +25,7 @@ export function ArticlePage() {
       <main className="page-container py-24">
         <div className="mx-auto max-w-2xl rounded-2xl border border-slate-800/90 bg-slate-900/35 p-8 backdrop-blur-md">
           <h1 className="text-2xl font-semibold text-slate-100">Article not found</h1>
-          <p className="mt-2 text-sm text-slate-500">
+          <p className="mt-2 text-sm text-slate-300">
             {slug ? `No content loaded for “${slug}”.` : 'Missing slug in URL.'}
           </p>
           <Link to="/writing" className="mt-4 inline-block text-cyan-300">
@@ -33,26 +38,36 @@ export function ArticlePage() {
 
   const headings = extractHeadings(article.content)
   const { prev, next } = getAdjacentArticles(slug, allArticles)
+  const related = getRelatedArticles(slug, article.tags, 3, allArticles)
   const shareUrl = `https://salgorythm.com/writing/${slug}`
 
   return (
-    <main className="page-container py-24">
-      <div className="mx-auto max-w-6xl">
-        <div className="xl:grid xl:grid-cols-[220px_minmax(0,1fr)] xl:gap-12">
-          <aside className="hidden xl:block">
-            <TableOfContents headings={headings} className="sticky top-28" />
-          </aside>
+    <>
+      <ReadingProgressBar targetRef={bodyRef} />
+      <main className="page-container py-24">
+        <div className="mx-auto max-w-6xl">
+          <div className="lg:grid lg:grid-cols-[220px_minmax(0,1fr)] lg:gap-12">
+            <aside className="hidden lg:block">
+              <TableOfContents headings={headings} className="sticky top-28" />
+            </aside>
 
-          <div className="min-w-0">
-            <ArticleHero article={article} />
-            <MobileTableOfContents headings={headings} />
-            <div className="mt-10">
-              <ArticleBody content={article.content} />
+            <div className="min-w-0">
+              <ArticleHero article={article} />
+              <div ref={bodyRef} className="mt-10">
+                <ArticleBody content={article.content} />
+              </div>
+              <ArticleAuthorCard />
+              <ArticleNav
+                prev={prev}
+                next={next}
+                related={related}
+                shareUrl={shareUrl}
+                title={article.title}
+              />
             </div>
-            <ArticleNav prev={prev} next={next} shareUrl={shareUrl} />
           </div>
         </div>
-      </div>
-    </main>
+      </main>
+    </>
   )
 }

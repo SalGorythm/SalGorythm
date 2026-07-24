@@ -44,7 +44,7 @@ export function MyAppsSection() {
           >
             Shipped products
           </h2>
-          <p className="mt-3 text-slate-400">
+          <p className="mt-3 text-slate-300">
             Installable clients and marketing sites — same bar as enterprise work, tuned for calm
             UX and local-first privacy.
           </p>
@@ -89,7 +89,7 @@ export function MyAppsSection() {
                       <p className="mt-1 text-sm font-medium text-emerald-200/90">{app.tagline}</p>
                     </div>
                   </div>
-                  <p className="text-sm leading-relaxed text-slate-400">{app.description}</p>
+                  <p className="text-sm leading-relaxed text-slate-300">{app.description}</p>
                   <ul className="flex flex-wrap gap-2">
                     {app.highlights.map((h) => (
                       <li key={h}>

@@ -21,17 +21,19 @@ export function PortfolioSceneHost({ forceFallback = false }: PortfolioSceneHost
 
   if (!useWebGL) {
     return (
-      <div className="immersive-bg-fallback fixed inset-0 z-0" aria-hidden>
-        <SceneFallback className="h-full w-full rounded-none border-0 opacity-40" />
+      <div className="immersive-bg-fallback fixed inset-0 z-[1] pointer-events-none" aria-hidden>
+        <SceneFallback className="h-full w-full rounded-none border-0 opacity-25" />
       </div>
     )
   }
 
   return (
     <>
-      <div className="fixed inset-0 z-0" aria-hidden>
+      <div className="fixed inset-0 z-[1] pointer-events-none" aria-hidden>
         <Suspense fallback={<div className="immersive-bg-fallback h-full w-full" />}>
-          <PortfolioSceneInner />
+          <div className="pointer-events-auto h-full w-full">
+            <PortfolioSceneInner />
+          </div>
         </Suspense>
       </div>
       {hoveredNodeId ? (

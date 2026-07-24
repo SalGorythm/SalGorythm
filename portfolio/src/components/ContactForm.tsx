@@ -71,7 +71,7 @@ export function ContactForm() {
           >
             Get in touch
           </h2>
-          <p className="mt-3 text-slate-400">
+          <p className="mt-3 text-slate-300">
             Email works best for role inquiries and collaboration. I reply manually — no mailing
             list on submit.
           </p>
@@ -128,7 +128,7 @@ export function ContactForm() {
 
           <form
             onSubmit={onSubmit}
-            className="space-y-4 rounded-2xl border border-cyan-500/20 bg-slate-900/40 p-6 shadow-[0_0_30px_rgba(34,211,238,0.06)] backdrop-blur-md sm:p-8"
+            className="space-y-4 rounded-2xl border border-cyan-500/20 bg-slate-900/40 p-5 shadow-[0_0_30px_rgba(34,211,238,0.06)] backdrop-blur-md sm:p-8"
             noValidate={false}
           >
             <input type="hidden" name="subject" value="Portfolio contact" />
@@ -137,7 +137,7 @@ export function ContactForm() {
             <div>
               <label
                 htmlFor="contact-name"
-                className="mb-1.5 flex items-center gap-2 text-sm font-medium text-slate-400"
+                className="mb-1.5 flex items-center gap-2 text-sm font-medium text-slate-300"
               >
                 <User className="h-3.5 w-3.5 text-cyan-400/80" aria-hidden />
                 Name
@@ -155,7 +155,7 @@ export function ContactForm() {
             <div>
               <label
                 htmlFor="contact-email"
-                className="mb-1.5 flex items-center gap-2 text-sm font-medium text-slate-400"
+                className="mb-1.5 flex items-center gap-2 text-sm font-medium text-slate-300"
               >
                 <Mail className="h-3.5 w-3.5 text-purple-400/80" aria-hidden />
                 Email
@@ -174,7 +174,7 @@ export function ContactForm() {
             <div>
               <label
                 htmlFor="contact-message"
-                className="mb-1.5 flex items-center gap-2 text-sm font-medium text-slate-400"
+                className="mb-1.5 flex items-center gap-2 text-sm font-medium text-slate-300"
               >
                 <MessageSquare className="h-3.5 w-3.5 text-cyan-400/80" aria-hidden />
                 Message

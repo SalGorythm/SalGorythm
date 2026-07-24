@@ -69,7 +69,7 @@ export function ObjectionHandling() {
                 </button>
                 {isOpen ? (
                   <div id={panelId} className="border-t border-slate-800/80 px-5 py-4">
-                    <p className="text-sm leading-relaxed text-slate-400">{item.answer}</p>
+                    <p className="text-sm leading-relaxed text-slate-300">{item.answer}</p>
                     {'cta' in item && item.cta ? (
                       <a
                         href={item.cta.href}

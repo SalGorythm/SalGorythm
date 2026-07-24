@@ -237,7 +237,7 @@ export function BlackWhiteTool() {
 
   return (
     <div className="space-y-5">
-      <p className="text-sm text-slate-400">
+      <p className="text-sm text-slate-300">
         <ImageIcon className="mb-0.5 mr-1 inline h-4 w-4 text-purple-400" aria-hidden />
         Convert <strong className="font-medium text-slate-200">images or PDFs</strong> to grayscale or
         high-contrast black &amp; white — entirely on-device. Images export as PNG; PDFs export as a new

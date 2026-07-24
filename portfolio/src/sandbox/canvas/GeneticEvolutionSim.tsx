@@ -242,7 +242,7 @@ export function GeneticEvolutionSim() {
 
   return (
     <div className="space-y-4">
-      <p className="text-sm text-slate-400">
+      <p className="text-sm text-slate-300">
         <Dna className="mb-0.5 mr-1 inline h-4 w-4 text-purple-400" aria-hidden />
         Micro-rockets evolve steering genes to reach the target past a central barrier — full GA
         crossover, elitism, and mutation runs <strong className="text-slate-200">locally</strong> in
@@ -320,7 +320,7 @@ export function GeneticEvolutionSim() {
               </text>
             )}
           </svg>
-          <p className="mt-2 font-mono text-[10px] leading-relaxed text-slate-500">
+          <p className="mt-2 font-mono text-[10px] leading-relaxed text-slate-300">
             {POP} rockets · {GENOME_LEN} genes · {PHASE_TICKS} ticks / gen (~{Math.round((PHASE_TICKS / 60) * 10) / 10}s)
           </p>
         </div>

@@ -13,7 +13,7 @@ const ArticlePage = lazy(() => import('../pages/ArticlePage').then((m) => ({ def
 
 function RouteFallback() {
   return (
-    <div className="flex min-h-[40vh] items-center justify-center text-sm text-slate-500">
+    <div className="flex min-h-[40vh] items-center justify-center text-sm text-slate-400">
       Loading…
     </div>
   )

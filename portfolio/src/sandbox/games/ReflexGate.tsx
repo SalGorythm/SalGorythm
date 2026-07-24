@@ -53,7 +53,7 @@ export function ReflexGate() {
 
   return (
     <div className="space-y-4">
-      <p className="text-sm text-slate-400">
+      <p className="text-sm text-slate-300">
         Latency lab: arm the gate, wait for the cyan pulse, then tap as fast as you can. Early
         clicks count as faults.
       </p>
@@ -96,7 +96,7 @@ export function ReflexGate() {
         </p>
       )}
       {phase === 'result' && ms !== null && (
-        <p className="font-mono text-sm text-slate-400">
+        <p className="font-mono text-sm text-slate-300">
           Sub-200ms is elite hand–eye; displays vary with input latency.
         </p>
       )}

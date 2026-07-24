@@ -19,12 +19,12 @@ export function CaseStudyMatrix() {
           className="mb-10"
         />
 
-        <div className="grid gap-6 lg:grid-cols-3">
+        <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
           {CASE_STUDIES.map((study) => (
             <article
               key={study.id}
               data-case-study-card
-              className="flex flex-col rounded-2xl border border-slate-800/90 bg-slate-900/35 p-5 shadow-[inset_0_1px_0_rgba(255,255,255,0.04)] backdrop-blur-md transition hover:border-cyan-500/30"
+              className="flex flex-col rounded-2xl border border-slate-800/90 bg-slate-900/35 p-5 shadow-[inset_0_1px_0_rgba(255,255,255,0.04)] backdrop-blur-md transition hover:border-cyan-500/30 sm:p-6"
             >
               <p className="text-xs font-medium text-purple-400/90">{study.domain}</p>
               <h3 className="mt-2 text-lg font-semibold text-slate-100">{study.title}</h3>

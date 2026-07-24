@@ -53,10 +53,35 @@ export async function loadAllArticlesParsed() {
 export function getAdjacentArticles(slug: string, sorted?: ParsedArticle[]) {
   const list = sorted ?? getAllArticlesParsed()
   const idx = list.findIndex((a) => a.slug === slug)
+  // Newest-first list: older articles are at higher indices.
   return {
-    prev: idx > 0 ? list[idx - 1]! : null,
-    next: idx >= 0 && idx < list.length - 1 ? list[idx + 1]! : null,
+    prev: idx >= 0 && idx < list.length - 1 ? list[idx + 1]! : null,
+    next: idx > 0 ? list[idx - 1]! : null,
   }
+}
+
+export function getRelatedArticles(
+  slug: string,
+  tags: ArticleMeta['tags'],
+  limit = 3,
+  sorted?: ParsedArticle[],
+): ArticleMeta[] {
+  const list = sorted ?? getAllArticlesParsed()
+  const tagSet = new Set(tags)
+
+  return list
+    .filter((a) => a.slug !== slug)
+    .map((article) => ({
+      article,
+      overlap: article.tags.filter((t) => tagSet.has(t)).length,
+    }))
+    .filter(({ overlap }) => overlap > 0)
+    .sort((a, b) => {
+      if (b.overlap !== a.overlap) return b.overlap - a.overlap
+      return a.article.date < b.article.date ? 1 : -1
+    })
+    .slice(0, limit)
+    .map(({ article }) => article)
 }
 
 export function extractHeadings(markdown: string) {

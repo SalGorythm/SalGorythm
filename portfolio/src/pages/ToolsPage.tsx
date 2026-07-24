@@ -45,7 +45,7 @@ export function ToolsPage() {
             <h1 className="mt-2 text-3xl font-semibold tracking-tight text-slate-50 sm:text-4xl">
               Utility <span className="text-cyan-300 text-glow-cyan">Tools</span>
             </h1>
-            <p className="mt-3 max-w-2xl text-sm text-slate-400">
+            <p className="mt-3 max-w-2xl text-sm text-slate-300">
               Browser-only utilities — files are processed in memory on your device and are not sent
               to any server. Same cyber shell as the portfolio and sandbox.
             </p>
@@ -86,7 +86,7 @@ export function ToolsPage() {
                     Tool
                   </p>
                   <p className="mt-0.5 text-sm font-semibold text-slate-100">{title}</p>
-                  <p className="mt-1 text-[11px] leading-snug text-slate-400">{blurb}</p>
+                  <p className="mt-1 text-[11px] leading-snug text-slate-300">{blurb}</p>
                 </button>
               )
             })}

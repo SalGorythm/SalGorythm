@@ -19,10 +19,10 @@ export function SceneFallback({ className = '' }: { className?: string }) {
       aria-hidden
     >
       <div
-        className="pointer-events-none absolute inset-0 opacity-60"
+        className="pointer-events-none absolute inset-0 opacity-30"
         style={{
           background:
-            'radial-gradient(ellipse 80% 70% at 50% 40%, rgba(34,211,238,0.12), transparent 70%)',
+            'radial-gradient(ellipse 60% 55% at 50% 40%, rgba(34,211,238,0.08), transparent 70%)',
         }}
       />
       <svg viewBox="0 0 320 280" className="relative h-full w-full" role="presentation">

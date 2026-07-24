@@ -19,7 +19,7 @@ export function AboutSection() {
           id="about-heading"
           className="mb-8 max-w-2xl"
         />
-        <div className="max-w-3xl space-y-4 text-sm leading-relaxed text-slate-400 sm:text-base">
+        <div className="max-w-3xl space-y-4 text-sm leading-relaxed text-slate-300 sm:text-base">
           <p>
             At <strong className="font-medium text-slate-200">IBM</strong> I work on super agents,
             evaluation agents, and staffing tooling for consulting workflows — LangChain and AutoGen
@@ -36,7 +36,7 @@ export function AboutSection() {
             and <strong className="font-medium text-slate-200">EasySalah</strong> — local-first,
             no-account where possible. Same engineering bar as enterprise work, tuned for calm UX.
           </p>
-          <p className="text-slate-500">{availability}</p>
+          <p className="text-slate-300">{availability}</p>
         </div>
         <div className="mt-8 flex flex-wrap gap-3">
           <a

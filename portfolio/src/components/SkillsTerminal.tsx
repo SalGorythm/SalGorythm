@@ -52,7 +52,7 @@ export function SkillsTerminal() {
           >
             Stack
           </h2>
-          <p className="mt-3 text-slate-400">
+          <p className="mt-3 text-slate-300">
             Languages, cloud, and AI/data — grouped for quick scanning.
           </p>
         </header>

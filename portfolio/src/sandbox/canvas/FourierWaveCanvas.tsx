@@ -171,7 +171,7 @@ export function FourierWaveCanvas() {
 
   return (
     <div className="space-y-4">
-      <p className="text-sm text-slate-400">
+      <p className="text-sm text-slate-300">
         <Sparkles className="mb-0.5 mr-1 inline h-4 w-4 text-purple-400" aria-hidden />
         Fourier-style harmonics over a polar field — mouse position warps phase; modes swap how
         interference, synaptic pulses, or synthetic gravity sculpt the neon field.

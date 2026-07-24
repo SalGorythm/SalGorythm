@@ -20,7 +20,7 @@ export function ExperienceTimeline() {
           >
             Where I&apos;ve worked
           </h2>
-          <p className="mt-3 text-slate-400">
+          <p className="mt-3 text-slate-300">
             IBM, EY, TELUS International, and earlier roles. Click a row for details.
           </p>
         </header>
@@ -50,7 +50,7 @@ export function ExperienceTimeline() {
                     aria-expanded={active}
                     aria-controls={`role-panel-${role.id}`}
                   >
-                    <span className="font-mono text-[10px] text-slate-500">{role.period}</span>
+                    <span className="font-mono text-[10px] text-slate-400">{role.period}</span>
                     <span className="mt-1 flex items-center justify-between gap-2">
                       <span className="text-sm font-semibold text-slate-100">{role.org}</span>
                       <ChevronRight
@@ -118,7 +118,7 @@ export function ExperienceTimeline() {
                   </p>
                   <ul className="mt-5 list-none space-y-2.5 border-t border-slate-800/80 pt-5">
                     {role.bullets.map((b) => (
-                      <li key={b} className="flex gap-2.5 text-sm leading-relaxed text-slate-400">
+                      <li key={b} className="flex gap-2.5 text-sm leading-relaxed text-slate-300">
                         <span
                           className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-cyan-500/80 shadow-[0_0_8px_rgba(34,211,238,0.5)]"
                           aria-hidden

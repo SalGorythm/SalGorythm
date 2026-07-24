@@ -1,5 +1,7 @@
 export const RECRUITER_SUMMARY = {
   name: 'Salman Akhatar',
+  /** Header subtitle — keep on one line; hidden on small viewports in Navbar. */
+  navSubtitle: 'Senior Data Scientist · IBM',
   title: 'Senior Data Scientist · AI/ML Engineer',
   tagline:
     'I build production LLM systems and data pipelines — at IBM on WatsonX and agent workflows, before that at EY on endpoint automation across 25,000+ machines.',

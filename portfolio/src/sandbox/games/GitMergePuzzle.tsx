@@ -165,7 +165,7 @@ export function GitMergePuzzle() {
 
   return (
     <div className="space-y-4">
-      <p className="text-sm text-slate-400">
+      <p className="text-sm text-slate-300">
         2048-style merges: FEATURE → DEV → STAGING → MAIN. CONFLICT tiles do not merge. Arrow keys
         or buttons to slide.
       </p>

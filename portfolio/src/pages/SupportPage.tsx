@@ -14,7 +14,7 @@ export function SupportPage() {
             <h1 className="mt-2 text-3xl font-semibold tracking-tight text-slate-50 sm:text-4xl">
               Support
             </h1>
-            <p className="mt-3 max-w-xl text-sm text-slate-400">
+            <p className="mt-3 max-w-xl text-sm text-slate-300">
               Official support page for SalGorythm apps and tools — use this URL in App Store
               Connect, Google Play Console, and privacy / help disclosures.
             </p>

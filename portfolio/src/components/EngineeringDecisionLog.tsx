@@ -29,13 +29,13 @@ export function EngineeringDecisionLog() {
                 <div className="rounded-lg border border-slate-800/80 bg-slate-950/40 p-3">
                   <p className="text-xs font-medium text-slate-500">Why</p>
                   <p className="mt-1 text-sm leading-relaxed text-slate-300">{entry.context}</p>
-                  <p className="mt-2 text-sm leading-relaxed text-slate-400">{entry.constraint}</p>
+                  <p className="mt-2 text-sm leading-relaxed text-slate-300">{entry.constraint}</p>
                 </div>
 
                 <div className="rounded-lg border border-slate-800/80 bg-slate-950/40 p-3">
                   <p className="text-xs font-medium text-slate-500">What we picked</p>
                   <p className="mt-1 text-sm text-slate-200">{entry.decision}</p>
-                  <ul className="mt-2 space-y-1 text-sm text-slate-500">
+                  <ul className="mt-2 space-y-1 text-sm text-slate-300">
                     {entry.options.map((opt) => (
                       <li key={opt}>Also considered: {opt}</li>
                     ))}

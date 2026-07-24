@@ -72,7 +72,7 @@ export function AppLicensingQuoteForm() {
           >
             Acquire or <span className="text-cyan-300">license</span> an app
           </h2>
-          <p className="mt-3 text-slate-400">
+          <p className="mt-3 text-slate-300">
             I ship privacy-minded utilities and tools. If you are interested in white-labeling,
             acquiring rights, partnering on distribution, or commissioning a sibling product, send a
             structured quote request — same secure channel as the contact form.
@@ -126,7 +126,7 @@ export function AppLicensingQuoteForm() {
 
           <form
             onSubmit={onSubmit}
-            className="space-y-4 rounded-2xl border border-purple-500/25 bg-slate-900/40 p-6 shadow-[0_0_30px_rgba(168,85,247,0.08)] backdrop-blur-md sm:p-8"
+            className="space-y-4 rounded-2xl border border-purple-500/25 bg-slate-900/40 p-5 shadow-[0_0_30px_rgba(168,85,247,0.08)] backdrop-blur-md sm:p-8"
           >
             <input type="hidden" name="subject" value="Portfolio · App licensing / acquisition quote" />
             <input type="checkbox" name="botcheck" className="hidden" tabIndex={-1} autoComplete="off" />
