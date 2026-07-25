@@ -10,6 +10,7 @@ type ArticleNavProps = {
   related: ArticleMeta[]
   shareUrl: string
   title: string
+  shareBlurb: string
 }
 
 function AdjacentArticleLink({
@@ -65,13 +66,20 @@ function AdjacentArticlePlaceholder({ direction }: { direction: 'prev' | 'next' 
   )
 }
 
-export function ArticleNav({ prev, next, related, shareUrl, title }: ArticleNavProps) {
+export function ArticleNav({
+  prev,
+  next,
+  related,
+  shareUrl,
+  title,
+  shareBlurb,
+}: ArticleNavProps) {
   return (
     <footer className="mt-10 border-t border-slate-800/90 pt-10">
       <RelatedArticles articles={related} />
 
       <div className={related.length > 0 ? 'mt-10 border-t border-slate-800/90 pt-10' : ''}>
-        <ArticleShare shareUrl={shareUrl} title={title} />
+        <ArticleShare shareUrl={shareUrl} title={title} shareBlurb={shareBlurb} />
       </div>
 
       <nav

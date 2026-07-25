@@ -7,6 +7,13 @@
     <language>en-gb</language>
     <atom:link href="https://salgorythm.com/writing.rss" rel="self" type="application/rss+xml" />
     <item>
+      <title>How I actually use Cursor to ship production code</title>
+      <link>https://salgorythm.com/writing/cursor-ship-production-code</link>
+      <guid isPermaLink="true">https://salgorythm.com/writing/cursor-ship-production-code</guid>
+      <pubDate>Sat, 25 Jul 2026 12:00:00 GMT</pubDate>
+      <description>Rules files, scoped prompts, and verify-before-merge — the real loop I use to ship with Cursor without trusting the demo.</description>
+    </item>
+    <item>
       <title>Finding jobs via Claude</title>
       <link>https://salgorythm.com/writing/finding-jobs-via-claude</link>
       <guid isPermaLink="true">https://salgorythm.com/writing/finding-jobs-via-claude</guid>

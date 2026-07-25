@@ -6,19 +6,19 @@ import { ArticleHero } from '../components/writing/ArticleHero'
 import { ArticleNav } from '../components/writing/ArticleNav'
 import { ReadingProgressBar } from '../components/writing/ReadingProgressBar'
 import { TableOfContents } from '../components/writing/TableOfContents'
+import { useArticlePageMeta } from '../hooks/useArticlePageMeta'
 import {
   extractHeadings,
   getAdjacentArticles,
   getAllArticlesParsed,
   getArticleBySlug,
   getRelatedArticles,
+  type ParsedArticle,
 } from '../lib/articles'
 
 export function ArticlePage() {
   const { slug = '' } = useParams()
-  const bodyRef = useRef<HTMLDivElement>(null)
   const article = getArticleBySlug(slug)
-  const allArticles = getAllArticlesParsed()
 
   if (!article || !article.content || article.content.startsWith('_Article')) {
     return (
@@ -35,6 +35,14 @@ export function ArticlePage() {
       </main>
     )
   }
+
+  return <ArticlePageContent article={article} slug={slug} />
+}
+
+function ArticlePageContent({ article, slug }: { article: ParsedArticle; slug: string }) {
+  const bodyRef = useRef<HTMLDivElement>(null)
+  const allArticles = getAllArticlesParsed()
+  useArticlePageMeta(article)
 
   const headings = extractHeadings(article.content)
   const { prev, next } = getAdjacentArticles(slug, allArticles)
@@ -63,6 +71,7 @@ export function ArticlePage() {
                 related={related}
                 shareUrl={shareUrl}
                 title={article.title}
+                shareBlurb={article.shareBlurb}
               />
             </div>
           </div>
