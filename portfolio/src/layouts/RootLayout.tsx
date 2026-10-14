@@ -1,4 +1,4 @@
-import { Outlet, useLocation } from 'react-router-dom'
+import { Link, Outlet, useLocation } from 'react-router-dom'
 import { AmbientBackground } from '../components/AmbientBackground'
 import { Navbar } from '../components/Navbar'
 import { SiteEdgeRails } from '../components/SiteEdgeRails'
@@ -7,6 +7,13 @@ import { VisitorCounter } from '../components/StatBadge'
 import { SECTION_IDS } from '../constants/sections'
 import { RECRUITER_SUMMARY } from '../data/recruiterSummary'
 import { useActiveSection } from '../hooks/useActiveSection'
+
+const FOOTER_LINKS = [
+  { to: '/apps', label: 'My apps' },
+  { to: '/support', label: 'Support' },
+  { to: '/writing', label: 'Writing' },
+  { to: '/tools', label: 'Tools' },
+]
 
 export function RootLayout() {
   const { pathname } = useLocation()
@@ -23,6 +30,13 @@ export function RootLayout() {
         <Outlet />
         <footer className="full-bleed border-t border-slate-800/90 bg-slate-950/80 py-8 backdrop-blur-md">
           <div className="page-container flex flex-col items-center gap-4">
+            <nav aria-label="Footer" className="flex flex-wrap justify-center gap-x-6 gap-y-2 text-sm">
+              {FOOTER_LINKS.map((l) => (
+                <Link key={l.to} to={l.to} className="text-slate-400 transition hover:text-cyan-200">
+                  {l.label}
+                </Link>
+              ))}
+            </nav>
             <SocialLinks variant="footer" />
             <VisitorCounter />
             <p className="font-mono text-[11px] uppercase tracking-[0.25em] text-slate-600">

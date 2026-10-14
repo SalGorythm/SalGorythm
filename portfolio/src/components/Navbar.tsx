@@ -1,4 +1,4 @@
-import { Gamepad2, Menu, Wrench, X } from 'lucide-react'
+import { AppWindow, Gamepad2, Menu, Wrench, X } from 'lucide-react'
 import { useCallback, useEffect, useState, type MouseEvent } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import type { SectionId } from '../constants/sections'
@@ -130,6 +130,17 @@ export function Navbar({ activeId, isPortfolio }: NavbarProps) {
             </button>
           )}
           <Link
+            to="/apps"
+            className={`inline-flex items-center gap-1.5 rounded-lg border px-3 py-2 text-sm transition ${
+              location.pathname.startsWith('/apps')
+                ? 'border-purple-500/45 bg-purple-500/10 text-purple-200 shadow-[0_0_18px_rgba(168,85,247,0.12)]'
+                : 'border-slate-600/80 text-slate-300 hover:border-purple-500/35 hover:bg-purple-500/5 hover:text-purple-200'
+            }`}
+          >
+            <AppWindow className="h-3.5 w-3.5" aria-hidden />
+            Apps
+          </Link>
+          <Link
             to="/tools"
             className={`inline-flex items-center gap-1.5 rounded-lg border px-3 py-2 text-sm transition ${
               location.pathname === '/tools'
@@ -192,6 +203,16 @@ export function Navbar({ activeId, isPortfolio }: NavbarProps) {
               </button>
             </li>
           )}
+          <li>
+            <Link
+              to="/apps"
+              onClick={() => setOpen(false)}
+              className="flex w-full items-center gap-2 rounded-lg border border-purple-500/30 bg-purple-500/5 px-3 py-3 text-sm text-purple-200"
+            >
+              <AppWindow className="h-4 w-4" aria-hidden />
+              My apps
+            </Link>
+          </li>
           <li>
             <Link
               to="/tools"

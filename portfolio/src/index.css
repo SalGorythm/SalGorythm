@@ -435,3 +435,11 @@ main[id],
   }
 }
 
+
+.policy-prose p {
+  @apply my-4;
+}
+
+.policy-prose > p:first-of-type {
+  @apply text-base;
+}

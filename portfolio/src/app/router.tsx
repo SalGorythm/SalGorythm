@@ -4,6 +4,9 @@ import { RootLayout } from '../layouts/RootLayout'
 import { PortfolioPage } from '../pages/PortfolioPage'
 import { SandboxPage } from '../pages/SandboxPage'
 import { SupportPage } from '../pages/SupportPage'
+import { AppsIndexPage } from '../pages/AppsIndexPage'
+import { AppDetailPage } from '../pages/AppDetailPage'
+import { AppLegalPage } from '../pages/AppLegalPage'
 
 const ToolsPage = lazy(() => import('../pages/ToolsPage').then((m) => ({ default: m.ToolsPage })))
 const WritingIndexPage = lazy(() =>
@@ -50,6 +53,10 @@ export function AppRoutes() {
           }
         />
         <Route path="support" element={<SupportPage />} />
+        <Route path="apps" element={<AppsIndexPage />} />
+        <Route path="apps/:appId" element={<AppDetailPage />} />
+        <Route path="apps/:appId/privacy" element={<AppLegalPage kind="privacy" />} />
+        <Route path="apps/:appId/terms" element={<AppLegalPage kind="terms" />} />
       </Route>
     </Routes>
   )
