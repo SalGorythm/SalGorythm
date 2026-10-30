@@ -5,7 +5,7 @@ import { PORTFOLIO_APPS } from '../data/myApps'
 import { usePageMeta } from '../hooks/usePageMeta'
 
 export function AppsIndexPage() {
-  usePageMeta('My apps', 'Indie apps by SalGorythm — store links, features, privacy policies, and support.')
+  usePageMeta('Weekend hobbies', 'Personal side-project apps by SalGorythm — store links, features, privacy policies, and support.')
 
   return (
     <div className="min-h-svh border-b border-cyan-500/10 pb-24 pt-24">
@@ -13,10 +13,11 @@ export function AppsIndexPage() {
         <header className="mb-12 flex flex-col gap-4 border-b border-cyan-500/15 pb-8 sm:flex-row sm:items-end sm:justify-between">
           <div className="max-w-2xl">
             <p className="font-mono text-xs uppercase tracking-[0.3em] text-emerald-400/90">SalGorythm</p>
-            <h1 className="mt-2 text-3xl font-semibold tracking-tight text-slate-50 sm:text-4xl">My apps</h1>
+            <h1 className="mt-2 text-3xl font-semibold tracking-tight text-slate-50 sm:text-4xl">Weekend hobbies</h1>
             <p className="mt-3 text-sm text-slate-300">
-              Indie apps built local-first: no accounts, no tracking. Each app has its own page,
-              privacy policy, and a shared support channel.
+              Apps I build on weekends as personal side projects, in my own time and separate from my
+              day job. All local-first: no accounts, no tracking. Each app has its own page, privacy
+              policy, and a shared support channel.
             </p>
           </div>
           <Link

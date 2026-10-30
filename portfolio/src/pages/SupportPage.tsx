@@ -52,7 +52,7 @@ export function SupportPage() {
 
         <p className="mt-10 text-center font-mono text-[11px] text-slate-600">
           <Link to={`/#${SALGORYTHM_SUPPORT_PAGE_HASH}`} className="text-cyan-500/80 hover:text-cyan-400">
-            Same panel on the portfolio → My apps
+            Same panel on the portfolio → Weekend hobbies
           </Link>
         </p>
       </div>

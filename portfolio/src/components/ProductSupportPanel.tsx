@@ -14,7 +14,7 @@ type ProductSupportPanelProps = {
 }
 
 /**
- * Universal SalGorythm support — shared by My apps and `/support`.
+ * Universal SalGorythm support — shared by Weekend hobbies and `/support`.
  */
 export function ProductSupportPanel({ anchorId, className = '' }: ProductSupportPanelProps) {
   return (

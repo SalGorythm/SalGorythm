@@ -14,23 +14,23 @@ export function MyAppsSection() {
       <div className="page-container">
         <header className="mb-12 flex max-w-none flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
           <div className="max-w-2xl">
-            <p className="text-sm font-medium text-emerald-400/90">Apps</p>
+            <p className="text-sm font-medium text-emerald-400/90">Weekend hobbies</p>
             <h2
               id="my-apps-heading"
               className="mt-2 text-3xl font-semibold tracking-tight text-slate-50 sm:text-4xl"
             >
-              Shipped products
+              Apps I build on weekends
             </h2>
             <p className="mt-3 text-slate-300">
-              Installable clients and marketing sites — same bar as enterprise work, tuned for calm
-              UX and local-first privacy.
+              Personal side projects, built in my own time and separate from my day job — small,
+              calm, local-first apps with no ads and no accounts.
             </p>
           </div>
           <Link
             to="/apps"
             className="inline-flex shrink-0 items-center gap-2 self-start rounded-xl border border-cyan-500/35 bg-cyan-500/10 px-4 py-2.5 font-mono text-xs uppercase tracking-wider text-cyan-100 transition hover:border-cyan-400/60 sm:self-auto"
           >
-            All apps
+            All hobby apps
             <ArrowRight className="h-3.5 w-3.5" aria-hidden />
           </Link>
         </header>

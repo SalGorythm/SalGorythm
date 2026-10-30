@@ -51,7 +51,7 @@ export const KEYBOARD_SECTION_JUMPS: {
   { key: '4', path: '/writing', label: 'Writing' },
   { key: '5', id: 'experience', label: 'Experience' },
   { key: '6', id: 'projects', label: 'Projects' },
-  { key: '7', id: 'my-apps', label: 'Apps' },
+  { key: '7', id: 'my-apps', label: 'Hobbies' },
   { key: '8', id: 'resume', label: 'Résumé' },
   { key: '9', id: 'contact', label: 'Contact' },
 ]

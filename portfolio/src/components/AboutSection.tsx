@@ -1,6 +1,7 @@
 import { Mail } from 'lucide-react'
 import { RECRUITER_SUMMARY } from '../data/recruiterSummary'
 import { SectionHeader } from './SectionHeader'
+import { PORTFOLIO_APPS } from '../data/myApps'
 
 export function AboutSection() {
   const { email, linkedin, availability } = RECRUITER_SUMMARY
@@ -32,9 +33,12 @@ export function AboutSection() {
             care about governance and scale, not just model benchmarks.
           </p>
           <p>
-            I also ship consumer iOS apps — <strong className="font-medium text-slate-200">Casette</strong>{' '}
-            and <strong className="font-medium text-slate-200">EasySalah</strong> — local-first,
-            no-account where possible. Same engineering bar as enterprise work, tuned for calm UX.
+            On weekends, as a personal hobby, I build small consumer apps —{' '}
+            <strong className="font-medium text-slate-200">
+              {PORTFOLIO_APPS.map((app) => app.name).join(', ')}
+            </strong>{' '}
+            — local-first and no-account where possible. They're side projects, built in my own time
+            and separate from my day job.
           </p>
           <p className="text-slate-300">{availability}</p>
         </div>

@@ -9,7 +9,7 @@ import { RECRUITER_SUMMARY } from '../data/recruiterSummary'
 import { useActiveSection } from '../hooks/useActiveSection'
 
 const FOOTER_LINKS = [
-  { to: '/apps', label: 'My apps' },
+  { to: '/apps', label: 'Weekend hobbies' },
   { to: '/support', label: 'Support' },
   { to: '/writing', label: 'Writing' },
   { to: '/tools', label: 'Tools' },

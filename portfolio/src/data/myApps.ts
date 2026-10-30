@@ -1,5 +1,5 @@
 /**
- * Shipped products — powers the home “My apps” section, `/apps`, `/apps/:id`, and
+ * Weekend hobby apps — powers the home “Weekend hobbies” section, `/apps`, `/apps/:id`, and
  * `/apps/:id/privacy`.
  *
  * Adding an app:
@@ -346,6 +346,117 @@ export const PORTFOLIO_APPS: PortfolioApp[] = [
       'Vaultly has no built-in cloud backup. Your vault lives only on your device — keep originals or a backup you trust for documents you can’t replace.',
     appStoreNote: 'App Store — coming soon',
     playStoreNote: 'Google Play — coming soon',
+  },
+  {
+    id: 'pickwheel',
+    name: 'Pickwheel',
+    tagline: 'Spin, draw names, no ads ever.',
+    description:
+      'A random picker for groups such as a class, a team or a family. Spin a wheel, pull a name from a hat, split everyone into teams, or shuffle a running order. Every pick is made with a cryptographic random number generator, and with fair mode on, nobody is picked twice until everyone has had a turn. No ads, no accounts and no tracking — in Free or in Pro.',
+    highlights: ['Six ways to pick', 'Fair mode', 'Classroom-safe · no ads', 'Data not collected'],
+    category: 'Utilities · Education',
+    platforms: ['iPhone & iPad', 'iOS 16.4+'],
+    features: [
+      {
+        title: 'Six ways to pick',
+        body: 'Wheel, Hat, Teams, running Order, Dice & Coin, and Number. Switching modes never loses your list or your place in the round.',
+      },
+      {
+        title: 'Fair you can see',
+        body: 'With fair mode on, each name is drawn once per round. Drawn names stay on screen, struck through, so the whole room can see it’s fair.',
+      },
+      {
+        title: 'Honest randomness',
+        body: 'The result is chosen first with your iPhone’s cryptographic random number generator, then the wheel is animated to land on it. The animation never decides who wins.',
+      },
+      {
+        title: 'Made for a room full of people',
+        body: 'Pickwheel has never had ads and never will, so it’s safe to put on a projector in front of a class.',
+      },
+      {
+        title: 'Saved groups',
+        body: 'Type or paste a list once — Class 7B, the Monday standup, the family. Each group keeps its own names, round and history.',
+      },
+      {
+        title: 'Away today & put back',
+        body: 'Leave someone out for the rest of the day — they return automatically at midnight. Picked someone by mistake? Put them back into the round.',
+      },
+      {
+        title: 'History',
+        body: 'Every pick is recorded with its round and time, with a count for every name so you can see the picks are even. The last 500 picks per group are kept.',
+      },
+      {
+        title: 'Comfortable to use',
+        body: 'Light and dark appearance, a tick sound that follows the silent switch, Reduce Motion support, and VoiceOver labels on every control.',
+      },
+    ],
+    privacyLastUpdated: '14 October 2026',
+    plans: {
+      proLabel: 'Pickwheel Pro — one-time purchase',
+      free: [
+        'One saved group',
+        'Wheel, Hat, Dice & Coin, Number',
+        'Fair mode, put back, away today',
+        'History for every pick',
+        'Light and dark appearance',
+      ],
+      pro: [
+        'Unlimited groups',
+        'Teams',
+        'Running order with copy',
+        'Import and export of name lists (text and CSV)',
+      ],
+      note: 'Pro is a single in-app purchase, not a subscription, priced in your local currency on the App Store. It supports Family Sharing. If Pro is ever refunded, your groups and history stay.',
+    },
+    faq: [
+      {
+        q: 'Is it really random?',
+        a: 'Yes. Every pick uses your iPhone’s cryptographic random number generator, the same kind used for security. The result is decided before any animation starts, and results are spread evenly across every name.',
+      },
+      {
+        q: 'Why did the same person come up twice?',
+        a: 'Fair mode is probably off. Turn it on, and nobody is picked again until everyone in the group has been picked.',
+      },
+      {
+        q: 'Someone is absent today. How do I leave them out?',
+        a: 'Tap their name under the wheel and choose Away today. They’re left out until midnight, then come back automatically. Tap again and choose Back today if they turn up after all.',
+      },
+      {
+        q: 'I picked someone by mistake. Can I undo it?',
+        a: 'In fair mode, tap the drawn name and choose Put back. They go back into the current round. The pick stays in history, which is a record of what happened.',
+      },
+      {
+        q: 'How do I enter a whole class quickly?',
+        a: 'Create a group and paste the list, one name per line or separated by commas. With Pro, you can also import a text or CSV file — the first column is used.',
+      },
+      {
+        q: 'How do I restore my Pro purchase on a new phone?',
+        a: 'Open Settings → Restore purchase, or tap Restore purchase on the Pro screen, signed in with the same Apple Account you bought Pro with.',
+      },
+      {
+        q: 'My child asked to buy Pro. Why hasn’t it unlocked?',
+        a: 'If Ask to Buy is on for your family, the purchase waits for a parent’s approval. Pickwheel shows “Waiting for approval” and unlocks Pro as soon as it’s approved.',
+      },
+      {
+        q: 'Can I get a refund?',
+        a: 'Purchases are handled by Apple. Request a refund at reportaproblem.apple.com.',
+      },
+      {
+        q: 'Does it work offline?',
+        a: 'Yes, everything works without an internet connection. Only buying or restoring Pro needs to reach the App Store.',
+      },
+      {
+        q: 'How do I move my groups to another device?',
+        a: 'With Pro, export each group as a text or CSV file and import it on the other device. There’s no account or cloud sync, but your groups come back if you restore your iPhone from a backup.',
+      },
+      {
+        q: 'How do I delete my data?',
+        a: 'Delete a group (and its history) from the group’s Edit page, or clear just its history from the History page. Deleting the app removes everything it stored.',
+      },
+    ],
+    notice:
+      'Pickwheel is a tool for making fair random choices. It isn’t intended for gambling, lotteries or prize draws where the law sets specific requirements.',
+    appStoreNote: 'App Store — coming soon',
   },
 ]
 

@@ -138,7 +138,7 @@ export function Navbar({ activeId, isPortfolio }: NavbarProps) {
             }`}
           >
             <AppWindow className="h-3.5 w-3.5" aria-hidden />
-            Apps
+            Hobbies
           </Link>
           <Link
             to="/tools"
@@ -210,7 +210,7 @@ export function Navbar({ activeId, isPortfolio }: NavbarProps) {
               className="flex w-full items-center gap-2 rounded-lg border border-purple-500/30 bg-purple-500/5 px-3 py-3 text-sm text-purple-200"
             >
               <AppWindow className="h-4 w-4" aria-hidden />
-              My apps
+              Weekend hobbies
             </Link>
           </li>
           <li>

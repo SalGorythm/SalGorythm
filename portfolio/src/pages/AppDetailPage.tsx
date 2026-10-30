@@ -9,7 +9,7 @@ import { getAppLegalDoc } from '../lib/appLegal'
 export function AppDetailPage() {
   const { appId } = useParams()
   const app = getAppById(appId)
-  usePageMeta(app?.name ?? 'My apps', app?.tagline)
+  usePageMeta(app?.name ?? 'Weekend hobbies', app?.tagline)
 
   if (!app) return <Navigate to="/apps" replace />
   const index = PORTFOLIO_APPS.indexOf(app)
@@ -23,7 +23,7 @@ export function AppDetailPage() {
           className="inline-flex items-center gap-1.5 font-mono text-xs uppercase tracking-wider text-slate-400 transition hover:text-cyan-200"
         >
           <ArrowLeft className="h-3.5 w-3.5" aria-hidden />
-          All apps
+          Weekend hobbies
         </Link>
 
         <header className="mt-6 flex flex-col gap-8 border-b border-cyan-500/15 pb-10 lg:flex-row lg:items-start lg:justify-between">
