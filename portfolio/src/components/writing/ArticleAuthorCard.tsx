@@ -1,9 +1,9 @@
-import { Download, Mail } from 'lucide-react'
+import { AppWindow, Mail } from 'lucide-react'
 import { BrandLogo } from '../BrandLogo'
 import { RECRUITER_SUMMARY } from '../../data/recruiterSummary'
 
 const AUTHOR_BIO =
-  'Production LLM systems, agent workflows, and eval gates — IBM WatsonX and EY-scale delivery.'
+  'Data scientist and engineer writing about LLMs, data systems, and the tools I tinker with. Views are my own.'
 
 export function ArticleAuthorCard() {
   const { name, navSubtitle } = RECRUITER_SUMMARY
@@ -35,11 +35,11 @@ export function ArticleAuthorCard() {
           Contact
         </a>
         <a
-          href="/#resume"
+          href="/apps"
           className="inline-flex min-h-10 flex-1 items-center justify-center gap-2 rounded-lg border border-slate-600/80 bg-slate-950/60 px-4 py-2 text-sm font-medium text-slate-200 transition hover:border-purple-500/35 hover:text-purple-100 sm:flex-none"
         >
-          <Download className="h-3.5 w-3.5" aria-hidden />
-          Download résumé
+          <AppWindow className="h-3.5 w-3.5" aria-hidden />
+          Weekend hobbies
         </a>
       </div>
     </aside>

@@ -1,11 +1,13 @@
 import { ArrowDownRight } from 'lucide-react'
+import { ARTICLES } from '../data/articles'
+import { PORTFOLIO_APPS } from '../data/myApps'
 
 const METRICS = [
+  { value: '9+ years', label: 'Building software' },
   { value: 'IBM Tech 2026', label: 'Global awardee' },
-  { value: '25,000+', label: 'Endpoints automated (EY)' },
-  { value: '9 years', label: 'Production engineering' },
-  { value: 'New Delhi', label: 'Remote-friendly' },
-] as const
+  { value: `${PORTFOLIO_APPS.length} apps`, label: 'Built as weekend hobbies' },
+  { value: `${ARTICLES.length} articles`, label: 'Written to learn in public' },
+]
 
 export function CredibilityStrip() {
   return (
@@ -16,7 +18,7 @@ export function CredibilityStrip() {
     >
       <div className="page-container">
         <h2 id="credibility-heading" className="sr-only">
-          Credibility highlights
+          At a glance
         </h2>
         <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {METRICS.map((m) => (
@@ -31,10 +33,10 @@ export function CredibilityStrip() {
         </ul>
         <p className="mt-6 text-center">
           <a
-            href="#case-studies"
+            href="#about"
             className="inline-flex min-h-11 items-center gap-2 text-sm font-medium text-cyan-300/90 transition hover:text-cyan-200"
           >
-            See how the numbers show up in work
+            More about me
             <ArrowDownRight className="h-4 w-4" aria-hidden />
           </a>
         </p>

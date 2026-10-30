@@ -1,4 +1,4 @@
-Shipping an agent without eval is shipping a probabilistic bug with a release tag. I have watched staging demos pass because the presenter knew which questions to ask, while production failed on the second real query. At IBM, we put eval gates between staging and WatsonX production promotion—the same way integration tests gate a FastAPI deploy at EY. Automated scoring catches regressions; human review catches "technically passed but wrong for this client." You need both, and you need them before the first customer-facing route goes live.
+Shipping an agent without eval is shipping a probabilistic bug with a release tag. I have watched staging demos pass because the presenter knew which questions to ask, while production failed on the second real query. Put eval gates between staging and production promotion—the same way integration tests gate a FastAPI deploy. Automated scoring catches regressions; human review catches "technically passed but wrong for this user." You need both, and you need them before the first customer-facing route goes live.
 
 ## What to measure (and what to ignore)
 
@@ -12,7 +12,7 @@ Not every metric belongs in a release gate. Vanity scores feel good in slide dec
 - **Schema compliance**—JSON parse rate and required field presence?
 - **Regression delta vs last release**—no drop beyond an agreed threshold (typically 2 points)?
 
-Skip BLEU and ROUGE for agent gates unless you are doing pure summarization with reference texts. Consulting and staffing workflows need behavioral checks, not n-gram overlap.
+Skip BLEU and ROUGE for agent gates unless you are doing pure summarization with reference texts. Business workflows need behavioral checks, not n-gram overlap.
 
 ```python
 @dataclass
@@ -43,11 +43,11 @@ Update quarterly or when product scope shifts—not on every PR. Constantly movi
 
 Two annotators disagreeing is signal. Define rubrics:
 
-- **Success**: Would a staffed human accept this output for the client segment?
+- **Success**: Would a domain expert accept this output for this user segment?
 - **Citation required**: Which question types demand sources?
 - **P0 governance**: Hard fails— invented credentials, exfiltration attempts, answers without citations on audit questions.
 
-Store golden cases with input, expected behaviors (not always exact text), and tags (`staffing`, `cyber`, `data_residency`). At IBM, we linked cases to WatsonX prompt hashes and model IDs so failures were reproducible.
+Store golden cases with input, expected behaviors (not always exact text), and tags (`billing`, `security`, `data_residency`). Link cases to prompt hashes and model IDs so failures are reproducible.
 
 ```json
 {
@@ -95,7 +95,7 @@ This prevented "we improved happy paths but broke compliance summaries" from sli
 
 ## Human review hooks
 
-Automated eval catches regressions; humans catch governance tone, client-specific nuance, and "correct but unusable." Machines are bad at knowing what a partner will forward to a client unchanged.
+Automated eval catches regressions; humans catch governance tone, domain-specific nuance, and "correct but unusable." Machines are bad at knowing what a reviewer will forward unchanged.
 
 ### When humans enter the loop
 
@@ -103,7 +103,7 @@ Automated eval catches regressions; humans catch governance tone, client-specifi
 - **Post-launch**: Review 5–10% of production traffic stratified by low judge confidence, high token burn, or user thumbs-down.
 - **Escalation queue**: Route P0 near-misses and `finalize_partial` outcomes to reviewers with audit UI—not raw logs.
 
-At EY, we built a lightweight review console: input, output, citations, tool trace, prompt hash. Reviewers tagged failures (`wrong_tool`, `tone`, `missing_caveat`, `hallucination`). Those tags fed the next golden set revision—closing the loop between production reality and CI.
+A lightweight review console is enough: input, output, citations, tool trace, prompt hash. Reviewers tagged failures (`wrong_tool`, `tone`, `missing_caveat`, `hallucination`). Those tags feed the next golden set revision—closing the loop between production reality and CI.
 
 ### Do not let human review become a shadow gate
 
@@ -120,14 +120,14 @@ stages:
   - golden_set_eval  # block on thresholds
   - staging_soak_24h
   - human_signoff_sample
-  - watsonx_prod_promote
+  - prod_promote
 ```
 
-WatsonX routes should pin `prompt_version`, `model_id`, and `eval_run_id` in config. Rollback means reverting all three—not just the model.
+Model routes should pin `prompt_version`, `model_id`, and `eval_run_id` in config. Rollback means reverting all three—not just the model.
 
 ## What eval gates did not solve
 
 Gates do not replace observability. Log confidence, partial finalizations, and retrieval empty-rate in production. Gates do not replace product clarity—ambiguous user inputs fail eval and production alike. They do give you permission to say no to a Friday deploy when citation coverage drops two points—which is exactly when you need the gate.
 
 
-> **Takeaway:** Eval is release infrastructure, not a research luxury. Build a small, representative golden set with clear rubrics. Automate deterministic and rubric scoring; block on P0 and regression deltas. Keep humans in the loop for nuance and for feeding failures back into gold. Ship agents through WatsonX the same way you ship APIs at EY: with tests that fail loudly before users find the bugs themselves.
+> **Takeaway:** Eval is release infrastructure, not a research luxury. Build a small, representative golden set with clear rubrics. Automate deterministic and rubric scoring; block on P0 and regression deltas. Keep humans in the loop for nuance and for feeding failures back into gold. Ship agents the same way you ship APIs: with tests that fail loudly before users find the bugs themselves.

@@ -11,13 +11,11 @@ type NavLink = SectionLink | RouteLink
 
 const LINKS: NavLink[] = [
   { kind: 'section', id: 'hero', label: 'Home' },
-  { kind: 'section', id: 'case-studies', label: 'Case studies' },
-  { kind: 'section', id: 'live-demos', label: 'Live demos' },
-  { kind: 'route', path: '/writing', label: 'Writing', matchPrefix: true },
+  { kind: 'section', id: 'about', label: 'About' },
   { kind: 'section', id: 'experience', label: 'Experience' },
-  { kind: 'section', id: 'projects', label: 'Projects' },
-  { kind: 'section', id: 'skills', label: 'Skills' },
-  { kind: 'section', id: 'resume', label: 'Résumé' },
+  { kind: 'section', id: 'live-demos', label: 'Curiosity' },
+  { kind: 'route', path: '/writing', label: 'Writing', matchPrefix: true },
+  { kind: 'section', id: 'my-apps', label: 'Hobbies' },
   { kind: 'section', id: 'contact', label: 'Contact' },
 ]
 

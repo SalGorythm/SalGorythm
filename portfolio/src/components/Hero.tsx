@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import { RECRUITER_SUMMARY } from '../data/recruiterSummary'
 
 export function Hero() {
-  const { tagline, stack, outcome, availability, email, github, linkedin } = RECRUITER_SUMMARY
+  const { tagline, stack, location, email, github, linkedin } = RECRUITER_SUMMARY
 
   return (
     <section
@@ -16,7 +16,7 @@ export function Hero() {
           <div className="space-y-8">
             <p className="inline-flex flex-wrap items-center gap-2 rounded-full border border-cyan-500/25 bg-slate-900/50 px-3 py-1 text-sm text-cyan-400/90">
               <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-cyan-400" />
-              IBM · Senior data scientist · 9 years
+              Senior data scientist · 9 years · curious on weekends
             </p>
 
             <div className="space-y-4">
@@ -35,13 +35,12 @@ export function Hero() {
 
             <div className="space-y-2 rounded-xl border border-slate-800/90 bg-slate-950/60 p-5 text-sm leading-relaxed sm:p-6">
               <p className="text-slate-300">{stack}</p>
-              <p className="text-emerald-300/95">{outcome}</p>
             </div>
 
             <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-slate-300">
               <span className="inline-flex items-center gap-1.5">
                 <MapPin className="h-3.5 w-3.5 text-cyan-500/80" aria-hidden />
-                {availability}
+                {location}
               </span>
               <a
                 href={`mailto:${email}`}
@@ -62,30 +61,24 @@ export function Hero() {
 
             <div className="flex flex-wrap gap-3">
               <a
-                href="#case-studies"
+                href="#about"
                 className="group inline-flex min-h-11 items-center gap-2 rounded-xl border border-cyan-500/40 bg-cyan-500/10 px-5 py-3 text-sm font-medium text-cyan-100 shadow-[0_0_24px_rgba(34,211,238,0.12)] transition hover:scale-[1.02] hover:border-cyan-400/60 hover:bg-cyan-500/15"
               >
-                View case studies
+                About me
                 <ArrowDownRight className="h-4 w-4 transition group-hover:translate-x-0.5 group-hover:translate-y-0.5" />
               </a>
               <a
-                href="#resume"
-                className="inline-flex min-h-11 items-center gap-2 rounded-xl border border-slate-600/80 bg-slate-900/50 px-5 py-3 text-sm font-medium text-slate-200 transition hover:border-cyan-500/40 hover:text-cyan-200"
-              >
-                Download résumé
-              </a>
-              <a
-                href="#contact"
-                className="inline-flex min-h-11 items-center gap-2 rounded-xl border border-slate-600/80 bg-slate-900/50 px-5 py-3 text-sm font-medium text-slate-200 transition hover:border-purple-500/40 hover:text-purple-200"
-              >
-                Contact
-              </a>
-              <a
-                href="#live-demos"
+                href="#my-apps"
                 className="inline-flex min-h-11 items-center gap-2 rounded-xl border border-purple-500/35 bg-purple-500/10 px-5 py-3 text-sm font-medium text-purple-100 transition hover:border-purple-400/50"
               >
-                Live demos
+                Weekend hobbies
               </a>
+              <Link
+                to="/writing"
+                className="inline-flex min-h-11 items-center gap-2 rounded-xl border border-slate-600/80 bg-slate-900/50 px-5 py-3 text-sm font-medium text-slate-200 transition hover:border-cyan-500/40 hover:text-cyan-200"
+              >
+                Writing
+              </Link>
             </div>
 
             <div className="rounded-xl border border-slate-800/90 bg-slate-900/35 p-5 sm:p-6">

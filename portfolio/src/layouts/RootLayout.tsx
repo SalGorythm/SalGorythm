@@ -39,6 +39,10 @@ export function RootLayout() {
             </nav>
             <SocialLinks variant="footer" />
             <VisitorCounter />
+            <p className="max-w-xl text-center text-xs leading-relaxed text-slate-500">
+              Personal website. Views, articles, apps and projects here are my own, made in my own
+              time, and are not affiliated with or endorsed by any employer, past or present.
+            </p>
             <p className="font-mono text-[11px] uppercase tracking-[0.25em] text-slate-600">
               © {new Date().getFullYear()} {RECRUITER_SUMMARY.name} · SalGorythm · Vite + React + Tailwind
             </p>

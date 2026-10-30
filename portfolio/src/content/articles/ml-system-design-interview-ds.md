@@ -1,4 +1,4 @@
-After nine years on both sides of the table—building systems at EY and IBM and interviewing senior data scientists—I have learned that ML system design interviews reward clarity under constraints, not model trivia. Interviewers are not checking whether you memorized the latest architecture paper. They want to see whether you can move from a vague product ask to a deployable system with data flows, failure modes, and an eval plan that would survive the first production incident.
+After nine years of building ML systems and sitting on both sides of the interview table,I have learned that ML system design interviews reward clarity under constraints, not model trivia. Interviewers are not checking whether you memorized the latest architecture paper. They want to see whether you can move from a vague product ask to a deployable system with data flows, failure modes, and an eval plan that would survive the first production incident.
 
 This article is the checklist I use when coaching candidates and when I interview myself before a loop: a 45-minute framework, the topics that separate senior from mid-level answers, and a practice prompt you can walk through out loud.
 

@@ -4,7 +4,7 @@ import { SectionHeader } from './SectionHeader'
 import { PORTFOLIO_APPS } from '../data/myApps'
 
 export function AboutSection() {
-  const { email, linkedin, availability } = RECRUITER_SUMMARY
+  const { email, linkedin, location } = RECRUITER_SUMMARY
 
   return (
     <section
@@ -15,32 +15,33 @@ export function AboutSection() {
       <div className="page-container">
         <SectionHeader
           domain="About"
-          title="Production ML engineer, not slide-deck ML"
-          description="Nine years shipping data systems — now focused on agents and evaluation at IBM."
+          title="Engineer by trade, tinkerer by habit"
+          description="Nine years of building software — and a lot of curiosity about how things work."
           id="about-heading"
           className="mb-8 max-w-2xl"
         />
         <div className="max-w-3xl space-y-4 text-sm leading-relaxed text-slate-300 sm:text-base">
           <p>
-            At <strong className="font-medium text-slate-200">IBM</strong> I work on super agents,
-            evaluation agents, and staffing tooling for consulting workflows — LangChain and AutoGen
-            orchestration, WatsonX.ai integrations, and eval gates before anything reaches production.
+            I&apos;m a senior data scientist and engineer. Over nine years I&apos;ve worked across
+            backend services, data pipelines, and — most recently — generative AI: LLM integration,
+            agent workflows, and evaluation. The Experience section below has the public-level
+            outline; LinkedIn has the rest.
           </p>
           <p>
-            Before that, at <strong className="font-medium text-slate-200">EY</strong>, I built
-            endpoint automation across 25,000+ machines (Atom Bot), cybersecurity microservices
-            (Quark), and NL→SQL / document Q&A systems (Quasar, Qbot). That background is why I
-            care about governance and scale, not just model benchmarks.
+            I&apos;m happiest learning by building. This site is where that curiosity lands:{' '}
+            <a href="/writing" className="text-cyan-300/90 hover:text-cyan-200">articles</a> on
+            things I&apos;ve figured out, browser experiments in the sandbox, and privacy-friendly
+            tools that run entirely on your device.
           </p>
           <p>
             On weekends, as a personal hobby, I build small consumer apps —{' '}
             <strong className="font-medium text-slate-200">
               {PORTFOLIO_APPS.map((app) => app.name).join(', ')}
             </strong>{' '}
-            — local-first and no-account where possible. They're side projects, built in my own time
-            and separate from my day job.
+            — local-first and no-account where possible. They&apos;re side projects, built in my own
+            time and separate from my day job.
           </p>
-          <p className="text-slate-300">{availability}</p>
+          <p className="text-slate-400">{location}</p>
         </div>
         <div className="mt-8 flex flex-wrap gap-3">
           <a

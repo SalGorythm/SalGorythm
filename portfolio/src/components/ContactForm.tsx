@@ -72,8 +72,8 @@ export function ContactForm() {
             Get in touch
           </h2>
           <p className="mt-3 text-slate-300">
-            Email works best for role inquiries and collaboration. I reply manually — no mailing
-            list on submit.
+            Questions about an app, an article, or something you built? Say hello — I reply
+            manually, with no mailing list on submit.
           </p>
         </header>
 
@@ -185,7 +185,7 @@ export function ContactForm() {
                 required
                 rows={5}
                 disabled={submit.status === 'submitting'}
-                placeholder="Context, role, timeline, and how you like to work together."
+                placeholder="What’s on your mind?"
                 className="w-full resize-y rounded-xl border border-slate-700/80 bg-slate-950/70 px-3 py-2.5 text-sm text-slate-100 outline-none ring-cyan-500/20 placeholder:text-slate-600 focus:border-cyan-500/45 focus:ring-2 disabled:opacity-50"
               />
             </div>

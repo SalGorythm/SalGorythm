@@ -1,4 +1,4 @@
-At EY, the Atom Bot Server sat between field agents on thousands of endpoints and a PostgreSQL-backed ingestion pipeline. Requests were bursty—patch Tuesday, audit season, a client pushing a full inventory refresh at 4pm. FastAPI was not a fashion choice. It gave us async I/O for auth, validation, and queue handoff while CPU-heavy parsing and ML inference ran elsewhere. The hard part was never "can FastAPI handle concurrency?" It was whether we respected the event loop, sized our pools correctly, and told clients the truth when we were full.
+Picture a service sitting between agents on thousands of endpoints and a PostgreSQL-backed ingestion pipeline. Requests are bursty—patch Tuesday, audit season, a full inventory refresh at 4pm. FastAPI is not a fashion choice there. It gives you async I/O for auth, validation, and queue handoff while CPU-heavy parsing and ML inference ran elsewhere. The hard part is never "can FastAPI handle concurrency?" It is whether you respect the event loop, size your pools correctly, and tell callers the truth when you are full.
 
 ## Why async endpoints are not async inference
 
@@ -37,7 +37,7 @@ async def classify(payload: ClassifyRequest):
     return result
 ```
 
-Key details: model loaded at startup (not per request), executor bounded, explicit timeout. For jobs longer than a few seconds—full endpoint scans, bulk ETL—we pushed work to a Redis-backed queue and returned a job ID. Clients polled `/v1/jobs/{id}` or subscribed over WebSocket. That separation kept p95 latency honest for the fast path while still supporting heavy workloads.
+Key details: model loaded at startup (not per request), executor bounded, explicit timeout. For jobs longer than a few seconds—full endpoint scans, bulk ETL—push work to a Redis-backed queue and return a job ID. Clients poll `/v1/jobs/{id}` or subscribe over WebSocket. That separation keeps p95 latency honest for the fast path while still supporting heavy workloads.
 
 ## Back-pressure beats silent degradation
 
@@ -70,7 +70,7 @@ Field agents retry with jitter. Load balancers stop hammering a dying pod. Expli
 
 ## Connection pools are application-scoped singletons
 
-Creating a new SQLAlchemy engine or Redis client per request is a classic way to melt a server at EY scale. We initialized pools once at startup and injected them via FastAPI dependencies:
+Creating a new SQLAlchemy engine or Redis client per request is a classic way to melt a server at scale. Initialize pools once at startup and inject them via FastAPI dependencies:
 
 ```python
 @app.on_event("startup")
@@ -94,21 +94,21 @@ A `/health` that always returns 200 is useless during an incident. Ours verified
 - Model warm status (weights loaded, not just process up)
 - Optional: queue consumer lag below a ceiling
 
-Kubernetes used `/health/ready` for traffic routing and `/health/live` for restarts. During IBM-adjacent consulting engagements, auditors asked what "healthy" meant. Having a documented checklist saved repeated explanation cycles.
+Use `/health/ready` for Kubernetes traffic routing and `/health/live` for restarts. Sooner or later someone asks what "healthy" means; a documented checklist saves repeated explanation cycles.
 
 ## Observability at the boundary
 
-Every request carried a correlation ID from the field agent through ingestion. We logged:
+Every request should carry a correlation ID from the caller through ingestion. Log:
 
 - Queue wait time vs inference time (separates capacity from model slowness)
 - Parse failure rate by OS and agent version
 - 503 rate and Retry-After effectiveness
 
-That split mattered when security reviewers asked whether slowdowns were model quality issues or infrastructure saturation. The metrics answered before we did.
+That split matters when reviewers ask whether slowdowns are model quality issues or infrastructure saturation. The metrics answer before you have to.
 
 ## What I would do differently
 
 Earlier investment in structured job results (schema-versioned payloads) would have reduced ETL drift pain when connector types multiplied. I would also standardize on OpenTelemetry from day one—correlation IDs in logs were good; distributed traces across agent → API → worker → DB would have been better.
 
 
-> **Takeaway:** FastAPI gives you a clean async shell for ML APIs. Production concurrency lives in the boundaries: thread pools for CPU work, queues for long jobs, back-pressure when you are full, singleton pools, and health checks that reflect reality. At Atom scale, those boundaries mattered more than framework choice.
+> **Takeaway:** FastAPI gives you a clean async shell for ML APIs. Production concurrency lives in the boundaries: thread pools for CPU work, queues for long jobs, back-pressure when you are full, singleton pools, and health checks that reflect reality. At scale, those boundaries matter more than framework choice.

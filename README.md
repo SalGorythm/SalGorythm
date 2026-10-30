@@ -6,40 +6,35 @@
 
 **Senior Data Scientist · AI/ML Engineer** · New Delhi, India
 
-I build production LLM systems and data pipelines. At **IBM** I work on WatsonX, multi-agent orchestration (LangChain, AutoGen), and evaluation tooling. Before that, at **EY**, I shipped endpoint automation across **25,000+ machines** and several cybersecurity products. **IBM Tech 2026** awardee.
+Nine years of building software, most recently LLM systems and data pipelines. Outside work I stay curious: I write about what I learn, build browser experiments, and make small local-first apps as a weekend hobby.
 
-**[salgorythm.com](https://salgorythm.com)** · [LinkedIn](https://www.linkedin.com/in/salgorythm/) · [Email](mailto:Salman_Akhatar@yahoo.in) · [CV (PDF)](https://salgorythm.com/cv/sds-salman-akhatar-cv.pdf)
+**[salgorythm.com](https://salgorythm.com)** · [LinkedIn](https://www.linkedin.com/in/salgorythm/) · [Email](mailto:Salman_Akhatar@yahoo.in)
 
----
-
-## Now
-
-- **IBM** — super agents, evaluation agents, staffing tooling for consulting workflows
-- **[Casette](https://casette-kohl.vercel.app/)** — offline audio player for iPhone (Files, Wi‑Fi, cloud import)
-- **[EasySalah](https://easy-salah.vercel.app/)** — local-first iOS utility (prayer times, Qibla, Hijri)
-- **This repo** — source for [salgorythm.com](https://salgorythm.com): Vite/React portfolio, browser tools, sandbox demos
+> Personal repository. Views, articles, apps and projects here are my own, made in my own time, and are not affiliated with or endorsed by any employer, past or present.
 
 ---
 
-## Selected work
+## Weekend hobbies
 
-**IBM · Super Agents** — Multi-agent orchestration on WatsonX patterns. LangChain/AutoGen, Granite/Llama/Claude routing, eval gates before production.
+Small apps I build in my own time — no ads, no accounts, data stays on the device. Each has a page, privacy policy and support at [salgorythm.com/apps](https://salgorythm.com/apps).
 
-**EY · Atom Bot & Server** — Cross-OS bot on **25,000+ machines**; backend handling concurrent requests; FastAPI + PostgreSQL ETL. **~40% less** manual data handling.
+- **[Casette](https://salgorythm.com/apps/casette)** — offline audio player for iPhone
+- **[EasySalah](https://salgorythm.com/apps/easysalah)** — prayer times, Qibla and Hijri dates
+- **[WakeUp](https://salgorythm.com/apps/wakeup)** — an alarm you turn off by getting up
+- **[Vaultly](https://salgorythm.com/apps/vaultly)** — a calm, local document vault
+- **[Pickwheel](https://salgorythm.com/apps/pickwheel)** — a fair, ad-free random picker
 
-**EY · Quark** — Microservices for agentless discovery, patch rollout, compliance. Flask/FastAPI, Ansible. **+20% uptime** from automated misconfiguration fixes.
+## Curiosity
 
-**EY · Quasar & Qbot** — NL→SQL (Ollama, Mistral 7B) and document Q&A (ChromaDB). **30% faster** reports; **70% faster** doc queries with page-level citations.
-
-**TELUS · Resume Finder** — NLP matching for **20,000+** resumes against job descriptions. **90%** relevance accuracy; **85% less** manual screening.
-
-More detail: [extended project catalog](docs/projects.md) · [live demos on the site](https://salgorythm.com/#live-demos)
+- **[Writing](https://salgorythm.com/writing)** — prompts, agents, evals, data pipelines, and tools
+- **[Sandbox](https://salgorythm.com/sandbox)** — browser games and canvas labs
+- **[Tools](https://salgorythm.com/tools)** — PDF unlock and B&W converter that never upload your files
 
 ---
 
 ## Stack
 
-Python · FastAPI · Django · PostgreSQL · Confluent · Kafka · LangChain · AutoGen · Redis · Docker · Airflow · React · TypeScript · AWS / Azure / GCP
+Python · FastAPI · Django · PostgreSQL · Kafka · LangChain · AutoGen · Redis · Docker · Airflow · React · TypeScript
 
 ---
 

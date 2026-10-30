@@ -1,4 +1,4 @@
-Regulated readers do not want "the model said so." They want page-level citations that map to source documents—especially in cybersecurity and consulting contexts where an answer without a traceable source is worse than no answer at all. I have shipped RAG pipelines where audit teams rejected features not because retrieval was wrong, but because citations could not survive a second look. This article is what I wish someone had handed me before the first security review: chunk boundaries, metadata discipline, and output contracts that keep citations honest under pressure.
+Regulated readers do not want "the model said so." They want page-level citations that map to source documents—especially in cybersecurity and compliance contexts where an answer without a traceable source is worse than no answer at all. I have seen RAG features rejected not because retrieval was wrong, but because citations could not survive a second look. This article is what I wish someone had handed me before the first security review: chunk boundaries, metadata discipline, and output contracts that keep citations honest under pressure.
 
 ## Why page-level citations fail in production
 

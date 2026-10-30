@@ -1,4 +1,4 @@
-Casette and EasySalah are local-first: calculations, media, and preferences stay on the device by default. IBM WatsonX agents I have shipped often cannot work that way—enterprise corpus, centralized governance, and cross-user workflows pull compute and data toward the cloud. The engineering bar is the same in both worlds: clear privacy copy, minimal telemetry, predictable failure modes, and tests that match what you promise. What changes is the **trust boundary**—where data may go, who can see it, and what happens when the network disappears.
+Casette and EasySalah are local-first: calculations, media, and preferences stay on the device by default. Enterprise AI agents often cannot work that way—enterprise corpus, centralized governance, and cross-user workflows pull compute and data toward the cloud. The engineering bar is the same in both worlds: clear privacy copy, minimal telemetry, predictable failure modes, and tests that match what you promise. What changes is the **trust boundary**—where data may go, who can see it, and what happens when the network disappears.
 
 Choosing the boundary deliberately matters more than picking a trendy architecture label.
 
@@ -23,13 +23,13 @@ No network call required for the core path.
 
 ## Cloud agents win when
 
-**Cross-user or enterprise corpus is required.** Staffing estimation over historical engagements, RAG over internal policy libraries, or fraud models trained on pooled signals—these need data centrally indexed with access control.
+**Cross-user or enterprise corpus is required.** Estimation over historical records, RAG over internal policy libraries, or fraud models trained on pooled signals—these need data centrally indexed with access control.
 
 **Governance centralization is mandatory.** Model allowlists, prompt versioning, audit logs, RBAC, and retention policies are easier to enforce at a gateway than on thousands of unmanaged laptops.
 
-**Model size and update cadence exceed device capability.** On-device LLMs are improving, but many enterprise workflows still route through hosted Granite, Claude, or Llama endpoints with ops teams managing lifecycle.
+**Model size and update cadence exceed device capability.** On-device LLMs are improving, but many enterprise workflows still route through hosted model endpoints with ops teams managing lifecycle.
 
-**Human-in-the-loop review spans teams.** A manager approving agent-drafted staffing plans is a workflow system, not a phone app feature—notifications, audit trails, and SSO belong in the cloud.
+**Human-in-the-loop review spans teams.** A manager approving agent-drafted plans is a workflow system, not a phone app feature—notifications, audit trails, and SSO belong in the cloud.
 
 ## Same bar, different boundary
 
@@ -49,13 +49,13 @@ Not every feature is all-local or all-cloud.
 
 - **Local execution, cloud optional sync.** User-owned data syncs via iCloud or explicit export—never silent exfiltration.
 - **Cloud for enrichment, local for core.** A future feature might fetch publicly available metadata while keeping user files local—state the boundary in UI.
-- **Enterprise agents with local redaction gateways.** Some clients preprocess documents on-prem before sending excerpts to hosted models. Trust boundary shifts but does not disappear.
+- **Enterprise agents with local redaction gateways.** Some organizations preprocess documents on-prem before sending excerpts to hosted models. Trust boundary shifts but does not disappear.
 
-Hybrids fail when teams hand-wave which bytes cross the line. Document data flows like you would for WatsonX audit—not like a consumer app footnote.
+Hybrids fail when teams hand-wave which bytes cross the line. Document data flows like you would for an enterprise audit—not like a consumer app footnote.
 
-## How this informed my IBM vs SalGorythm split
+## Day job vs weekend apps
 
-At IBM, I optimize for governance, eval gates, and model routing across tenants. On SalGorythm apps, I optimize for offline reliability and zero account pressure. The skills transfer—schema validation, structured prompts, test harnesses—but the non-functional requirements invert. Confusing the two produces either over-engineered prayer apps or under-governed enterprise agents.
+Enterprise AI work optimizes for governance, eval gates, and model routing across tenants. My weekend apps optimize for offline reliability and zero account pressure. The skills transfer—schema validation, structured prompts, test harnesses—but the non-functional requirements invert. Confusing the two produces either over-engineered prayer apps or under-governed enterprise agents.
 
 
 > **Takeaway:** Choose the trust boundary deliberately. Then engineer honestly inside it—users, auditors, and App Store reviewers can tell when copy and behavior disagree. Local-first and cloud agents are not opposites; they are different answers to the same question: where does trust live in your system?

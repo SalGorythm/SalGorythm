@@ -1,19 +1,21 @@
 import { Link, useLocation } from 'react-router-dom'
 import { KEYBOARD_SECTION_JUMPS } from '../constants/sections'
+import { ARTICLES } from '../data/articles'
+import { PORTFOLIO_APPS } from '../data/myApps'
 import { useScrollStore } from '../store/scrollStore'
 import { SocialLinks } from './SocialLinks'
 
 const LEFT_METRICS = [
-  { label: 'IBM Tech', value: '2026' },
-  { label: 'Scale', value: '25k+' },
   { label: 'Years', value: '9' },
+  { label: 'Hobby apps', value: String(PORTFOLIO_APPS.length) },
+  { label: 'Articles', value: String(ARTICLES.length) },
 ] as const
 
 const QUICK_LINKS = [
   { href: '/writing', label: 'Writing' },
   { href: '/sandbox', label: 'Sandbox' },
   { href: '/tools', label: 'Tools' },
-  { href: '/#resume', label: 'Résumé' },
+  { href: '/apps', label: 'Hobbies' },
 ] as const
 
 /** Fills left/right viewport gutters on wide screens — social, metrics, quick nav. */

@@ -1,6 +1,6 @@
 # Cyber-tech portfolio (Vite + React + Tailwind)
 
-Single-page portfolio with glassmorphism nav, timeline, skills terminal, project tabs, client-side recruiter chat simulator, and Web3Forms-ready contact.
+Single-page portfolio with glassmorphism nav, timeline, skills terminal, weekend hobby apps with privacy pages, a client-side FAQ chat, and Web3Forms-ready contact.
 
 ## Scripts
 

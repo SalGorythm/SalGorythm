@@ -2,19 +2,13 @@
 export const SECTION_IDS = [
   'hero',
   'credibility',
-  'case-studies',
-  'live-demos',
-  'engineering-log',
   'about',
   'experience',
-  'projects',
   'skills',
+  'live-demos',
   'my-apps',
-  'objections',
-  'resume',
   'contact',
-  'apps',
-  'recruiter',
+  'ask',
 ] as const
 
 export type SectionId = (typeof SECTION_IDS)[number]
@@ -23,22 +17,17 @@ export type SectionId = (typeof SECTION_IDS)[number]
 export const SCENE_SECTION_IDS = [
   'hero',
   'credibility',
-  'case-studies',
-  'live-demos',
-  'engineering-log',
   'about',
   'experience',
-  'projects',
   'skills',
+  'live-demos',
   'my-apps',
-  'objections',
-  'resume',
   'contact',
 ] as const
 
 export type SceneSectionId = (typeof SCENE_SECTION_IDS)[number]
 
-/** Keyboard shortcuts 1–9 for major sections (4 opens /writing). */
+/** Keyboard shortcuts 1–8 for major sections (4 opens /writing). */
 export const KEYBOARD_SECTION_JUMPS: {
   key: string
   id?: SectionId
@@ -46,14 +35,13 @@ export const KEYBOARD_SECTION_JUMPS: {
   label: string
 }[] = [
   { key: '1', id: 'hero', label: 'Home' },
-  { key: '2', id: 'case-studies', label: 'Case studies' },
-  { key: '3', id: 'live-demos', label: 'Live demos' },
+  { key: '2', id: 'about', label: 'About' },
+  { key: '3', id: 'experience', label: 'Experience' },
   { key: '4', path: '/writing', label: 'Writing' },
-  { key: '5', id: 'experience', label: 'Experience' },
-  { key: '6', id: 'projects', label: 'Projects' },
+  { key: '5', id: 'skills', label: 'Skills' },
+  { key: '6', id: 'live-demos', label: 'Curiosity' },
   { key: '7', id: 'my-apps', label: 'Hobbies' },
-  { key: '8', id: 'resume', label: 'Résumé' },
-  { key: '9', id: 'contact', label: 'Contact' },
+  { key: '8', id: 'contact', label: 'Contact' },
 ]
 
 export const WRITING_TAGS = [

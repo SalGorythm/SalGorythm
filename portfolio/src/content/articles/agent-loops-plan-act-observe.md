@@ -1,4 +1,4 @@
-The plan-act-observe loop is the most seductive pattern in agent design. It feels like how senior engineers work: think, do, check, repeat. It is also the fastest way to burn a month's token budget in an afternoon if you treat "iterate until done" as a product requirement. At IBM, a WatsonX staffing assistant once looped seventeen times on a single ambiguous brief because nothing in the stack told it to stop. The model kept rewriting its plan instead of executing the next step. That incident is why iteration caps, token budgets, and explicit stop conditions are first-class config in every agent I ship—at IBM, at EY, and in side projects.
+The plan-act-observe loop is the most seductive pattern in agent design. It feels like how senior engineers work: think, do, check, repeat. It is also the fastest way to burn a month's token budget in an afternoon if you treat "iterate until done" as a product requirement. Give an agent an ambiguous brief and nothing in the stack that tells it to stop, and it will happily rewrite its plan a dozen times instead of executing the next step. That failure mode is why iteration caps, token budgets, and explicit stop conditions are first-class config in every agent I build.
 
 ## The loop I actually run in production
 
@@ -88,7 +88,7 @@ After each act phase, summarize:
 - Key fields extracted (structured)
 - Whether the step satisfied its acceptance check
 
-Do not pass full JSON responses from enterprise APIs into the plan prompt. At EY, we stored full payloads in S3 with a pointer; the observe summary carried only decision-relevant fields.
+Do not pass full JSON responses from enterprise APIs into the plan prompt. Store full payloads in object storage with a pointer; the observe summary should carry only decision-relevant fields.
 
 ```python
 def observe(tool_result: dict, max_tokens: int = 350) -> str:
@@ -96,9 +96,9 @@ def observe(tool_result: dict, max_tokens: int = 350) -> str:
     return summary  # fed to next iteration, not raw result
 ```
 
-### Budget accounting across WatsonX routes
+### Budget accounting across model routes
 
-When routing Claude for planning and Granite for observation summaries, account tokens **per request**, not per model. A cheap observe model still adds up across five iterations. Export `tokens_used` and `remaining_budget` on every span so cost dashboards match agent behavior.
+When routing a larger model for planning and a smaller one for observation summaries, account tokens **per request**, not per model. A cheap observe model still adds up across five iterations. Export `tokens_used` and `remaining_budget` on every span so cost dashboards match agent behavior.
 
 ## Stop conditions beyond counters
 
@@ -123,9 +123,9 @@ if observations_similar(state.last_two_obs):
 
 Allow a single replan when observe detects a failed assumption ("retrieval returned zero chunks"). Increment `replans_used`; on second failure, stop. Models love to replan—it feels productive. Your invoice disagrees.
 
-## What we learned after the seventeen-loop incident
+## What to measure
 
-We added a dashboard: p50/p95 iterations, token burn per successful task, and "finalize_partial rate." Spikes in partial finalization often meant bad retrieval or vague user input—not broken models. That shifted work from prompt tweaking to upstream UX and chunk quality.
+Add a dashboard: p50/p95 iterations, token burn per successful task, and "finalize_partial rate." Spikes in partial finalization often mean bad retrieval or vague user input—not broken models. That shifts work from prompt tweaking to upstream UX and chunk quality.
 
 
-> **Takeaway:** Plan-act-observe works in production when the **runner** owns control flow and the **model** owns bounded reasoning inside each phase. Cap iterations, cap tools, cap tokens, cap time, compress observations, and finalize honestly when brakes engage. The loop is powerful; the brakes are what make it deployable on WatsonX Monday morning without finance calling Tuesday.
+> **Takeaway:** Plan-act-observe works in production when the **runner** owns control flow and the **model** owns bounded reasoning inside each phase. Cap iterations, cap tools, cap tokens, cap time, compress observations, and finalize honestly when brakes engage. The loop is powerful; the brakes are what make it deployable on Monday morning without finance calling on Tuesday.

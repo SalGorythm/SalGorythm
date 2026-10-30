@@ -21,7 +21,7 @@ export const ARTICLES: ArticleMeta[] = [
     excerpt:
       'Rules files, scoped prompts, and verify-before-merge — the real loop I use to ship with Cursor without trusting the demo.',
     shareBlurb:
-      'My real Cursor shipping loop: short rules files, narrow prompts, and verify-before-merge. How I keep production diffs reviewable at IBM/EY scale—not demo-speed chaos.',
+      'My real Cursor shipping loop: short rules files, narrow prompts, and verify-before-merge. How I keep production diffs reviewable—not demo-speed chaos.',
     readTime: 7,
     featured: true,
   },
@@ -30,20 +30,20 @@ export const ARTICLES: ArticleMeta[] = [
     title: 'Structured prompts that survive production',
     date: '2026-01-12',
     tags: ['prompting', 'claude'],
-    excerpt: 'Schema-first prompts, few-shot boundaries, and regression checks before prompts hit WatsonX routes.',
+    excerpt: 'Schema-first prompts, few-shot boundaries, and regression checks before prompts hit production routes.',
     shareBlurb:
-      'Prompts that wow in a demo often die in week one of production. Schema-first design, bounded few-shots, and regression gates before anything hits a WatsonX route.',
+      'Prompts that wow in a demo often die in week one of production. Schema-first design, bounded few-shots, and regression gates before anything hits a production route.',
     readTime: 8,
     featured: true,
   },
   {
     slug: 'agent-orchestration-langchain-autogen',
-    title: 'LangChain vs AutoGen: how I split orchestration at IBM',
+    title: 'LangChain vs AutoGen: how I split orchestration',
     date: '2026-01-28',
     tags: ['agents', 'python'],
     excerpt: 'When to use graph-style LangChain flows vs AutoGen group chat for enterprise agent delivery.',
     shareBlurb:
-      'LangChain graphs vs AutoGen group chat—how I actually split orchestration on IBM delivery so agents stay debuggable, governable, and shippable under review.',
+      'LangChain graphs vs AutoGen group chat—how I split orchestration so agents stay debuggable, governable, and shippable under review.',
     readTime: 9,
     featured: true,
   },
@@ -73,9 +73,9 @@ export const ARTICLES: ArticleMeta[] = [
     title: 'FastAPI patterns for concurrent ML APIs',
     date: '2026-02-20',
     tags: ['python', 'deployment'],
-    excerpt: 'Async endpoints, worker pools, and back-pressure on inference routes at EY scale.',
+    excerpt: 'Async endpoints, worker pools, and back-pressure on inference routes at scale.',
     shareBlurb:
-      'Async endpoints, worker pools, and back-pressure on inference routes—FastAPI patterns that held up under concurrent ML traffic at EY scale without silent overload.',
+      'Async endpoints, worker pools, and back-pressure on inference routes—FastAPI patterns that hold up under concurrent ML traffic without silent overload.',
     readTime: 7,
   },
   {
@@ -87,16 +87,6 @@ export const ARTICLES: ArticleMeta[] = [
     shareBlurb:
       'Kafka + Postgres for real-time AI features: Confluent pipelines feeding feature stores and agent context windows without turning every read into a batch job.',
     readTime: 8,
-  },
-  {
-    slug: 'multi-model-routing-claude-granite',
-    title: 'Routing Claude, Granite, and Llama in one orchestrator',
-    date: '2026-03-06',
-    tags: ['claude', 'agents'],
-    excerpt: 'Task-based routing, fallback chains, and cost caps across IBM model families.',
-    shareBlurb:
-      'One orchestrator, many models. Task-based routing, fallback chains, and cost caps across Claude, Granite, and Llama in a WatsonX-style production stack.',
-    readTime: 9,
   },
   {
     slug: 'cursor-workflow-senior-engineer',
@@ -129,45 +119,14 @@ export const ARTICLES: ArticleMeta[] = [
     readTime: 10,
   },
   {
-    slug: 'endpoint-automation-at-scale',
-    title: 'Lessons from 25k+ endpoint automation (Atom)',
-    date: '2026-04-02',
-    tags: ['python', 'deployment'],
-    excerpt: 'Cross-OS agents, concurrent API design, and ETL accuracy under security review.',
-    shareBlurb:
-      'Lessons from 25k+ endpoint automation on Atom: cross-OS agents, concurrent API design, and ETL accuracy that still held up under tough security review.',
-    readTime: 9,
-  },
-  {
     slug: 'local-first-apps-vs-cloud-agents',
     title: 'Local-first apps vs cloud agents: when privacy wins',
     date: '2026-04-10',
     tags: ['agents', 'deployment'],
-    excerpt: 'Casette and EasySalah vs WatsonX agents — different trust boundaries, same engineering bar.',
+    excerpt: 'My weekend apps vs enterprise AI agents — different trust boundaries, same engineering bar.',
     shareBlurb:
-      'Local-first apps vs cloud agents: when privacy wins. Casette and EasySalah vs WatsonX workflows—different trust boundaries, same production engineering bar.',
+      'Local-first apps vs cloud agents: when privacy wins. On-device weekend apps vs enterprise agent workflows—different trust boundaries, same engineering bar.',
     readTime: 7,
-  },
-  {
-    slug: 'watsonx-enterprise-integration',
-    title: 'WatsonX.ai integration lessons from IBM',
-    date: '2026-04-18',
-    tags: ['agents', 'deployment'],
-    excerpt: 'Governance, RBAC, and model lifecycle hooks when embedding WatsonX in consulting workflows.',
-    shareBlurb:
-      'WatsonX.ai in enterprise consulting: governance, RBAC, and model lifecycle hooks that pass security review without freezing delivery velocity on client work.',
-    readTime: 8,
-  },
-  {
-    slug: 'finding-jobs-via-claude',
-    title: 'Finding jobs via Claude',
-    date: '2026-04-25',
-    tags: ['claude', 'prompting', 'interview-prep'],
-    excerpt:
-      'Eight structured prompts for positioning, resume work, LinkedIn, networking, interviews, and a 30-day sprint—without letting AI invent your career.',
-    shareBlurb:
-      'Eight structured Claude prompts for a real job search—positioning, resume, LinkedIn, networking, interviews—without letting AI invent your career story.',
-    readTime: 10,
   },
 ]
 

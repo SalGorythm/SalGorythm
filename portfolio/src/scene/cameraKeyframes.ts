@@ -1,4 +1,4 @@
-import type { SceneSectionId } from '../constants/sections'
+import { SCENE_SECTION_IDS, type SceneSectionId } from '../constants/sections'
 
 export type CameraKeyframe = {
   position: [number, number, number]
@@ -8,34 +8,15 @@ export type CameraKeyframe = {
 export const CAMERA_KEYFRAMES: Record<SceneSectionId, CameraKeyframe> = {
   hero: { position: [0, 1.8, 8.5], lookAt: [0, 0, 0] },
   credibility: { position: [0.6, 1.5, 7.8], lookAt: [0.2, 0, 0] },
-  'case-studies': { position: [-2.2, 2.2, 6.8], lookAt: [-1.2, 0.2, 0] },
-  'live-demos': { position: [2.4, 1.6, 6.5], lookAt: [1.6, 0, -0.5] },
-  'engineering-log': { position: [0.2, 2.8, 6.2], lookAt: [0, 0.5, 0] },
   about: { position: [0, 1.2, 7.5], lookAt: [0, 0, 0] },
   experience: { position: [-1.8, 1, 7.2], lookAt: [-0.9, -0.3, 0] },
-  projects: { position: [1.8, 2, 6.5], lookAt: [0.9, 0, 0] },
   skills: { position: [0, 3.2, 7], lookAt: [0, 0, 0] },
+  'live-demos': { position: [2.4, 1.6, 6.5], lookAt: [1.6, 0, -0.5] },
   'my-apps': { position: [2.2, 0.6, 7], lookAt: [1.3, 0.2, 0] },
-  objections: { position: [0, 0.8, 8.5], lookAt: [0, 0, 0] },
-  resume: { position: [0, 0.4, 9.5], lookAt: [0, 0, 0] },
   contact: { position: [0, 1.6, 6.5], lookAt: [0, 0.3, 0] },
 }
 
-export const SECTION_SCROLL_STOPS: SceneSectionId[] = [
-  'hero',
-  'credibility',
-  'case-studies',
-  'live-demos',
-  'engineering-log',
-  'about',
-  'experience',
-  'projects',
-  'skills',
-  'my-apps',
-  'objections',
-  'resume',
-  'contact',
-]
+export const SECTION_SCROLL_STOPS: SceneSectionId[] = [...SCENE_SECTION_IDS]
 
 /** Map scroll progress 0–1 to blended camera keyframe index. */
 export function progressToSectionIndex(progress: number, count: number) {

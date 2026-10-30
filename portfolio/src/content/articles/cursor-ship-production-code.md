@@ -1,4 +1,4 @@
-Most Cursor demos stop at “look what it generated.” Production work starts after that: will you merge it, and can you defend the diff on Monday? This is the workflow I actually use to ship—rules files, scoped prompts, and verify-before-merge—across IBM WatsonX delivery, EY-scale FastAPI services, and the local-first apps on this site. The tool is fast. The process is what keeps the repo honest.
+Most Cursor demos stop at “look what it generated.” Production work starts after that: will you merge it, and can you defend the diff on Monday? This is the workflow I actually use to ship—rules files, scoped prompts, and verify-before-merge—on production services and the local-first apps I build on weekends. The tool is fast. The process is what keeps the repo honest.
 
 ## The loop in one sentence
 
@@ -8,10 +8,10 @@ If any step is fuzzy, I stop and tighten scope. Speed without a gate is just fas
 
 ## Rules files: context you refuse to retype
 
-I keep project rules short and enforceable—constraints the agent should never violate, not a style essay. On a WatsonX route repo that might look like:
+I keep project rules short and enforceable—constraints the agent should never violate, not a style essay. On a model-routing service that might look like:
 
 ```text
-# .cursor/rules/watsonx-routes.mdc
+# .cursor/rules/model-routes.mdc
 - Do not invent model IDs; use constants in src/models/registry.py
 - Structured LLM responses must validate with Pydantic before return
 - Log prompt_hash, model_id, and parse_ok on every inference path
@@ -50,7 +50,7 @@ Three things make this work:
 2. **Explicit non-goals** — schemas and auth stay frozen unless the ticket says otherwise.
 3. **Done means verified** — “tests pass” beats “code looks right.”
 
-At EY, the expensive Cursor sessions were the vague ones: “make the bot gateway more resilient.” That produced wide diffs—timeouts, pool sizes, retry counts—each “reasonable,” none reviewable as a unit. Narrow prompts cut review time more than they cut generation time.
+The expensive Cursor sessions are the vague ones: “make the gateway more resilient.” That produces wide diffs—timeouts, pool sizes, retry counts—each “reasonable,” none reviewable as a unit. Narrow prompts cut review time more than they cut generation time.
 
 ## Verify before merge (non-negotiable)
 
@@ -71,7 +71,7 @@ mypy src/api/classify.py
 git diff --stat   # if this is scary, scope was wrong
 ```
 
-For agent routes at IBM, the gate included eval stubs or golden cases when the change touched prompts or routing. Cursor did not own that evidence—I attached it in the PR.
+For agent routes, the gate includes eval stubs or golden cases when the change touches prompts or routing. Cursor does not own that evidence—I attach it in the PR.
 
 ## A real shipping day (compressed)
 
@@ -91,7 +91,7 @@ I do not “trust the agent” at step 5. I trust the process that assumes the a
 
 **Ignore:** flashy multi-file refactors from a single vague prompt, auto-generated architecture diagrams nobody asked for, and merging because CI is green when you never opened the diff.
 
-Cursor is excellent at boilerplate, adapters, test expansion, and applying a pattern that already exists in the repo. It is a poor substitute for deciding whether Redis belongs on the hot path, or whether a prompt change needs an eval gate before WatsonX promotion.
+Cursor is excellent at boilerplate, adapters, test expansion, and applying a pattern that already exists in the repo. It is a poor substitute for deciding whether Redis belongs on the hot path, or whether a prompt change needs an eval gate before promotion.
 
 ## Copy-paste starter kit
 
@@ -114,4 +114,4 @@ Definition of done: local tests + I will read every changed line
 That is the whole craft. Not vibes. Not autopilot. A short loop you can defend in a standup.
 
 
-> **Takeaway:** Shipping with Cursor is a verification problem dressed up as a typing problem. Put invariants in rules, keep prompts narrow, and refuse to merge anything you have not read and run. Do that consistently and the tool makes you faster on production code—FastAPI at EY scale, WatsonX routes under governance, or a calm local-first portfolio—without turning your git history into a demo reel.
+> **Takeaway:** Shipping with Cursor is a verification problem dressed up as a typing problem. Put invariants in rules, keep prompts narrow, and refuse to merge anything you have not read and run. Do that consistently and the tool makes you faster on production code—FastAPI services, model routes under governance, or a calm local-first side project—without turning your git history into a demo reel.

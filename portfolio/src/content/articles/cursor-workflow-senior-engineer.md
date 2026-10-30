@@ -1,4 +1,4 @@
-Cursor is fast at generating code. That is exactly why senior engineers need a workflow that keeps architecture, invariants, and review standards in human hands. After nine years across IBM consulting delivery and EY-scale systems like Atom Bot, I treat Cursor as a scoped implementation accelerator—not a co-architect. The goal is shorter loops on well-defined edits, not autopilot on system design.
+Cursor is fast at generating code. That is exactly why senior engineers need a workflow that keeps architecture, invariants, and review standards in human hands. After nine years of building production systems, I treat Cursor as a scoped implementation accelerator—not a co-architect. The goal is shorter loops on well-defined edits, not autopilot on system design.
 
 ## Architecture stays offline first
 
@@ -22,7 +22,7 @@ The highest-signal Cursor sessions have narrow scope:
 
 Broad prompts—"make the API faster" or "clean up the agents folder"—produce wide diffs that are expensive to review and risky to merge. I use `@` file references and folder constraints so the model sees conventions, not the entire monorepo.
 
-At EY, wide agent-generated diffs were where subtle concurrency bugs hid: a pool size changed in one file, a timeout removed in another, both "reasonable" in isolation.
+Wide agent-generated diffs are where subtle concurrency bugs hide: a pool size changed in one file, a timeout removed in another, both "reasonable" in isolation.
 
 ## Test-first loops for anything that touches behavior
 
@@ -34,7 +34,7 @@ For logic changes—routing, parsing, auth, ETL transforms—I ask Cursor to wri
 3. Implement minimal code to pass; do not refactor unrelated modules
 ```
 
-Red-green-refactor still applies. Cursor accelerates typing; it does not replace the discipline of defining expected behavior. During IBM agent work, eval-style tests doubled as regression gates for prompt and routing changes—same mindset, different layer.
+Red-green-refactor still applies. Cursor accelerates typing; it does not replace the discipline of defining expected behavior. On agent work, eval-style tests double as regression gates for prompt and routing changes—same mindset, different layer.
 
 ## Review the diff like a junior's PR
 
@@ -57,7 +57,7 @@ Project-specific Cursor rules earn their keep on repeat patterns:
 - "All Kafka consumers manual-commit after Postgres write"
 - "Structured LLM outputs must pass pydantic validation before return"
 
-I keep rules short and factual—constraints, not essays. Skills (.cursor/skills or team-shared equivalents) bundle multi-step workflows: "add a new WatsonX route with eval stub and logging."
+I keep rules short and factual—constraints, not essays. Skills (.cursor/skills or team-shared equivalents) bundle multi-step workflows: "add a new model route with eval stub and logging."
 
 Rules reduce re-explaining context every session. They do not replace judgment on novel design forks.
 
@@ -69,7 +69,7 @@ I skip agentic generation for:
 - **First version of core domain models** — shape the nouns yourself
 - **Incident hotfixes under pressure** — minimal manual patch, then test; avoid thrash
 
-Cursor shines on boilerplate, test expansion, adapter layers, and documented patterns already in the codebase. It is weak when tradeoffs are political—data residency, client-specific SLAs, what auditors will ask—because those live outside the repo.
+Cursor shines on boilerplate, test expansion, adapter layers, and documented patterns already in the codebase. It is weak when tradeoffs are political—data residency, customer-specific SLAs, what auditors will ask—because those live outside the repo.
 
 ## Integration with the rest of the toolchain
 
@@ -81,7 +81,7 @@ My typical loop:
 4. PR with design note linked; CI eval gates for agent routes where applicable
 5. Human review from someone who owns the module
 
-At IBM, WatsonX governance meant model lineage and eval evidence traveled with the PR. Cursor did not generate that metadata—I did, in the description.
+Where governance matters, model lineage and eval evidence should travel with the PR. Cursor does not generate that metadata—you do, in the description.
 
 ## Signs the workflow is slipping
 
@@ -95,4 +95,4 @@ Watch for:
 When those show up, shrink scope, add constraints to the prompt, and return architecture decisions to yourself.
 
 
-> **Takeaway:** Cursor compresses implementation time for senior engineers who already know what to build. Keep system design, scope boundaries, and review standards human-owned. Scoped prompts, test-first loops, project rules, and disciplined diffs let you move faster without letting the tool drive architecture—whether you are shipping FastAPI at EY scale or agent orchestration inside IBM governance boundaries.
+> **Takeaway:** Cursor compresses implementation time for senior engineers who already know what to build. Keep system design, scope boundaries, and review standards human-owned. Scoped prompts, test-first loops, project rules, and disciplined diffs let you move faster without letting the tool drive architecture—whether you are shipping FastAPI services or agent orchestration inside governance boundaries.

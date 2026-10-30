@@ -1,5 +1,6 @@
 import { Bot, Send, User } from 'lucide-react'
 import { useCallback, useId, useRef, useState, type FormEvent } from 'react'
+import { PORTFOLIO_APPS } from '../data/myApps'
 
 type Role = 'user' | 'assistant'
 
@@ -11,8 +12,8 @@ const SUGGESTED: { q: string; match: string[] }[] = [
     match: ['tech stack', 'stack', 'technologies'],
   },
   {
-    q: 'Are you open to consulting?',
-    match: ['consulting', 'contract', 'freelance', 'availability'],
+    q: 'What do you build on weekends?',
+    match: ['weekend', 'hobby', 'hobbies', 'side project', 'apps'],
   },
   {
     q: 'Tell me about your local-first apps?',
@@ -29,7 +30,7 @@ const SUGGESTED: { q: string; match: string[] }[] = [
 ]
 
 const DEFAULT_REPLY =
-  'Good question. Details often sit under NDA in client work — try one of the suggested prompts for a straight answer on stack, availability, or how I ship LLMs.'
+  'Good question — I keep the details of my day job private. Try one of the suggested prompts about my stack, weekend apps, or how I think about LLMs.'
 
 function matchReply(input: string): string {
   const t = input.trim().toLowerCase()
@@ -40,13 +41,13 @@ function matchReply(input: string): string {
       if (row.q.startsWith('What is your tech stack')) {
         return (
           'Python and FastAPI for services, PostgreSQL and Confluent for data, TypeScript/React for product UI. ' +
-          'On AI: LangChain, AutoGen, RAG, eval harnesses, and WatsonX / Granite / Llama in enterprise settings.'
+          'On AI: LangChain, AutoGen, RAG, and evaluation harnesses across a range of model families.'
         )
       }
-      if (row.q.startsWith('Are you open to consulting')) {
+      if (row.q.startsWith('What do you build on weekends')) {
         return (
-          'Selective consulting where there is a clear sponsor and decision timeline. ' +
-          'Strongest fit: GenAI rollout, secure analytics, and cloud data pipelines.'
+          `Small local-first apps, as a personal hobby: ${PORTFOLIO_APPS.map((app) => app.name).join(', ')}. ` +
+          'No accounts, no ads, nothing leaves the phone. They are side projects, separate from my day job.'
         )
       }
       if (row.q.startsWith('Tell me about your local-first')) {
@@ -64,7 +65,7 @@ function matchReply(input: string): string {
       if (row.q.startsWith('What is your experience with cloud')) {
         return (
           'Idempotent ingestion, schema contracts, orchestration (Airflow and similar), and analytics layers on top. ' +
-          'I have shipped on AWS, Azure, and GCP — usually with least-privilege access and cost visibility built in.'
+          'I have worked with AWS, Azure, and GCP — usually with least-privilege access and cost visibility built in.'
         )
       }
     }
@@ -85,7 +86,7 @@ export function AIChatSim() {
     {
       id: nextId(),
       role: 'assistant',
-      text: 'Scripted FAQ — runs in your browser, no API keys. Ask about stack, consulting, local-first work, or LLM delivery.',
+      text: 'Scripted FAQ — runs in your browser, no API keys. Ask about my stack, weekend apps, local-first work, or LLMs.',
     },
   ])
   const endRef = useRef<HTMLDivElement | null>(null)
@@ -107,22 +108,21 @@ export function AIChatSim() {
 
   return (
     <section
-      id="recruiter"
-      aria-labelledby="recruiter-heading"
+      id="ask"
+      aria-labelledby="ask-heading"
       className="scroll-mt-28 border-b border-cyan-500/10 py-20"
     >
       <div className="page-container">
         <header className="mb-8 max-w-2xl">
           <p className="text-sm font-medium text-purple-400/80">Runs locally</p>
           <h2
-            id="recruiter-heading"
+            id="ask-heading"
             className="mt-2 text-3xl font-semibold tracking-tight text-slate-50 sm:text-4xl"
           >
-            Ask about my work
+            Ask me something
           </h2>
           <p className="mt-3 text-slate-300">
-            Keyword-matched answers for common questions. Swap in a real backend when you want live
-            model calls.
+            Keyword-matched answers to common questions — it runs entirely in your browser.
           </p>
         </header>
 

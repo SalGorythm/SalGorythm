@@ -17,36 +17,29 @@ export type ExperienceRole = {
   bullets: string[]
   tags: string[]
   icon: LucideIcon
-  /** Optional brand treatment in the detail panel header. */
-  wordmark?: 'ibm'
 }
 
+/**
+ * Public-level descriptions only: employer, title, dates, and the kind of work.
+ * Keep internal project names, team or client names, and internal metrics out of this file.
+ */
 export const EXPERIENCE_ROLES: ExperienceRole[] = [
   {
     id: 'ibm',
     org: 'IBM',
     title: 'Senior Data Scientist · AI/ML Engineer',
     period: 'Feb 2025 — Present',
-    wordmark: 'ibm',
     summary:
-      'Global IBM Tech 2026 awardee leading GenAI and agentic architecture for enterprise systems — WatsonX.ai-class integrations, production LLM deployments (including Granite and Llama family models), and full-stack ML engineering with a local-first, privacy-conscious mindset.',
+      'Working on generative AI for enterprise use: LLM integration, agentic workflows, evaluation, and the Python services and data pipelines around them.',
     bullets: [
-      'Selected as a Global IBM Tech 2026 awardee; invited to collaborate with IBM’s senior technical community in San Diego on enterprise AI architecture.',
-      'Architecting end-to-end agentic AI workflows using LangChain and AutoGen, reducing manual processing load for core business units.',
-      'Leading high-performance backends with FastAPI and Django, integrating LLM-based solutions with enterprise-grade security and governance controls.',
-      'Driving WatsonX.ai-aligned integrations and multi-model orchestration across Granite, Llama, and related enterprise model stacks.',
-      'Designing and optimizing scalable data pipelines with Confluent and PostgreSQL, reducing query latency for real-time AI workloads.',
-      'Built agent-based staffing tooling for IBM Consulting — significantly reducing manual estimation and staffing effort for the Solutioning team.',
-      'Mentoring engineers and aligning technical strategy across high-stakes programs.',
+      'Recognised as a Global IBM Tech 2026 awardee.',
+      'Design and build agentic AI workflows with LangChain and AutoGen.',
+      'Build Python backends with FastAPI and Django that integrate LLMs with security and governance controls.',
+      'Work with watsonx.ai and multi-model setups across open and commercial model families.',
+      'Build data pipelines on Kafka (Confluent) and PostgreSQL for real-time AI workloads.',
+      'Mentor engineers.',
     ],
-    tags: [
-      'IBM Tech 2026',
-      'WatsonX.ai',
-      'Granite / Llama',
-      'Agentic AI',
-      'FastAPI',
-      'Confluent',
-    ],
+    tags: ['Generative AI', 'Agentic AI', 'LLMs', 'FastAPI', 'Kafka', 'PostgreSQL'],
     icon: Cpu,
   },
   {
@@ -55,17 +48,17 @@ export const EXPERIENCE_ROLES: ExperienceRole[] = [
     title: 'Senior Consultant',
     period: 'Nov 2021 — Feb 2025',
     summary:
-      'Led delivery for SAM and cybersecurity solutions: secure APIs, large-scale automation, cloud deployments, and LLM-enabled products with quantified outcomes across ETL, monitoring, and client automation.',
+      'Built software asset management (SAM) and cybersecurity solutions: secure APIs, endpoint automation, ETL pipelines, cloud deployments, and early LLM-powered tools.',
     bullets: [
-      'Led end-to-end development and deployment of SAM and cybersecurity solutions, architecting cross-functional projects from requirements through delivery.',
-      'Built and deployed two LLM-powered chatbot wrappers supporting client automation initiatives.',
-      'Developed BOT software for automated cross-platform data extraction, deployed across 25,000+ machines; cut manual data-handling time by 40%.',
-      'Designed high-performance ETL pipelines processing millions of PostgreSQL records via FastAPI; boosted processing speed through Redis integration.',
-      'Implemented RBAC and token-based authentication for secure API middleware access.',
-      'Managed Docker-based deployments and supervised CI/CD pipelines on Azure VMs across dev, QA, and UAT environments.',
-      'Promoted to Senior Consultant (Q4 2023); recognized with Collaborative Extraordinaire (Q2 2024) and I Am Exceptional (Q1 2023).',
+      'Led development of SAM and cybersecurity solutions from requirements through delivery.',
+      'Built LLM-powered chatbot tools.',
+      'Built cross-platform data-collection software for large enterprise fleets.',
+      'Designed ETL pipelines with FastAPI, PostgreSQL and Redis.',
+      'Implemented RBAC and token-based authentication for API access.',
+      'Managed Docker-based deployments and CI/CD on Azure across dev, QA and UAT.',
+      'Promoted to Senior Consultant in 2023 and recognised with internal performance awards.',
     ],
-    tags: ['Cybersecurity', 'Azure CI/CD', 'PostgreSQL', 'LLM products', 'Docker'],
+    tags: ['Cybersecurity', 'ETL', 'PostgreSQL', 'Azure CI/CD', 'Docker', 'LLM tools'],
     icon: Building2,
   },
   {
@@ -78,7 +71,7 @@ export const EXPERIENCE_ROLES: ExperienceRole[] = [
     bullets: [
       'Engineered 5 high-impact Python applications using Flask and Django, automating data workflows to streamline operations.',
       'Built ETL pipelines with preprocessing for BigQuery and automated workflows via Airflow, improving pipeline efficiency.',
-      'Developed NLP-based Relevant Resume Finder ranking 20,000+ resumes against job descriptions — 90% relevance accuracy.',
+      'Built an NLP tool that ranks résumés against job descriptions.',
       'Partnered with architects and analysts on end-to-end delivery; established best practices for quality, cost-effective execution.',
       'Awarded Pat on the Back for outstanding performance (Q2 2019).',
     ],
@@ -121,7 +114,7 @@ export const EXPERIENCE_ROLES: ExperienceRole[] = [
     summary:
       'Promoted to Senior Software Engineer within two months; led CRM and platform modules that materially improved productivity, built crawlers and preprocessing pipelines, and led a pod of 5–7 engineers with architecture and product alignment.',
     bullets: [
-      'Designed and led two major projects plus multiple sub-modules (including CRM panels), contributing to ~85% gains in productivity and reporting efficiency.',
+      'Designed and led two major projects plus multiple sub-modules (including CRM panels), that improved team productivity and reporting.',
       'Promoted from Software Engineer to Senior Software Engineer within two months for strong execution.',
       'Built applications, CRMs, and APIs in Python and PHP with scalability and maintainability in mind.',
       'Implemented crawlers to ingest job listings with multi-level preprocessing for the platform.',

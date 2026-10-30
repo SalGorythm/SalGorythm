@@ -89,29 +89,9 @@ export function ExperienceTimeline() {
                         <p className="font-mono text-xs text-cyan-400/90">{role.period}</p>
                       </div>
                     </div>
-                    {role.wordmark === 'ibm' ? (
-                      <span
-                        className="flex items-center gap-1.5 rounded-md border border-slate-600/70 bg-gradient-to-b from-slate-800/90 to-slate-950/90 px-2.5 py-1.5 shadow-inner"
-                        aria-label="IBM"
-                      >
-                        <span className="flex flex-col gap-0.5" aria-hidden>
-                          {[9, 7, 9, 7, 9].map((w, i) => (
-                            <span
-                              key={i}
-                              className="block h-0.5 rounded-sm bg-white/90"
-                              style={{ width: `${w}px` }}
-                            />
-                          ))}
-                        </span>
-                        <span className="font-sans text-[11px] font-bold leading-none tracking-tight text-white">
-                          IBM
-                        </span>
-                      </span>
-                    ) : (
-                      <span className="rounded-md border border-slate-700/80 bg-slate-950/60 px-2 py-1 font-mono text-[10px] uppercase tracking-wider text-slate-400">
-                        {role.org}
-                      </span>
-                    )}
+                    <span className="rounded-md border border-slate-700/80 bg-slate-950/60 px-2 py-1 font-mono text-[10px] uppercase tracking-wider text-slate-400">
+                      {role.org}
+                    </span>
                   </div>
                   <p className="mt-5 text-sm leading-relaxed text-slate-300 sm:text-base">
                     {role.summary}

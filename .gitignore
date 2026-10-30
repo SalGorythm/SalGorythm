@@ -1,2 +1,8 @@
 .vercel
 .env*
+
+# Personal documents — keep local, never publish (repo is public)
+*.pdf
+*.docx
+*.xlsx
+portfolio/unlisted-articles/

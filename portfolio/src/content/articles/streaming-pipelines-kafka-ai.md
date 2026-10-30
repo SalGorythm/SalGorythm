@@ -1,4 +1,4 @@
-Real-time AI features fail quietly when the data path is batch-only. A RAG agent answering from yesterday's index is fine for internal docs; it is not fine when the question is "what changed on this endpoint in the last hour?" At IBM and in EY delivery work, the pattern that held up was Kafka (often Confluent-managed) feeding PostgreSQL feature tables and agent context windows—with explicit contracts on freshness, idempotency, and schema evolution.
+Real-time AI features fail quietly when the data path is batch-only. A RAG agent answering from yesterday's index is fine for internal docs; it is not fine when the question is "what changed on this endpoint in the last hour?" The pattern that holds up is Kafka (often Confluent-managed) feeding PostgreSQL feature tables and agent context windows—with explicit contracts on freshness, idempotency, and schema evolution.
 
 ## The shape of the pipeline
 
@@ -28,7 +28,7 @@ A simplified event for endpoint telemetry:
 
 ## Kafka topics and consumer design
 
-We partitioned by `machine_id` (or tenant ID in multi-client setups) so related events stayed ordered per entity. Global ordering is rarely worth the cost; per-entity ordering usually is.
+Partition by `machine_id` (or tenant ID in multi-tenant setups) so related events stay ordered per entity. Global ordering is rarely worth the cost; per-entity ordering usually is.
 
 Consumer groups scaled horizontally, but partition count set the ceiling. Rule of thumb: start with partitions ≈ expected peak consumer count, revisit after load tests.
 
@@ -73,7 +73,7 @@ Indexes matched read patterns: `(tenant_id, machine_id)` for point lookups, `(oc
 
 ## Feeding agent context windows
 
-Agents do not need every event. They need the right slice, fresh enough to be trustworthy. We built a `ContextAssembler` that:
+Agents do not need every event. They need the right slice, fresh enough to be trustworthy. Build a `ContextAssembler` that:
 
 1. Subscribed to change notifications (via NOTIFY/LISTEN or a lightweight poll on `updated_at`)
 2. Pulled the latest feature row plus last N events for the entity
@@ -91,7 +91,7 @@ Freshness SLA was explicit: "context reflects state within 60 seconds of event i
 
 ## Schema evolution without pipeline fires
 
-Fifteen connector types at EY meant schema drift was normal, not exceptional. Practices that worked:
+With many connector types, schema drift is normal, not exceptional. Practices that work:
 
 - **Versioned payloads** in every message (`schema_version`)
 - **Compat checks** in CI: old consumers must ignore unknown fields; new consumers must handle N-1 versions during rollout
@@ -108,7 +108,7 @@ Alert on:
 - PostgreSQL replication lag if reads hit replicas
 - Context assembly p95 latency (agent UX lives here)
 
-During IBM WatsonX-adjacent work, governance reviewers cared about lineage: which event produced which feature row cited in an agent answer. Correlation IDs from Kafka through DB to agent logs closed that loop.
+Governance reviewers care about lineage: which event produced which feature row cited in an agent answer. Correlation IDs from Kafka through DB to agent logs close that loop.
 
 
 > **Takeaway:** Kafka plus PostgreSQL is a practical backbone for real-time AI features—not because it is fashionable, but because it separates write-heavy ingestion from read-heavy serving while keeping per-entity ordering and idempotency explicit. Stream the deltas; materialize the features; assemble agent context with a freshness contract you can defend in audit.

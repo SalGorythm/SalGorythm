@@ -45,9 +45,9 @@ export function LiveDemoStrip() {
     >
       <div className="page-container">
         <SectionHeader
-          domain="Live demos"
-          title="Try it in the browser"
-          description="Interactive pieces from this site — sandbox games, canvas labs, and local-first tools."
+          domain="Curiosity"
+          title="Things I build to learn"
+          description="Experiments that run in your browser — sandbox games, canvas labs, and privacy-friendly tools. Built for fun and to understand how things work."
           id="live-demos-heading"
           className="mb-10"
         />

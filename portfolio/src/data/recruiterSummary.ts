@@ -1,16 +1,13 @@
 export const RECRUITER_SUMMARY = {
   name: 'Salman Akhatar',
   /** Header subtitle — keep on one line; hidden on small viewports in Navbar. */
-  navSubtitle: 'Senior Data Scientist · IBM',
+  navSubtitle: 'Senior Data Scientist · AI/ML',
   title: 'Senior Data Scientist · AI/ML Engineer',
   tagline:
-    'I build production LLM systems and data pipelines — at IBM on WatsonX and agent workflows, before that at EY on endpoint automation across 25,000+ machines.',
-  stack: 'Python · FastAPI · PostgreSQL · Confluent · LangChain · AutoGen · WatsonX.ai',
-  outcome: 'IBM Tech 2026 awardee · ~40% less manual data handling on the Atom fleet',
-  availability: 'Open to senior DS / AI-ML roles · New Delhi · Remote-friendly',
-  email: 'Salman_Akhatar@yahoo.in',
-  phone: '+91 971.758.7823',
+    'Nine years of building software, most recently LLM systems and data pipelines. Outside work I stay curious — writing, browser experiments, and small apps I build on weekends.',
+  stack: 'Python · FastAPI · PostgreSQL · Kafka · LangChain · AutoGen · React · TypeScript',
   location: 'New Delhi, India',
+  email: 'Salman_Akhatar@yahoo.in',
   github: 'https://github.com/SalGorythm',
   linkedin: 'https://www.linkedin.com/in/salgorythm/',
 } as const
