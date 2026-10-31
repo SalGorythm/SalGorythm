@@ -1,72 +1,52 @@
-import { useEffect, useState } from 'react'
-import { AIChatSim } from '../components/AIChatSim'
-import { AboutSection } from '../components/AboutSection'
-import { ContactForm } from '../components/ContactForm'
-import { CredibilityStrip } from '../components/CredibilityStrip'
-import { ExperienceTimeline } from '../components/ExperienceTimeline'
-import { Hero } from '../components/Hero'
-import { LiveDemoStrip } from '../components/LiveDemoStrip'
-import { MyAppsSection } from '../components/MyAppsSection'
-import { ScrollSection } from '../components/ScrollSection'
-import { SkillsTerminal } from '../components/SkillsTerminal'
+import { useEffect } from 'react'
+import { useLocation } from 'react-router-dom'
 import { SmoothScrollProvider } from '../components/SmoothScrollProvider'
+import { Channel } from '../components/space/Channel'
+import { CrewRecord } from '../components/space/CrewRecord'
+import { GroundControl } from '../components/space/GroundControl'
+import { LaunchSequence } from '../components/space/LaunchSequence'
+import { MissionLog } from '../components/space/MissionLog'
+import { PayloadBay } from '../components/space/PayloadBay'
+import { SpaceHero } from '../components/space/SpaceHero'
+import { Trajectory } from '../components/space/Trajectory'
+import { Transmissions } from '../components/space/Transmissions'
+import '../components/space/space.css'
 import { useKeyboardSectionJumps } from '../hooks/useKeyboardSectionJumps'
 import { usePortfolioScrollInit } from '../hooks/usePortfolioScrollInit'
 import { useReducedMotion } from '../hooks/useReducedMotion'
-import { useWebGLCapability } from '../hooks/useWebGLCapability'
-import { PortfolioSceneHost } from '../scene/PortfolioSceneHost'
 
-function useIsMobileViewport() {
-  const [mobile, setMobile] = useState(() =>
-    typeof window !== 'undefined' ? window.innerWidth < 1024 : true,
-  )
+/** Scrolls to `/#section` after arriving from another route (e.g. navbar links on /writing). */
+function useHashScroll() {
+  const { hash } = useLocation()
   useEffect(() => {
-    const onResize = () => setMobile(window.innerWidth < 1024)
-    window.addEventListener('resize', onResize, { passive: true })
-    return () => window.removeEventListener('resize', onResize)
-  }, [])
-  return mobile
+    if (!hash) return
+    const id = decodeURIComponent(hash.slice(1))
+    const t = window.setTimeout(() => {
+      document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    }, 60)
+    return () => window.clearTimeout(t)
+  }, [hash])
 }
 
 export function PortfolioPage() {
   const reducedMotion = useReducedMotion()
-  const { webglEnabled } = useWebGLCapability(reducedMotion)
-  usePortfolioScrollInit({ reducedMotion, webglEnabled })
+  usePortfolioScrollInit({ reducedMotion, webglEnabled: false })
   useKeyboardSectionJumps(true)
-
-  const isMobile = useIsMobileViewport()
+  useHashScroll()
 
   return (
     <SmoothScrollProvider enabled>
-      <PortfolioSceneHost forceFallback={isMobile || reducedMotion || !webglEnabled} />
-
-      <div className="relative z-10">
-        <main>
-          <Hero />
-          <ScrollSection sectionId="credibility">
-            <CredibilityStrip />
-          </ScrollSection>
-          <ScrollSection sectionId="about">
-            <AboutSection />
-          </ScrollSection>
-          <ScrollSection sectionId="experience">
-            <ExperienceTimeline />
-          </ScrollSection>
-          <ScrollSection sectionId="skills">
-            <SkillsTerminal />
-          </ScrollSection>
-          <ScrollSection sectionId="live-demos">
-            <LiveDemoStrip />
-          </ScrollSection>
-          <ScrollSection sectionId="my-apps">
-            <MyAppsSection />
-          </ScrollSection>
-          <ScrollSection sectionId="contact">
-            <ContactForm />
-          </ScrollSection>
-          <AIChatSim />
-        </main>
-      </div>
+      <Trajectory />
+      <main className="space-home">
+        <SpaceHero />
+        <LaunchSequence />
+        <MissionLog />
+        <PayloadBay />
+        <Transmissions />
+        <GroundControl />
+        <CrewRecord />
+        <Channel />
+      </main>
     </SmoothScrollProvider>
   )
 }

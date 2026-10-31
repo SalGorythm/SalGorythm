@@ -96,10 +96,10 @@ export function AppCard({ app, index }: { app: PortfolioApp; index: number }) {
   const accent = appAccent(index)
   return (
     <li
-      className={`group relative overflow-hidden rounded-2xl border bg-slate-900/35 p-6 shadow-[0_0_40px_rgba(0,0,0,0.35)] backdrop-blur-md sm:p-8 ${
+      className={`group relative overflow-hidden rounded-2xl border bg-slate-900/35 p-6 backdrop-blur-md sm:p-8 ${
         accent === 'cyan'
-          ? 'border-cyan-500/25 shadow-[0_0_36px_rgba(34,211,238,0.08)]'
-          : 'border-purple-500/25 shadow-[0_0_36px_rgba(168,85,247,0.08)]'
+          ? 'border-cyan-500/25'
+          : 'border-purple-500/25'
       }`}
     >
       <div

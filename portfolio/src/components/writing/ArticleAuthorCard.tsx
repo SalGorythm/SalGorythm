@@ -39,7 +39,7 @@ export function ArticleAuthorCard() {
           className="inline-flex min-h-10 flex-1 items-center justify-center gap-2 rounded-lg border border-slate-600/80 bg-slate-950/60 px-4 py-2 text-sm font-medium text-slate-200 transition hover:border-purple-500/35 hover:text-purple-100 sm:flex-none"
         >
           <AppWindow className="h-3.5 w-3.5" aria-hidden />
-          Weekend hobbies
+          Weekend Hobbies
         </a>
       </div>
     </aside>

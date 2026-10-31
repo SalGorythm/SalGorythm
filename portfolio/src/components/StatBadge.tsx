@@ -41,7 +41,7 @@ export function VisitorCounter({ className = '' }: VisitorCounterProps) {
     <p
       className={`inline-flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.2em] text-slate-500 ${className}`}
     >
-      <span className="h-1.5 w-1.5 rounded-full bg-emerald-400/80 shadow-[0_0_8px_rgba(52,211,153,0.6)]" aria-hidden />
+      <span className="h-1.5 w-1.5 rounded-full bg-emerald-400/80" aria-hidden />
       <span>
         <span className="text-cyan-400/90">{formatStatCount(count)}</span> portfolio visits
       </span>

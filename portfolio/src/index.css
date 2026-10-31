@@ -3,20 +3,100 @@
 @import 'highlight.js/styles/github-dark.css' layer(base);
 
 @theme {
-  --font-family-sans: 'Space Grotesk', ui-sans-serif, system-ui, sans-serif;
-  --font-family-mono: 'JetBrains Mono', ui-monospace, monospace;
+  /*
+   * Space identity (Oct 2026 redesign).
+   * Fonts: Unbounded for headlines, Instrument Sans for text, Space Mono for telemetry labels.
+   */
+  --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'Space Mono', ui-monospace, Menlo, monospace;
+  --font-display: 'Unbounded', 'Arial Black', ui-sans-serif, sans-serif;
 
-  --color-cyber-cyan: #22d3ee;
-  --color-cyber-purple: #c084fc;
-  --color-cyber-void: #020617;
-  --color-cyber-ice: #e2e8f0;
-  --color-cyber-slate: #94a3b8;
-  --color-cyber-signal: #34d399;
+  /* Brand palette — use these names in new code. */
+  --color-space-void: #070814;
+  --color-space-deep: #0e1130;
+  --color-space-deep-2: #151a42;
+  --color-space-line: #2a2f5e;
+  --color-space-star: #edeae0;
+  --color-space-dim: #a3a6c4;
+  --color-space-gold: #e8b04b;
+  --color-space-mars: #e2553a;
+  --color-space-ice: #8fc8ff;
+  --color-space-aurora: #6fd3b8;
 
-  /* WCAG AA on #020617 — body ≥4.5:1, tertiary labels ≥4.5:1 where readable */
-  --color-text-body: #cbd5e1;
-  --color-text-secondary: #94a3b8;
-  --color-text-tertiary: #94a3b8;
+  /* Kept so the previous cargo homepage (components/home/) still compiles. */
+  --color-cargo-navy: #0e1a3a;
+  --color-cargo-navy-2: #1b2b57;
+  --color-cargo-orange: #ff5b23;
+  --color-cargo-yellow: #ffc53d;
+  --color-cargo-cobalt: #2346d8;
+  --color-cargo-teal: #0b7a65;
+  --color-cargo-red: #d7263d;
+  --color-cargo-paper: #f3f2ee;
+
+  /*
+   * Legacy palette remap. Older pages were written with slate / cyan / purple / emerald
+   * utilities; these overrides re-skin them into the space palette without touching markup:
+   *   slate   -> deep-space neutrals (slate-950 is the void background)
+   *   cyan    -> golden-record gold (primary accent)
+   *   purple  -> Neptune ice blue (secondary accent)
+   *   emerald -> aurora green (success / live)
+   */
+  --color-slate-50: #f4f2ea;
+  --color-slate-100: #edeae0;
+  --color-slate-200: #dcdae6;
+  --color-slate-300: #c3c4da;
+  --color-slate-400: #a3a6c4;
+  --color-slate-500: #8186ab;
+  --color-slate-600: #5f6392;
+  --color-slate-700: #3b4074;
+  --color-slate-800: #262b5a;
+  --color-slate-900: #151a42;
+  --color-slate-950: #070814;
+  --color-neutral-950: #070814;
+
+  --color-cyan-50: #fff7e6;
+  --color-cyan-100: #fcebc4;
+  --color-cyan-200: #f7d894;
+  --color-cyan-300: #f0c46a;
+  --color-cyan-400: #e8b04b;
+  --color-cyan-500: #e8b04b;
+  --color-cyan-600: #c9912c;
+  --color-cyan-700: #a0711e;
+  --color-cyan-800: #6e4d14;
+  --color-cyan-900: #45300c;
+  --color-cyan-950: #241906;
+
+  --color-purple-50: #eef6ff;
+  --color-purple-100: #dcedff;
+  --color-purple-200: #bfdfff;
+  --color-purple-300: #a7d4ff;
+  --color-purple-400: #8fc8ff;
+  --color-purple-500: #6fb4f5;
+  --color-purple-600: #4d93d8;
+  --color-purple-700: #3672ae;
+  --color-purple-800: #25507c;
+  --color-purple-900: #18344f;
+  --color-purple-950: #0c1a28;
+
+  --color-emerald-100: #d4f5ec;
+  --color-emerald-200: #a8ebd8;
+  --color-emerald-300: #86dfc6;
+  --color-emerald-400: #6fd3b8;
+  --color-emerald-500: #49bb9c;
+  --color-emerald-600: #2e9479;
+  --color-emerald-700: #1f6e5a;
+
+  --color-cyber-cyan: #e8b04b;
+  --color-cyber-purple: #8fc8ff;
+  --color-cyber-void: #070814;
+  --color-cyber-ice: #edeae0;
+  --color-cyber-slate: #a3a6c4;
+  --color-cyber-signal: #6fd3b8;
+
+  /* WCAG AA on the void #070814 */
+  --color-text-body: #dcdae6;
+  --color-text-secondary: #c3c4da;
+  --color-text-tertiary: #a3a6c4;
 
   --ease-premium: cubic-bezier(0.22, 1, 0.36, 1);
 
@@ -48,28 +128,35 @@
   }
 
   ::selection {
-    @apply bg-cyan-500/30 text-cyan-50;
+    background: var(--color-space-gold);
+    color: var(--color-space-void);
+  }
+
+  h1,
+  h2 {
+    font-family: var(--font-display);
+    letter-spacing: -0.02em;
+  }
+
+  :focus-visible {
+    outline-color: var(--color-space-gold);
   }
 }
 
 @utility glow-cyan {
-  box-shadow:
-    0 0 20px rgba(34, 211, 238, 0.15),
-    0 0 40px rgba(34, 211, 238, 0.05);
+  box-shadow: none;
 }
 
 @utility glow-purple {
-  box-shadow:
-    0 0 20px rgba(168, 85, 247, 0.12),
-    0 0 45px rgba(168, 85, 247, 0.06);
+  box-shadow: none;
 }
 
 @utility text-glow-cyan {
-  text-shadow: 0 0 24px rgba(34, 211, 238, 0.45);
+  text-shadow: none;
 }
 
 @utility text-glow-purple {
-  text-shadow: 0 0 20px rgba(192, 132, 252, 0.4);
+  text-shadow: none;
 }
 
 #root {
@@ -86,7 +173,7 @@
   z-index: 0;
   pointer-events: none;
   overflow: hidden;
-  background: #020617;
+  background: var(--color-space-void);
 }
 
 .ambient-bg__blobs {

@@ -62,7 +62,7 @@ export function Hero() {
             <div className="flex flex-wrap gap-3">
               <a
                 href="#about"
-                className="group inline-flex min-h-11 items-center gap-2 rounded-xl border border-cyan-500/40 bg-cyan-500/10 px-5 py-3 text-sm font-medium text-cyan-100 shadow-[0_0_24px_rgba(34,211,238,0.12)] transition hover:scale-[1.02] hover:border-cyan-400/60 hover:bg-cyan-500/15"
+                className="group inline-flex min-h-11 items-center gap-2 rounded-xl border border-cyan-500/40 bg-cyan-500/10 px-5 py-3 text-sm font-medium text-cyan-100 transition hover:scale-[1.02] hover:border-cyan-400/60 hover:bg-cyan-500/15"
               >
                 About me
                 <ArrowDownRight className="h-4 w-4 transition group-hover:translate-x-0.5 group-hover:translate-y-0.5" />

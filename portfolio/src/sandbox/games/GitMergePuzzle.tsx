@@ -189,7 +189,7 @@ export function GitMergePuzzle() {
                 cell === 0
                   ? 'border-slate-800/80 bg-slate-900/40 text-transparent'
                   : cell === -1
-                    ? 'border-red-500/50 bg-red-500/15 text-red-200 shadow-[0_0_12px_rgba(248,113,113,0.25)]'
+                    ? 'border-red-500/50 bg-red-500/15 text-red-200'
                     : cell === 1
                       ? 'border-cyan-500/40 bg-cyan-500/10 text-cyan-100'
                       : cell === 2

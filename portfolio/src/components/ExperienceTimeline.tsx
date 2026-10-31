@@ -16,7 +16,7 @@ export function ExperienceTimeline() {
           <p className="text-sm font-medium text-cyan-400/90">Experience</p>
           <h2
             id="experience-heading"
-            className="mt-2 text-3xl font-semibold tracking-tight text-slate-50 sm:text-4xl"
+            className="mt-2 font-display text-4xl font-extrabold leading-[1.04] tracking-tight text-white sm:text-6xl"
           >
             Where I&apos;ve worked
           </h2>
@@ -34,7 +34,7 @@ export function ExperienceTimeline() {
                   <span
                     className={`absolute -left-[5px] mt-1.5 h-2.5 w-2.5 rounded-full border-2 border-slate-950 transition ${
                       active
-                        ? 'bg-cyan-400 shadow-[0_0_12px_rgba(34,211,238,0.9)]'
+                        ? 'bg-cyan-400'
                         : 'bg-slate-600'
                     }`}
                     aria-hidden
@@ -44,7 +44,7 @@ export function ExperienceTimeline() {
                     onClick={() => setOpenId(role.id)}
                     className={`group w-full rounded-xl border px-4 py-3 text-left transition sm:px-5 sm:py-4 ${
                       active
-                        ? 'border-cyan-500/45 bg-cyan-500/10 shadow-[0_0_24px_rgba(34,211,238,0.1)]'
+                        ? 'border-cyan-500/45 bg-cyan-500/10'
                         : 'border-transparent bg-slate-900/30 hover:border-purple-500/25 hover:bg-slate-900/55'
                     }`}
                     aria-expanded={active}
@@ -75,7 +75,7 @@ export function ExperienceTimeline() {
                 <article
                   key={role.id}
                   id={`role-panel-${role.id}`}
-                  className="h-full rounded-2xl border border-purple-500/25 bg-slate-900/40 p-6 shadow-[0_0_35px_rgba(168,85,247,0.08)] backdrop-blur-md sm:p-8"
+                  className="h-full rounded-2xl border border-purple-500/25 bg-slate-900/40 p-6 backdrop-blur-md sm:p-8"
                   role="region"
                   aria-label={role.org}
                 >
@@ -100,7 +100,7 @@ export function ExperienceTimeline() {
                     {role.bullets.map((b) => (
                       <li key={b} className="flex gap-2.5 text-sm leading-relaxed text-slate-300">
                         <span
-                          className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-cyan-500/80 shadow-[0_0_8px_rgba(34,211,238,0.5)]"
+                          className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-cyan-500/80"
                           aria-hidden
                         />
                         <span>{b}</span>

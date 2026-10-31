@@ -9,7 +9,7 @@ import { getAppLegalDoc } from '../lib/appLegal'
 export function AppDetailPage() {
   const { appId } = useParams()
   const app = getAppById(appId)
-  usePageMeta(app?.name ?? 'Weekend hobbies', app?.tagline)
+  usePageMeta(app?.name ?? 'Weekend Hobbies', app?.tagline)
 
   if (!app) return <Navigate to="/apps" replace />
   const index = PORTFOLIO_APPS.indexOf(app)
@@ -23,7 +23,7 @@ export function AppDetailPage() {
           className="inline-flex items-center gap-1.5 font-mono text-xs uppercase tracking-wider text-slate-400 transition hover:text-cyan-200"
         >
           <ArrowLeft className="h-3.5 w-3.5" aria-hidden />
-          Weekend hobbies
+          Weekend Hobbies
         </Link>
 
         <header className="mt-6 flex flex-col gap-8 border-b border-cyan-500/15 pb-10 lg:flex-row lg:items-start lg:justify-between">
@@ -31,7 +31,7 @@ export function AppDetailPage() {
             <div className="flex items-center gap-5">
               <AppIcon app={app} index={index} size="lg" />
               <div>
-                <h1 className="text-3xl font-semibold tracking-tight text-slate-50 sm:text-4xl">{app.name}</h1>
+                <h1 className="font-display text-4xl font-extrabold leading-[1.04] tracking-tight text-white sm:text-5xl">{app.name}</h1>
                 <p className="mt-1 font-mono text-[11px] uppercase tracking-[0.2em] text-slate-500">
                   {app.category} · {app.platforms.join(' · ')}
                 </p>

@@ -17,7 +17,7 @@ export function MyAppsSection() {
             <p className="text-sm font-medium text-emerald-400/90">Weekend hobbies</p>
             <h2
               id="my-apps-heading"
-              className="mt-2 text-3xl font-semibold tracking-tight text-slate-50 sm:text-4xl"
+              className="mt-2 font-display text-4xl font-extrabold leading-[1.04] tracking-tight text-white sm:text-6xl"
             >
               Apps I build on weekends
             </h2>

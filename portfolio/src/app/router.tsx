@@ -7,6 +7,7 @@ import { SupportPage } from '../pages/SupportPage'
 import { AppsIndexPage } from '../pages/AppsIndexPage'
 import { AppDetailPage } from '../pages/AppDetailPage'
 import { AppLegalPage } from '../pages/AppLegalPage'
+import { GoldenRecordPage } from '../pages/GoldenRecordPage'
 
 const ToolsPage = lazy(() => import('../pages/ToolsPage').then((m) => ({ default: m.ToolsPage })))
 const WritingIndexPage = lazy(() =>
@@ -53,6 +54,7 @@ export function AppRoutes() {
           }
         />
         <Route path="support" element={<SupportPage />} />
+        <Route path="golden-record" element={<GoldenRecordPage />} />
         <Route path="apps" element={<AppsIndexPage />} />
         <Route path="apps/:appId" element={<AppDetailPage />} />
         <Route path="apps/:appId/privacy" element={<AppLegalPage kind="privacy" />} />

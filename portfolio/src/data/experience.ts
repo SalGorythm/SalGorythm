@@ -27,7 +27,7 @@ export const EXPERIENCE_ROLES: ExperienceRole[] = [
   {
     id: 'ibm',
     org: 'IBM',
-    title: 'Senior Data Scientist · AI/ML Engineer',
+    title: 'Senior Data Scientist · Forward Deployed Engineer',
     period: 'Feb 2025 — Present',
     summary:
       'Working on generative AI for enterprise use: LLM integration, agentic workflows, evaluation, and the Python services and data pipelines around them.',

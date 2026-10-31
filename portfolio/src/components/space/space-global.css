@@ -1,0 +1,56 @@
+/* Space pieces that appear outside the homepage (any route). */
+
+/* Rare UFO fly-by */
+.sp-ufo { animation: sp-ufo-fly 9s linear forwards; }
+.sp-ufo svg { animation: sp-ufo-bob 1.4s ease-in-out infinite alternate; }
+.sp-ufo--rev { animation-name: sp-ufo-fly-rev; }
+@keyframes sp-ufo-fly { from { transform: translateX(-120px) rotate(-4deg); } to { transform: translateX(calc(100vw + 120px)) rotate(4deg); } }
+@keyframes sp-ufo-fly-rev { from { transform: translateX(calc(100vw + 120px)) rotate(4deg); } to { transform: translateX(-120px) rotate(-4deg); } }
+@keyframes sp-ufo-bob { from { transform: translateY(-6px); } to { transform: translateY(6px); } }
+
+/* Homepage trajectory (wide screens only) */
+.sp-trajectory { position: fixed; z-index: 30; left: max(16px, calc((100vw - 1240px) / 2 - 64px)); top: 96px; bottom: 56px; width: 24px; display: none; }
+@media (min-width: 1400px) { .sp-trajectory { display: block; } }
+.sp-trajectory__track { position: absolute; left: 11px; top: 0; bottom: 0; border-left: 1px dashed var(--color-space-line); }
+.sp-trajectory__flown { position: absolute; left: 11px; top: 0; border-left: 1px solid var(--color-space-gold); opacity: 0.8; }
+.sp-trajectory__stop { position: absolute; left: 5px; width: 13px; height: 13px; margin-top: -6px; border-radius: 50%; border: 0; padding: 0; cursor: pointer;
+  background: radial-gradient(circle at 35% 30%, #fff, var(--c) 45%, color-mix(in srgb, var(--c) 40%, #000)); transition: transform 0.15s; }
+.sp-trajectory__stop:hover, .sp-trajectory__stop:focus-visible { transform: scale(1.35); }
+.sp-trajectory__label { position: absolute; left: 22px; top: 50%; transform: translateY(-50%); white-space: nowrap; pointer-events: none;
+  font-family: var(--font-mono); font-size: 10.5px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--color-space-star);
+  background: rgb(7 8 20 / 0.9); border: 1px solid var(--color-space-line); border-radius: 999px; padding: 2px 9px; opacity: 0; transition: opacity 0.15s; }
+.sp-trajectory__stop:hover .sp-trajectory__label, .sp-trajectory__stop:focus-visible .sp-trajectory__label { opacity: 1; }
+.sp-trajectory__probe { position: absolute; left: 2px; width: 20px; height: 28px; margin-top: -14px; transform: rotate(180deg); transition: top 0.12s linear; filter: drop-shadow(0 0 6px rgb(232 176 75 / 0.5)); }
+
+/* Weekend Hobbies planetary system (/apps) */
+.hb-system { position: relative; width: min(560px, 100%); aspect-ratio: 1; margin: 8px auto 56px; }
+.hb-ring { position: absolute; left: 50%; top: 50%; width: calc(var(--d) * 1%); aspect-ratio: 1; transform: translate(-50%, -50%); border-radius: 50%; border: 1px dashed var(--color-space-line); }
+.hb-sun { position: absolute; left: 50%; top: 50%; width: 24%; aspect-ratio: 1; transform: translate(-50%, -50%); border-radius: 50%; display: grid; place-items: center; text-align: center;
+  background: radial-gradient(circle at 38% 34%, #fff1cc 0%, #f6c766 30%, #e8b04b 55%, #a9701a 100%); box-shadow: 0 0 60px rgb(232 176 75 / 0.35); }
+.hb-sun span { font-family: var(--font-display); font-weight: 800; font-size: clamp(10px, 1.8vw, 14px); line-height: 1.15; color: #070814; padding: 0 8px; }
+.hb-orbit { position: absolute; left: 50%; top: 50%; width: calc(var(--d) * 1%); aspect-ratio: 1; transform: translate(-50%, -50%); animation: sp-hb-orbit var(--t) linear infinite; animation-delay: var(--o); pointer-events: none; }
+.hb-planet { position: absolute; left: 50%; top: 0; transform: translate(-50%, -50%); pointer-events: auto; }
+.hb-spin { display: flex; flex-direction: column; align-items: center; gap: 6px; animation: sp-hb-counter var(--t) linear infinite; animation-delay: var(--o); }
+.hb-body { position: relative; display: block; width: var(--s); height: var(--s); border-radius: 50%; background: radial-gradient(circle at 35% 30%, #fff 0%, var(--p) 42%, color-mix(in srgb, var(--p) 40%, #000) 100%); transition: transform 0.2s; }
+.hb-moon { position: absolute; left: 50%; top: 50%; width: calc(var(--s) + 22px); aspect-ratio: 1; transform: translate(-50%, -50%); animation: sp-hb-moon var(--mt) linear infinite; animation-delay: var(--mo); }
+.hb-moon::before { content: ''; position: absolute; left: 50%; top: 0; width: 5px; height: 5px; margin: -2.5px; border-radius: 50%; background: #c3c4da; }
+.hb-tag { font-family: var(--font-mono); font-size: 10.5px; letter-spacing: 0.08em; text-transform: uppercase; white-space: nowrap; padding: 2px 9px; border-radius: 999px; background: rgb(7 8 20 / 0.88); border: 1px solid var(--color-space-line); color: var(--color-space-star); display: inline-flex; align-items: center; gap: 6px; }
+.hb-tag::before { content: ''; width: 7px; height: 7px; border-radius: 50%; background: var(--st); }
+.hb-planet a { text-decoration: none; display: block; border-radius: 12px; }
+.hb-planet a:hover .hb-body, .hb-planet a:focus-visible .hb-body { transform: scale(1.18); }
+.hb-planet a:hover .hb-tag, .hb-planet a:focus-visible .hb-tag { border-color: var(--color-space-gold); color: var(--color-space-gold); }
+.hb-system:hover .hb-orbit, .hb-system:hover .hb-spin, .hb-system:focus-within .hb-orbit, .hb-system:focus-within .hb-spin { animation-play-state: paused; }
+.hb-legend { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px 22px; margin-top: -28px; margin-bottom: 48px; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-space-dim); }
+.hb-legend span { display: inline-flex; align-items: center; gap: 8px; }
+.hb-legend i { width: 8px; height: 8px; border-radius: 50%; background: var(--st); }
+@keyframes sp-hb-orbit { from { transform: translate(-50%, -50%) rotate(0deg); } to { transform: translate(-50%, -50%) rotate(360deg); } }
+@keyframes sp-hb-counter { from { transform: rotate(0deg); } to { transform: rotate(-360deg); } }
+@keyframes sp-hb-moon { from { transform: translate(-50%, -50%) rotate(0deg); } to { transform: translate(-50%, -50%) rotate(360deg); } }
+
+/* Reading progress rocket */
+.sp-read-rocket { position: absolute; top: 50%; width: 18px; height: 18px; margin-left: -9px; transform: translateY(-50%) rotate(45deg); color: var(--color-space-gold); filter: drop-shadow(0 0 6px rgb(232 176 75 / 0.6)); }
+
+@media (prefers-reduced-motion: reduce) {
+  .hb-orbit, .hb-spin, .hb-moon { animation: none; }
+  .sp-trajectory__probe { transition: none; }
+}

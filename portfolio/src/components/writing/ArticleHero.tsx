@@ -23,12 +23,12 @@ export function ArticleHero({ article }: ArticleHeroProps) {
 
       <p className="mt-4 flex flex-wrap items-center gap-2 font-mono text-xs text-slate-400">
         <span>
-          {formatArticleDate(article.date)} · {article.readTime} min read
+          {formatArticleDate(article.date)} · Transit time: {article.readTime} min
         </span>
         <ArticleNewBadge date={article.date} />
       </p>
 
-      <h1 className="mt-3 text-3xl font-semibold tracking-tight text-slate-50 sm:text-4xl">
+      <h1 className="mt-3 font-display text-3xl font-extrabold leading-[1.1] tracking-tight text-white sm:text-5xl">
         {article.title}
       </h1>
 

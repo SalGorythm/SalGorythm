@@ -40,14 +40,14 @@ export function ToolsPage() {
         <header className="mb-10 flex flex-col gap-4 border-b border-cyan-500/15 pb-8 sm:flex-row sm:items-end sm:justify-between">
           <div>
             <p className="font-mono text-xs uppercase tracking-[0.3em] text-emerald-500/80">
-              Local-first · zero upload
+              Weekend Hobbies · zero upload
             </p>
-            <h1 className="mt-2 text-3xl font-semibold tracking-tight text-slate-50 sm:text-4xl">
+            <h1 className="mt-2 font-display text-4xl font-extrabold leading-[1.04] tracking-tight text-white sm:text-6xl">
               Utility <span className="text-cyan-300 text-glow-cyan">Tools</span>
             </h1>
             <p className="mt-3 max-w-2xl text-sm text-slate-300">
-              Browser-only utilities — files are processed in memory on your device and are not sent
-              to any server. Same cyber shell as the portfolio and sandbox.
+              Browser-only utilities I built as a weekend hobby. Files are processed in memory on your
+              device and are never sent to a server.
             </p>
           </div>
           <Link
@@ -58,7 +58,7 @@ export function ToolsPage() {
           </Link>
         </header>
 
-        <div className="relative overflow-hidden rounded-2xl border border-emerald-500/20 bg-slate-950/60 shadow-[0_0_40px_rgba(52,211,153,0.08)] backdrop-blur-md">
+        <div className="relative overflow-hidden rounded-2xl border border-emerald-500/20 bg-slate-950/60 backdrop-blur-md">
           <div className="pointer-events-none absolute inset-0 opacity-30" aria-hidden>
             <div className="absolute -left-16 top-0 h-56 w-56 rounded-full bg-emerald-500/20 blur-3xl" />
             <div className="absolute -right-10 bottom-0 h-48 w-48 rounded-full bg-cyan-500/15 blur-3xl" />
@@ -74,7 +74,7 @@ export function ToolsPage() {
                   onClick={() => setTool(id)}
                   className={`rounded-xl border px-3 py-3 text-left transition ${
                     active
-                      ? 'border-emerald-500/45 bg-emerald-500/10 shadow-[0_0_20px_rgba(52,211,153,0.12)]'
+                      ? 'border-emerald-500/45 bg-emerald-500/10'
                       : 'border-slate-800/80 bg-slate-900/40 hover:border-cyan-500/30'
                   }`}
                 >

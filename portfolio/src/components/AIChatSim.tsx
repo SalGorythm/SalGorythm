@@ -117,7 +117,7 @@ export function AIChatSim() {
           <p className="text-sm font-medium text-purple-400/80">Runs locally</p>
           <h2
             id="ask-heading"
-            className="mt-2 text-3xl font-semibold tracking-tight text-slate-50 sm:text-4xl"
+            className="mt-2 font-display text-4xl font-extrabold leading-[1.04] tracking-tight text-white sm:text-6xl"
           >
             Ask me something
           </h2>
@@ -126,7 +126,7 @@ export function AIChatSim() {
           </p>
         </header>
 
-        <div className="overflow-hidden rounded-2xl border border-purple-500/25 bg-slate-950/55 shadow-[0_0_35px_rgba(168,85,247,0.08)] backdrop-blur-md">
+        <div className="overflow-hidden rounded-2xl border border-purple-500/25 bg-slate-950/55 backdrop-blur-md">
           <div className="flex items-center justify-between border-b border-slate-800/90 bg-slate-900/50 px-4 py-2.5 text-sm text-slate-400">
             <span className="flex items-center gap-2 text-slate-300">
               <Bot className="h-4 w-4 text-purple-400" aria-hidden />

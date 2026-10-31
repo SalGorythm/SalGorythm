@@ -1,3 +1,4 @@
+import { Rocket } from 'lucide-react'
 import { useEffect, useState, type RefObject } from 'react'
 
 const HEADER_OFFSET_PX = 64
@@ -48,12 +49,15 @@ export function ReadingProgressBar({ targetRef }: ReadingProgressBarProps) {
       aria-valuenow={Math.round(progress * 100)}
       aria-valuemin={0}
       aria-valuemax={100}
-      aria-label="Reading progress"
+      aria-label="Voyage progress"
     >
       <div
-        className="h-full origin-left bg-gradient-to-r from-cyan-400 via-cyan-300 to-amber-400 transition-[width] duration-150 ease-out"
+        className="h-full origin-left bg-gradient-to-r from-purple-400 to-cyan-400 transition-[width] duration-150 ease-out"
         style={{ width: `${progress * 100}%` }}
       />
+      {progress > 0.005 && progress < 0.995 ? (
+        <Rocket className="sp-read-rocket transition-[left] duration-150 ease-out" style={{ left: `${progress * 100}%` }} aria-hidden />
+      ) : null}
     </div>
   )
 }

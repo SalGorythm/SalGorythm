@@ -79,7 +79,7 @@ export function ReflexGate() {
         onClick={tap}
         className={`relative w-full overflow-hidden rounded-2xl border-2 px-6 py-16 font-mono text-lg font-semibold uppercase tracking-[0.3em] transition ${
           phase === 'ready'
-            ? 'border-cyan-400 bg-cyan-500/25 text-cyan-50 shadow-[0_0_40px_rgba(34,211,238,0.35)]'
+            ? 'border-cyan-400 bg-cyan-500/25 text-cyan-50'
             : phase === 'armed'
               ? 'border-slate-600 bg-slate-900/80 text-slate-500'
               : 'border-slate-700 bg-slate-950/80 text-slate-400'

@@ -1,11 +1,12 @@
 import { LifeBuoy } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import { AppCard } from '../components/AppCard'
+import { HobbySystem } from '../components/space/HobbySystem'
 import { PORTFOLIO_APPS } from '../data/myApps'
 import { usePageMeta } from '../hooks/usePageMeta'
 
 export function AppsIndexPage() {
-  usePageMeta('Weekend hobbies', 'Personal side-project apps by SalGorythm — store links, features, privacy policies, and support.')
+  usePageMeta('Weekend Hobbies', 'Personal side-project apps by SalGorythm — store links, features, privacy policies, and support.')
 
   return (
     <div className="min-h-svh border-b border-cyan-500/10 pb-24 pt-24">
@@ -13,7 +14,7 @@ export function AppsIndexPage() {
         <header className="mb-12 flex flex-col gap-4 border-b border-cyan-500/15 pb-8 sm:flex-row sm:items-end sm:justify-between">
           <div className="max-w-2xl">
             <p className="font-mono text-xs uppercase tracking-[0.3em] text-emerald-400/90">SalGorythm</p>
-            <h1 className="mt-2 text-3xl font-semibold tracking-tight text-slate-50 sm:text-4xl">Weekend hobbies</h1>
+            <h1 className="mt-2 font-display text-4xl font-extrabold leading-[1.04] tracking-tight text-white sm:text-6xl">Weekend Hobbies</h1>
             <p className="mt-3 text-sm text-slate-300">
               Apps I build on weekends as personal side projects, in my own time and separate from my
               day job. All local-first: no accounts, no tracking. Each app has its own page, privacy
@@ -28,6 +29,8 @@ export function AppsIndexPage() {
             Support
           </Link>
         </header>
+
+        <HobbySystem />
 
         <ul className="grid gap-8">
           {PORTFOLIO_APPS.map((app, index) => (

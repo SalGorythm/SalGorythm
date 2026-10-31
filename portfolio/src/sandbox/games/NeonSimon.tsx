@@ -1,10 +1,10 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 
 const COLORS = [
-  { id: 0, name: 'Cyan', className: 'bg-cyan-500/80 shadow-[0_0_24px_rgba(34,211,238,0.6)]' },
-  { id: 1, name: 'Purple', className: 'bg-purple-500/80 shadow-[0_0_24px_rgba(168,85,247,0.6)]' },
-  { id: 2, name: 'Emerald', className: 'bg-emerald-500/80 shadow-[0_0_24px_rgba(52,211,153,0.55)]' },
-  { id: 3, name: 'Amber', className: 'bg-amber-500/80 shadow-[0_0_24px_rgba(251,191,36,0.55)]' },
+  { id: 0, name: 'Cyan', className: 'bg-cyan-500/80' },
+  { id: 1, name: 'Purple', className: 'bg-purple-500/80' },
+  { id: 2, name: 'Emerald', className: 'bg-emerald-500/80' },
+  { id: 3, name: 'Amber', className: 'bg-amber-500/80' },
 ] as const
 
 type Phase = 'idle' | 'playback' | 'input' | 'gameover'

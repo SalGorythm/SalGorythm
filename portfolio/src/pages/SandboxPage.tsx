@@ -149,14 +149,14 @@ export function SandboxPage() {
         <header className="mb-10 flex flex-col gap-4 border-b border-cyan-500/15 pb-8 sm:flex-row sm:items-end sm:justify-between">
           <div>
             <p className="font-mono text-xs uppercase tracking-[0.3em] text-purple-400/90">
-              Local-first · client only
+              Weekend Hobbies · runs in your browser
             </p>
-            <h1 className="mt-2 text-3xl font-semibold tracking-tight text-slate-50 sm:text-4xl">
+            <h1 className="mt-2 font-display text-4xl font-extrabold leading-[1.04] tracking-tight text-white sm:text-6xl">
               Sandbox <span className="text-cyan-300 text-glow-cyan">Arcade</span>
             </h1>
             <p className="mt-3 max-w-2xl text-sm text-slate-300">
-              Mini-games and canvas simulations run entirely in the browser — no telemetry, no
-              backend. Cyber-noir shell with premium HTML5 canvas labs.
+              Mini-games and canvas simulations I build as a weekend hobby. Everything runs in your
+              browser, with no telemetry and no backend.
             </p>
           </div>
           <Link
@@ -177,7 +177,7 @@ export function SandboxPage() {
             }}
             className={`inline-flex flex-1 items-center justify-center gap-2 rounded-lg border px-4 py-3 font-mono text-xs uppercase tracking-wider transition sm:flex-none ${
               dashboard === 'arcade'
-                ? 'border-cyan-500/45 bg-cyan-500/10 text-cyan-100 shadow-[0_0_20px_rgba(34,211,238,0.12)]'
+                ? 'border-cyan-500/45 bg-cyan-500/10 text-cyan-100'
                 : 'border-transparent text-slate-400 hover:border-purple-500/25 hover:text-slate-200'
             }`}
           >
@@ -193,7 +193,7 @@ export function SandboxPage() {
             }}
             className={`inline-flex flex-1 items-center justify-center gap-2 rounded-lg border px-4 py-3 font-mono text-xs uppercase tracking-wider transition sm:flex-none ${
               dashboard === 'labs'
-                ? 'border-purple-500/45 bg-purple-500/10 text-purple-100 shadow-[0_0_20px_rgba(168,85,247,0.12)]'
+                ? 'border-purple-500/45 bg-purple-500/10 text-purple-100'
                 : 'border-transparent text-slate-400 hover:border-cyan-500/25 hover:text-slate-200'
             }`}
           >
@@ -202,7 +202,7 @@ export function SandboxPage() {
           </button>
         </div>
 
-        <div className="relative overflow-hidden rounded-2xl border border-purple-500/25 bg-slate-950/60 shadow-[0_0_40px_rgba(168,85,247,0.12)] backdrop-blur-md">
+        <div className="relative overflow-hidden rounded-2xl border border-purple-500/25 bg-slate-950/60 backdrop-blur-md">
           <div className="pointer-events-none absolute inset-0 opacity-40" aria-hidden>
             <div className="absolute -left-20 top-0 h-64 w-64 rounded-full bg-cyan-500/20 blur-3xl" />
             <div className="absolute -right-10 bottom-0 h-56 w-56 rounded-full bg-purple-500/20 blur-3xl" />
@@ -220,7 +220,7 @@ export function SandboxPage() {
                       onClick={() => selectGame(id, statKey)}
                       className={`rounded-xl border px-2.5 py-2.5 text-left transition sm:px-3 sm:py-3 ${
                         active
-                          ? 'border-cyan-500/45 bg-cyan-500/10 shadow-[0_0_20px_rgba(34,211,238,0.15)]'
+                          ? 'border-cyan-500/45 bg-cyan-500/10'
                           : 'border-slate-800/80 bg-slate-900/40 hover:border-purple-500/30'
                       }`}
                     >
@@ -261,7 +261,7 @@ export function SandboxPage() {
                       onClick={() => selectLab(id, statKey)}
                       className={`rounded-xl border px-3 py-3 text-left transition ${
                         active
-                          ? 'border-purple-500/45 bg-purple-500/10 shadow-[0_0_20px_rgba(168,85,247,0.15)]'
+                          ? 'border-purple-500/45 bg-purple-500/10'
                           : 'border-slate-800/80 bg-slate-900/40 hover:border-cyan-500/30'
                       }`}
                     >

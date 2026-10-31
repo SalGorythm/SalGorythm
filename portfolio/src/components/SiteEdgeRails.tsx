@@ -78,7 +78,7 @@ export function SiteEdgeRails() {
                     <span
                       className={`h-1.5 w-1.5 rounded-full transition ${
                         active
-                          ? 'bg-cyan-400 shadow-[0_0_8px_rgba(34,211,238,0.6)]'
+                          ? 'bg-cyan-400'
                           : 'bg-slate-700 group-hover:bg-slate-500'
                       }`}
                     />

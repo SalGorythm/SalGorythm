@@ -52,7 +52,7 @@ export function AppLegalPage({ kind }: { kind: AppLegalKind }) {
 
         <header className="mt-6 border-b border-cyan-500/15 pb-8">
           <p className="font-mono text-xs uppercase tracking-[0.3em] text-emerald-400/90">{app.name}</p>
-          <h1 className="mt-2 text-3xl font-semibold tracking-tight text-slate-50 sm:text-4xl">{title}</h1>
+          <h1 className="mt-2 font-display text-4xl font-extrabold leading-[1.04] tracking-tight text-white sm:text-6xl">{title}</h1>
           {lastUpdated ? (
             <p className="mt-3 font-mono text-xs text-slate-500">Last updated: {lastUpdated}</p>
           ) : null}

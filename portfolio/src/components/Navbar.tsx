@@ -1,40 +1,56 @@
-import { AppWindow, Gamepad2, Menu, Wrench, X } from 'lucide-react'
-import { useCallback, useEffect, useState, type MouseEvent } from 'react'
+import { Menu, SquareTerminal, Volume2, VolumeX, X } from 'lucide-react'
+import { useEffect, useState, type MouseEvent } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import type { SectionId } from '../constants/sections'
 import { RECRUITER_SUMMARY } from '../data/recruiterSummary'
-import { BrandLogo } from './BrandLogo'
+import { startHum, stopHum } from '../lib/spaceSound'
+import { useSpaceStore } from '../store/spaceStore'
 
-type SectionLink = { kind: 'section'; id: SectionId; label: string }
-type RouteLink = { kind: 'route'; path: string; label: string; matchPrefix?: boolean }
-type NavLink = SectionLink | RouteLink
+type SectionLink = { kind: 'section'; id: SectionId; label: string; activeFor: SectionId[] }
+type RouteLink = { kind: 'route'; path: string; label: string }
+type NavItem = SectionLink | RouteLink
 
-const LINKS: NavLink[] = [
-  { kind: 'section', id: 'hero', label: 'Home' },
-  { kind: 'section', id: 'about', label: 'About' },
-  { kind: 'section', id: 'experience', label: 'Experience' },
-  { kind: 'section', id: 'live-demos', label: 'Curiosity' },
-  { kind: 'route', path: '/writing', label: 'Writing', matchPrefix: true },
-  { kind: 'section', id: 'my-apps', label: 'Hobbies' },
-  { kind: 'section', id: 'contact', label: 'Contact' },
+const LINKS: NavItem[] = [
+  { kind: 'section', id: 'missions', label: 'Missions', activeFor: ['sequence', 'missions', 'payload'] },
+  { kind: 'section', id: 'ground', label: 'Services', activeFor: ['ground'] },
+  { kind: 'route', path: '/writing', label: 'Writing' },
+  { kind: 'route', path: '/apps', label: 'Weekend Hobbies' },
+  { kind: 'route', path: '/sandbox', label: 'Sandbox' },
+  { kind: 'route', path: '/tools', label: 'Tools' },
 ]
 
 export type NavbarProps = {
   activeId: string
-  /** When true, section jump links are shown; when false, show back-to-portfolio control. */
   isPortfolio: boolean
+}
+
+/** A small sun: the brand mark. */
+function SunMark() {
+  return (
+    <span
+      aria-hidden
+      className="block h-[22px] w-[22px] shrink-0 rounded-full shadow-[0_0_0_3px_rgb(232_176_75/0.18)]"
+      style={{ background: 'radial-gradient(circle at 35% 35%, #FFE3A3, #E8B04B 55%, #9C6A16)' }}
+    />
+  )
 }
 
 export function Navbar({ activeId, isPortfolio }: NavbarProps) {
   const [open, setOpen] = useState(false)
   const location = useLocation()
   const navigate = useNavigate()
+  const soundOn = useSpaceStore((s) => s.soundOn)
+  const setSoundOn = useSpaceStore((s) => s.setSoundOn)
+  const setConsoleOpen = useSpaceStore((s) => s.setConsoleOpen)
 
-  const scrollTo = useCallback((id: SectionId) => {
-    const el = document.getElementById(id)
-    el?.scrollIntoView({ behavior: 'smooth', block: 'start' })
-    setOpen(false)
-  }, [])
+  const toggleSound = () => {
+    if (soundOn) stopHum()
+    else startHum()
+    setSoundOn(!soundOn)
+  }
+
+  const iconBtn =
+    'inline-flex h-10 w-10 items-center justify-center rounded-full border border-space-line text-space-dim transition hover:border-space-gold hover:text-space-gold'
 
   useEffect(() => {
     if (!open) return
@@ -45,191 +61,139 @@ export function Navbar({ activeId, isPortfolio }: NavbarProps) {
     }
   }, [open])
 
-  const onBrandClick = (e: MouseEvent<HTMLAnchorElement>) => {
-    if (location.pathname === '/') {
-      e.preventDefault()
-      scrollTo('hero')
-    }
+  const goToSection = (id: SectionId) => (e: MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault()
     setOpen(false)
-  }
-
-  const isLinkActive = (link: NavLink) => {
-    if (link.kind === 'route') {
-      return link.matchPrefix
-        ? location.pathname === link.path || location.pathname.startsWith(`${link.path}/`)
-        : location.pathname === link.path
+    if (isPortfolio) {
+      document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+      window.history.replaceState(null, '', `#${id}`)
+    } else {
+      navigate(`/#${id}`)
     }
-    return activeId === link.id
   }
 
-  const linkClass = (active: boolean) =>
-    active
-      ? 'border border-cyan-500/40 bg-cyan-500/10 text-cyan-300 shadow-[0_0_18px_rgba(34,211,238,0.12)]'
-      : 'border border-transparent text-slate-400 hover:border-purple-500/25 hover:bg-purple-500/5 hover:text-purple-200'
+  const onBrandClick = (e: MouseEvent<HTMLAnchorElement>) => {
+    setOpen(false)
+    if (isPortfolio) {
+      e.preventDefault()
+      window.scrollTo({ top: 0, behavior: 'smooth' })
+    }
+  }
 
-  const renderNavLink = (link: NavLink, className: string) => {
-    const active = isLinkActive(link)
+  const isActive = (link: NavItem) =>
+    link.kind === 'route'
+      ? location.pathname === link.path || location.pathname.startsWith(`${link.path}/`)
+      : isPortfolio && link.activeFor.includes(activeId as SectionId)
+
+  const linkClass = (active: boolean, mobile = false) =>
+    [
+      mobile ? 'block w-full px-3 py-3 text-sm' : 'px-2.5 py-2 text-[11.5px]',
+      'font-mono uppercase tracking-[0.12em] transition',
+      active
+        ? 'text-space-gold underline decoration-space-gold decoration-1 underline-offset-[7px]'
+        : 'text-space-dim hover:text-space-gold',
+    ].join(' ')
+
+  const renderLink = (link: NavItem, mobile = false) => {
+    const active = isActive(link)
     if (link.kind === 'route') {
       return (
         <Link
           to={link.path}
           onClick={() => setOpen(false)}
-          className={`${className} ${linkClass(active)}`}
+          className={linkClass(active, mobile)}
+          aria-current={active ? 'page' : undefined}
         >
           {link.label}
         </Link>
       )
     }
     return (
-      <button type="button" onClick={() => scrollTo(link.id)} className={`${className} ${linkClass(active)}`}>
+      <a href={`/#${link.id}`} onClick={goToSection(link.id)} className={linkClass(active, mobile)}>
         {link.label}
-      </button>
+      </a>
     )
   }
 
+  const contactBtn =
+    'inline-flex min-h-11 items-center rounded-full bg-space-gold px-5 font-mono text-[12px] font-bold uppercase tracking-[0.1em] text-space-void transition hover:-translate-y-0.5 hover:bg-[#f3c86f]'
+
   return (
     <nav
-      className="fixed inset-x-0 top-0 z-[100] border-b border-slate-800/80 bg-[#0a0e14]/80 shadow-[0_1px_0_rgba(255,255,255,0.04)] backdrop-blur-md backdrop-saturate-150"
+      className="fixed inset-x-0 top-0 z-[100] border-b border-space-line bg-space-void/80 backdrop-blur-md"
       aria-label="Primary"
     >
-      <div className="page-container flex h-16 items-center justify-between gap-4">
-        <Link
-          to="/"
-          onClick={onBrandClick}
-          className="group flex min-w-0 shrink-0 items-center gap-2.5 rounded-lg border border-transparent px-2 py-1 text-left transition hover:border-cyan-500/30 hover:shadow-[0_0_20px_rgba(34,211,238,0.12)]"
-        >
-          <BrandLogo variant="icon" className="shrink-0 transition group-hover:scale-105" />
+      <div className="mx-auto flex h-16 max-w-[1260px] items-center justify-between gap-4 px-4 sm:px-6 lg:px-12">
+        <Link to="/" onClick={onBrandClick} className="flex min-w-0 shrink-0 items-center gap-3">
+          <SunMark />
           <span className="min-w-0 leading-none">
-            <span className="block truncate whitespace-nowrap text-sm font-semibold tracking-tight text-slate-100">
+            <span className="block truncate font-display text-[15px] font-semibold uppercase tracking-[0.06em] text-space-star">
               {RECRUITER_SUMMARY.name}
             </span>
-            <span className="mt-1 hidden truncate whitespace-nowrap text-[11px] leading-tight text-slate-400 lg:block">
+            <span className="mt-0.5 hidden truncate font-mono text-[10px] uppercase tracking-[0.14em] text-space-dim sm:block">
               {RECRUITER_SUMMARY.navSubtitle}
             </span>
           </span>
         </Link>
 
-        <div className="hidden items-center gap-2 lg:flex">
-          {isPortfolio ? (
-            <ul className="flex items-center gap-1">
-              {LINKS.map((link) => (
-                <li key={link.kind === 'route' ? link.path : link.id}>
-                  {renderNavLink(link, 'rounded-lg px-3 py-2 text-sm transition')}
-                </li>
-              ))}
-            </ul>
-          ) : (
-            <button
-              type="button"
-              onClick={() => navigate('/')}
-              className="rounded-lg border border-purple-500/30 bg-purple-500/10 px-3 py-2 text-sm text-purple-200 transition hover:border-purple-400/50 hover:bg-purple-500/15"
-            >
-              Portfolio
-            </button>
-          )}
-          <Link
-            to="/apps"
-            className={`inline-flex items-center gap-1.5 rounded-lg border px-3 py-2 text-sm transition ${
-              location.pathname.startsWith('/apps')
-                ? 'border-purple-500/45 bg-purple-500/10 text-purple-200 shadow-[0_0_18px_rgba(168,85,247,0.12)]'
-                : 'border-slate-600/80 text-slate-300 hover:border-purple-500/35 hover:bg-purple-500/5 hover:text-purple-200'
-            }`}
+        <div className="hidden items-center gap-1 lg:flex">
+          <ul className="flex items-center">
+            {LINKS.map((link) => (
+              <li key={link.label}>{renderLink(link)}</li>
+            ))}
+          </ul>
+          <button type="button" className={`ml-1 ${iconBtn}`} onClick={() => setConsoleOpen(true)} aria-label="Open mission console" title="Mission console ( / )">
+            <SquareTerminal className="h-4 w-4" aria-hidden />
+          </button>
+          <button
+            type="button"
+            className={iconBtn}
+            onClick={toggleSound}
+            aria-pressed={soundOn}
+            aria-label="Ambient sound"
+            title={soundOn ? 'Sound on' : 'Sound off'}
           >
-            <AppWindow className="h-3.5 w-3.5" aria-hidden />
-            Hobbies
-          </Link>
-          <Link
-            to="/tools"
-            className={`inline-flex items-center gap-1.5 rounded-lg border px-3 py-2 text-sm transition ${
-              location.pathname === '/tools'
-                ? 'border-emerald-500/45 bg-emerald-500/10 text-emerald-200 shadow-[0_0_18px_rgba(52,211,153,0.12)]'
-                : 'border-slate-600/80 text-slate-300 hover:border-emerald-500/35 hover:bg-emerald-500/5 hover:text-emerald-200'
-            }`}
-          >
-            <Wrench className="h-3.5 w-3.5" aria-hidden />
-            Tools
-          </Link>
-          <Link
-            to="/sandbox"
-            className={`inline-flex items-center gap-1.5 rounded-lg border px-3 py-2 text-sm transition ${
-              location.pathname === '/sandbox'
-                ? 'border-cyan-500/45 bg-cyan-500/10 text-cyan-200 shadow-[0_0_18px_rgba(34,211,238,0.12)]'
-                : 'border-slate-600/80 text-slate-300 hover:border-cyan-500/35 hover:bg-cyan-500/5 hover:text-cyan-200'
-            }`}
-          >
-            <Gamepad2 className="h-3.5 w-3.5" aria-hidden />
-            Sandbox
-          </Link>
+            {soundOn ? <Volume2 className="h-4 w-4 text-space-gold" aria-hidden /> : <VolumeX className="h-4 w-4" aria-hidden />}
+          </button>
+          <a href="/#contact" onClick={goToSection('contact')} className={`ml-2 ${contactBtn}`}>
+            Open a channel
+          </a>
         </div>
 
         <button
           type="button"
-          className="inline-flex h-10 w-10 items-center justify-center rounded-lg border border-slate-700/80 bg-slate-900/60 text-slate-200 transition hover:border-cyan-500/40 hover:text-cyan-300 lg:hidden"
+          className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-space-line text-space-star transition hover:border-space-gold hover:text-space-gold lg:hidden"
           aria-expanded={open}
           aria-controls="mobile-nav"
           onClick={() => setOpen((v) => !v)}
         >
           {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-          <span className="sr-only">Toggle menu</span>
+          <span className="sr-only">{open ? 'Close menu' : 'Open menu'}</span>
         </button>
       </div>
 
       <div
         id="mobile-nav"
-        className={`border-t border-slate-800/80 bg-[#0a0e14]/95 backdrop-blur-md lg:hidden ${
-          open ? 'max-h-[min(85svh,640px)] opacity-100' : 'max-h-0 overflow-hidden opacity-0'
+        className={`border-t border-space-line bg-space-void/95 backdrop-blur-md lg:hidden ${
+          open ? 'max-h-[min(85svh,640px)] opacity-100' : 'invisible max-h-0 overflow-hidden opacity-0'
         } transition-all duration-300 ease-out`}
       >
-        <ul className="flex max-h-[min(85svh,640px)] flex-col gap-1 overflow-y-auto overscroll-contain px-4 py-3">
-          {isPortfolio ? (
-            LINKS.map((link) => (
-              <li key={link.kind === 'route' ? link.path : link.id}>
-                {renderNavLink(link, 'w-full rounded-lg px-3 py-3 text-left text-sm transition')}
-              </li>
-            ))
-          ) : (
-            <li>
-              <button
-                type="button"
-                onClick={() => {
-                  navigate('/')
-                  setOpen(false)
-                }}
-                className="w-full rounded-lg border border-purple-500/30 bg-purple-500/10 px-3 py-3 text-left text-sm text-purple-200"
-              >
-                Portfolio
-              </button>
-            </li>
-          )}
-          <li>
-            <Link
-              to="/apps"
-              onClick={() => setOpen(false)}
-              className="flex w-full items-center gap-2 rounded-lg border border-purple-500/30 bg-purple-500/5 px-3 py-3 text-sm text-purple-200"
-            >
-              <AppWindow className="h-4 w-4" aria-hidden />
-              Weekend hobbies
-            </Link>
+        <ul className="flex max-h-[min(85svh,640px)] flex-col gap-1 overflow-y-auto overscroll-contain px-4 py-4">
+          {LINKS.map((link) => (
+            <li key={link.label}>{renderLink(link, true)}</li>
+          ))}
+          <li className="flex gap-2 pt-3">
+            <button type="button" className={iconBtn} onClick={() => { setOpen(false); setConsoleOpen(true) }} aria-label="Open mission console">
+              <SquareTerminal className="h-4 w-4" aria-hidden />
+            </button>
+            <button type="button" className={iconBtn} onClick={toggleSound} aria-pressed={soundOn} aria-label="Ambient sound">
+              {soundOn ? <Volume2 className="h-4 w-4 text-space-gold" aria-hidden /> : <VolumeX className="h-4 w-4" aria-hidden />}
+            </button>
           </li>
-          <li>
-            <Link
-              to="/tools"
-              onClick={() => setOpen(false)}
-              className="flex w-full items-center gap-2 rounded-lg border border-emerald-500/30 bg-emerald-500/5 px-3 py-3 text-sm text-emerald-200"
-            >
-              <Wrench className="h-4 w-4" aria-hidden />
-              Utility tools
-            </Link>
-          </li>
-          <li>
-            <Link
-              to="/sandbox"
-              onClick={() => setOpen(false)}
-              className="flex w-full items-center gap-2 rounded-lg border border-cyan-500/30 bg-cyan-500/5 px-3 py-3 text-sm text-cyan-200"
-            >
-              <Gamepad2 className="h-4 w-4" aria-hidden />
-              Sandbox
-            </Link>
+          <li className="pt-1">
+            <a href="/#contact" onClick={goToSection('contact')} className={contactBtn}>
+              Contact
+            </a>
           </li>
         </ul>
       </div>

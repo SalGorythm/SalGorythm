@@ -44,7 +44,7 @@ function InstagramIcon({ className }: { className?: string }) {
 type Variant = 'footer' | 'sidebar' | 'inline'
 
 const linkBase =
-  'inline-flex items-center justify-center rounded-lg border border-slate-700/80 bg-slate-900/50 text-slate-300 transition hover:border-cyan-500/45 hover:text-cyan-200 hover:shadow-[0_0_16px_rgba(34,211,238,0.12)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-500/60'
+  'inline-flex items-center justify-center rounded-full border border-slate-700 bg-slate-950/70 text-slate-200 transition hover:-translate-y-0.5 hover:border-space-gold hover:text-space-gold focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-space-gold'
 
 function BrandIcon({ id, className }: { id: SocialNetwork; className?: string }) {
   switch (id) {

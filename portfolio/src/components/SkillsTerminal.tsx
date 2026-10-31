@@ -48,7 +48,7 @@ export function SkillsTerminal() {
           <p className="text-sm font-medium text-purple-400/90">Skills</p>
           <h2
             id="skills-heading"
-            className="mt-2 text-3xl font-semibold tracking-tight text-slate-50 sm:text-4xl"
+            className="mt-2 font-display text-4xl font-extrabold leading-[1.04] tracking-tight text-white sm:text-6xl"
           >
             Stack
           </h2>
@@ -57,7 +57,7 @@ export function SkillsTerminal() {
           </p>
         </header>
 
-        <div className="overflow-hidden rounded-2xl border border-cyan-500/20 bg-slate-950/60 shadow-[0_0_30px_rgba(34,211,238,0.06)] backdrop-blur-md">
+        <div className="overflow-hidden rounded-2xl border border-cyan-500/20 bg-slate-950/60 backdrop-blur-md">
           <div className="flex flex-wrap items-center gap-2 border-b border-slate-800/90 bg-slate-900/50 px-3 py-2 sm:px-4">
             <span className="mr-1 hidden h-3 w-3 rounded-full bg-red-500/80 sm:inline" aria-hidden />
             <span className="mr-1 hidden h-3 w-3 rounded-full bg-amber-400/80 sm:inline" aria-hidden />
@@ -82,7 +82,7 @@ export function SkillsTerminal() {
                     onClick={() => setCat(tab.id)}
                     className={`flex min-w-[200px] items-center gap-2 rounded-lg border px-3 py-2.5 text-left font-mono text-xs transition sm:min-w-0 sm:text-[11px] ${
                       active
-                        ? 'border-cyan-500/45 bg-cyan-500/10 text-cyan-100 shadow-[0_0_18px_rgba(34,211,238,0.12)]'
+                        ? 'border-cyan-500/45 bg-cyan-500/10 text-cyan-100'
                         : 'border-transparent text-slate-400 hover:border-purple-500/25 hover:bg-slate-900/80 hover:text-slate-200'
                     }`}
                   >

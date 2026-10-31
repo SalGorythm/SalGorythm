@@ -169,11 +169,11 @@ export function NeonSnake() {
               key={i}
               className={`h-3 w-3 sm:h-3.5 sm:w-3.5 ${
                 isHead
-                  ? 'rounded-sm bg-cyan-400 shadow-[0_0_10px_rgba(34,211,238,0.8)]'
+                  ? 'rounded-sm bg-cyan-400'
                   : isBody
                     ? 'rounded-sm bg-cyan-600/80'
                     : isFood
-                      ? 'rounded-full bg-purple-400 shadow-[0_0_10px_rgba(192,132,252,0.7)]'
+                      ? 'rounded-full bg-purple-400'
                       : 'bg-slate-900/60'
               }`}
             />

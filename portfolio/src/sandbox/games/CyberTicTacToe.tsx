@@ -156,9 +156,9 @@ export function CyberTicTacToe() {
             onClick={() => play(i)}
             className={`flex h-20 w-20 items-center justify-center rounded-xl border text-3xl font-bold transition ${
               cell === 'X'
-                ? 'border-cyan-400/60 bg-cyan-500/15 text-cyan-200 shadow-[0_0_24px_rgba(34,211,238,0.25)]'
+                ? 'border-cyan-400/60 bg-cyan-500/15 text-cyan-200'
                 : cell === 'O'
-                  ? 'border-purple-400/60 bg-purple-500/15 text-purple-200 shadow-[0_0_24px_rgba(192,132,252,0.25)]'
+                  ? 'border-purple-400/60 bg-purple-500/15 text-purple-200'
                   : 'border-slate-700/80 bg-slate-900/50 text-slate-600 hover:border-cyan-500/30'
             }`}
           >

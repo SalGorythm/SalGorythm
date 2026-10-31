@@ -22,8 +22,8 @@ export function ArticleCard({ article, variant = 'default', onHover, onTagClick 
       data-article-slug={article.slug}
       className={`group relative flex h-full flex-col rounded-2xl border bg-slate-900/35 backdrop-blur-md transition duration-300 hover:-translate-y-0.5 ${
         featured
-          ? 'border-amber-500/25 hover:border-amber-500/40 hover:shadow-[0_0_28px_rgba(251,191,36,0.12)]'
-          : 'border-slate-800/90 hover:border-amber-500/35 hover:shadow-[0_0_24px_rgba(251,191,36,0.1)]'
+          ? 'border-amber-500/25 hover:border-amber-500/40'
+          : 'border-slate-800/90 hover:border-amber-500/35'
       }`}
       onMouseEnter={() => onHover?.(article.slug)}
       onMouseLeave={() => onHover?.(null)}

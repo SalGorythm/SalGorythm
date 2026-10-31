@@ -14,7 +14,7 @@ export function SupportPage() {
             <p className="font-mono text-xs uppercase tracking-[0.3em] text-purple-400/90">
               SalGorythm
             </p>
-            <h1 className="mt-2 text-3xl font-semibold tracking-tight text-slate-50 sm:text-4xl">
+            <h1 className="mt-2 font-display text-4xl font-extrabold leading-[1.04] tracking-tight text-white sm:text-6xl">
               Support
             </h1>
             <p className="mt-3 max-w-xl text-sm text-slate-300">
@@ -52,7 +52,7 @@ export function SupportPage() {
 
         <p className="mt-10 text-center font-mono text-[11px] text-slate-600">
           <Link to={`/#${SALGORYTHM_SUPPORT_PAGE_HASH}`} className="text-cyan-500/80 hover:text-cyan-400">
-            Same panel on the portfolio → Weekend hobbies
+            Same panel on the portfolio → Weekend Hobbies
           </Link>
         </p>
       </div>

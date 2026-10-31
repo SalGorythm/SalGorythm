@@ -1,7 +1,5 @@
-import { AlertCircle, CheckCircle2, Loader2, Mail, MessageSquare, Send, User } from 'lucide-react'
 import { useState, type FormEvent } from 'react'
 import { isWeb3FormsConfigured, submitToWeb3Forms } from '../lib/web3forms'
-import { SocialLinks } from './SocialLinks'
 
 const configured = isWeb3FormsConfigured()
 
@@ -12,7 +10,8 @@ type SubmitState =
   | { status: 'error'; message: string }
 
 /**
- * Contact via Web3Forms (`fetch` + `FormData`). Configure `VITE_WEB3FORMS_ACCESS_KEY` in deploy env.
+ * Contact form card via Web3Forms (`fetch` + `FormData`). Configure `VITE_WEB3FORMS_ACCESS_KEY`
+ * in the deploy environment. Styled by `.sp-form` in `components/space/space.css`.
  */
 export function ContactForm() {
   const [submit, setSubmit] = useState<SubmitState>({ status: 'idle' })
@@ -22,10 +21,9 @@ export function ContactForm() {
     if (!configured) {
       setSubmit({
         status: 'error',
-        message:
-          import.meta.env.DEV
-            ? 'Add VITE_WEB3FORMS_ACCESS_KEY to your .env file and restart the dev server.'
-            : 'This form is not active on this deployment yet.',
+        message: import.meta.env.DEV
+          ? 'Add VITE_WEB3FORMS_ACCESS_KEY to your .env file and restart the dev server.'
+          : 'This form is not active on this deployment yet. Please email me instead.',
       })
       return
     }
@@ -33,182 +31,65 @@ export function ContactForm() {
     setSubmit({ status: 'submitting' })
     const form = event.currentTarget
     const formData = new FormData(form)
-    if (!formData.get('subject')) {
-      formData.set('subject', 'Portfolio contact')
-    }
+    if (!formData.get('subject')) formData.set('subject', 'Portfolio contact')
 
     try {
       const data = await submitToWeb3Forms(formData)
       if (data.success) {
-        setSubmit({ status: 'success', message: "Got it — I'll reply by email." })
+        setSubmit({
+          status: 'success',
+          message: 'Transmission received. One-way light time to New Delhi: under a tenth of a second. My reply by email takes a little longer.',
+        })
         form.reset()
       } else {
-        setSubmit({
-          status: 'error',
-          message: data.message ?? 'Submission failed. Please try again.',
-        })
+        setSubmit({ status: 'error', message: data.message ?? 'Sending failed. Please try again.' })
       }
     } catch {
-      setSubmit({
-        status: 'error',
-        message: 'Network error. Check your connection and try again.',
-      })
+      setSubmit({ status: 'error', message: 'Network error. Check your connection and try again.' })
     }
   }
 
+  const busy = submit.status === 'submitting'
+
   return (
-    <section
-      id="contact"
-      aria-labelledby="contact-heading"
-      className="scroll-mt-28 py-20 pb-28"
-    >
-      <div className="page-container">
-        <header className="mb-10 max-w-2xl">
-          <p className="text-sm font-medium text-cyan-400/90">Contact</p>
-          <h2
-            id="contact-heading"
-            className="mt-2 text-3xl font-semibold tracking-tight text-slate-50 sm:text-4xl"
-          >
-            Get in touch
-          </h2>
-          <p className="mt-3 text-slate-300">
-            Questions about an app, an article, or something you built? Say hello — I reply
-            manually, with no mailing list on submit.
-          </p>
-        </header>
+    <form onSubmit={onSubmit} className="sp-form" aria-label="Contact form">
+      <input type="hidden" name="subject" value="Portfolio contact" />
+      <input type="checkbox" name="botcheck" className="hidden" tabIndex={-1} autoComplete="off" />
 
-        <div className="mx-auto max-w-xl">
-          <div className="mb-6 flex justify-center sm:justify-start">
-            <SocialLinks variant="inline" />
-          </div>
+      {!configured && import.meta.env.DEV && (
+        <p className="sp-note sp-note--warn" role="status">
+          Developer: add <code>VITE_WEB3FORMS_ACCESS_KEY</code> to <code>.env</code> and restart{' '}
+          <code>npm run dev</code>.
+        </p>
+      )}
+      {submit.status === 'success' && (
+        <p className="sp-note sp-note--ok" role="status">
+          {submit.message}
+        </p>
+      )}
+      {submit.status === 'error' && (
+        <p className="sp-note sp-note--err" role="alert">
+          {submit.message}
+        </p>
+      )}
 
-          {!configured && (
-            <div
-              className="mb-4 flex items-start gap-3 rounded-xl border border-amber-500/25 bg-amber-500/5 px-3 py-2.5 text-sm text-amber-100/90"
-              role="status"
-            >
-              <AlertCircle className="mt-0.5 h-4 w-4 shrink-0 text-amber-400" aria-hidden />
-              <p>
-                {import.meta.env.DEV ? (
-                  <>
-                    <strong className="font-medium text-amber-50">Developer:</strong> add{' '}
-                    <span className="font-mono">VITE_WEB3FORMS_ACCESS_KEY</span> to{' '}
-                    <span className="font-mono">.env</span> and restart <span className="font-mono">npm run dev</span>.
-                    Do not commit <span className="font-mono">.env</span>.
-                  </>
-                ) : (
-                  <>
-                    <strong className="font-medium text-amber-50">Unavailable:</strong> contact relay
-                    is not configured for this build.
-                  </>
-                )}
-              </p>
-            </div>
-          )}
-
-          {submit.status === 'success' && (
-            <div
-              className="mb-4 flex items-start gap-3 rounded-xl border border-emerald-500/30 bg-emerald-500/10 px-3 py-2.5 text-sm text-emerald-100"
-              role="status"
-            >
-              <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-emerald-400" aria-hidden />
-              <p>{submit.message}</p>
-            </div>
-          )}
-
-          {submit.status === 'error' && (
-            <div
-              className="mb-4 flex items-start gap-3 rounded-xl border border-red-500/30 bg-red-500/10 px-3 py-2.5 text-sm text-red-100"
-              role="alert"
-            >
-              <AlertCircle className="mt-0.5 h-4 w-4 shrink-0 text-red-400" aria-hidden />
-              <p>{submit.message}</p>
-            </div>
-          )}
-
-          <form
-            onSubmit={onSubmit}
-            className="space-y-4 rounded-2xl border border-cyan-500/20 bg-slate-900/40 p-5 shadow-[0_0_30px_rgba(34,211,238,0.06)] backdrop-blur-md sm:p-8"
-            noValidate={false}
-          >
-            <input type="hidden" name="subject" value="Portfolio contact" />
-            <input type="checkbox" name="botcheck" className="hidden" tabIndex={-1} autoComplete="off" />
-
-            <div>
-              <label
-                htmlFor="contact-name"
-                className="mb-1.5 flex items-center gap-2 text-sm font-medium text-slate-300"
-              >
-                <User className="h-3.5 w-3.5 text-cyan-400/80" aria-hidden />
-                Name
-              </label>
-              <input
-                id="contact-name"
-                name="name"
-                required
-                disabled={submit.status === 'submitting'}
-                placeholder="Your name"
-                className="w-full rounded-xl border border-slate-700/80 bg-slate-950/70 px-3 py-2.5 text-sm text-slate-100 outline-none ring-cyan-500/20 placeholder:text-slate-600 focus:border-cyan-500/45 focus:ring-2 disabled:opacity-50"
-              />
-            </div>
-
-            <div>
-              <label
-                htmlFor="contact-email"
-                className="mb-1.5 flex items-center gap-2 text-sm font-medium text-slate-300"
-              >
-                <Mail className="h-3.5 w-3.5 text-purple-400/80" aria-hidden />
-                Email
-              </label>
-              <input
-                id="contact-email"
-                name="email"
-                type="email"
-                required
-                disabled={submit.status === 'submitting'}
-                placeholder="you@organization.com"
-                className="w-full rounded-xl border border-slate-700/80 bg-slate-950/70 px-3 py-2.5 text-sm text-slate-100 outline-none ring-cyan-500/20 placeholder:text-slate-600 focus:border-purple-500/40 focus:ring-2 disabled:opacity-50"
-              />
-            </div>
-
-            <div>
-              <label
-                htmlFor="contact-message"
-                className="mb-1.5 flex items-center gap-2 text-sm font-medium text-slate-300"
-              >
-                <MessageSquare className="h-3.5 w-3.5 text-cyan-400/80" aria-hidden />
-                Message
-              </label>
-              <textarea
-                id="contact-message"
-                name="message"
-                required
-                rows={5}
-                disabled={submit.status === 'submitting'}
-                placeholder="What’s on your mind?"
-                className="w-full resize-y rounded-xl border border-slate-700/80 bg-slate-950/70 px-3 py-2.5 text-sm text-slate-100 outline-none ring-cyan-500/20 placeholder:text-slate-600 focus:border-cyan-500/45 focus:ring-2 disabled:opacity-50"
-              />
-            </div>
-
-            <button
-              type="submit"
-              disabled={submit.status === 'submitting' || !configured}
-              className="group flex w-full items-center justify-center gap-2 rounded-xl border border-cyan-500/45 bg-gradient-to-r from-cyan-500/20 to-purple-500/20 py-3 font-mono text-sm font-medium text-cyan-50 transition hover:scale-[1.01] hover:border-cyan-400/60 hover:shadow-[0_0_24px_rgba(34,211,238,0.15)] disabled:pointer-events-none disabled:opacity-50"
-            >
-              {submit.status === 'submitting' ? (
-                <Loader2 className="h-4 w-4 animate-spin" aria-hidden />
-              ) : (
-                <Send className="h-4 w-4 transition group-hover:translate-x-0.5" aria-hidden />
-              )}
-              {submit.status === 'submitting' ? 'Sending…' : 'Send message'}
-            </button>
-
-            <p className="text-center font-mono text-[10px] text-slate-600">
-              By sending, you agree I may reply from my professional inbox. No marketing lists.
-            </p>
-          </form>
-        </div>
+      <div>
+        <label htmlFor="contact-name">Name</label>
+        <input id="contact-name" name="name" required disabled={busy} autoComplete="name" />
       </div>
-    </section>
+      <div>
+        <label htmlFor="contact-email">Email</label>
+        <input id="contact-email" name="email" type="email" required disabled={busy} autoComplete="email" />
+      </div>
+      <div>
+        <label htmlFor="contact-message">What needs to ship?</label>
+        <textarea id="contact-message" name="message" required rows={5} disabled={busy} />
+      </div>
+
+      <button type="submit" className="sp-btn" disabled={busy || !configured}>
+        {busy ? 'Sending…' : 'Send message'}
+      </button>
+      <p className="sp-fine">I reply personally. No mailing lists.</p>
+    </form>
   )
 }
